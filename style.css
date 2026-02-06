@@ -1,0 +1,22 @@
+/* style.css */
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Soft glassy card feel */
+.soft-card {
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  backdrop-filter: blur(16px);
+}
+
+/* Pills for buttons/chips */
+.pill {
+  border-radius: 9999px;
+}
+
+/* Smooth scrolling for in-page nav */
+html {
+  scroll-behavior: smooth;
+}
