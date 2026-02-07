@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Ben Campbell x Buffer – Community HQ</title>
+  <title>Ben Campbell × Buffer – Community Hub Application</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ben Campbell's living application hub for the Senior Community Manager role at Buffer – community strategy, programs, and first-90-day plan." />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="A living, community-focused application hub from Ben Campbell for the Senior Community Manager role at Buffer." />
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -15,524 +14,591 @@
           fontFamily: {
             sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
           },
+          colors: {
+            brand: {
+              50: '#eff8ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            }
+          }
         },
       },
     };
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(20px);
+    }
+
+    .feed-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+    }
+
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+    details summary::marker {
+      display: none;
+    }
+    details[open] .rotate-icon {
+      transform: rotate(90deg);
+    }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-50 min-h-screen font-sans">
-  <div class="relative overflow-hidden" id="top">
-    <!-- Gradient background -->
-    <div class="pointer-events-none absolute inset-0 opacity-80">
-      <div class="absolute -top-40 -left-32 h-72 w-72 rounded-full bg-sky-500 blur-3xl"></div>
-      <div class="absolute -bottom-40 -right-32 h-80 w-80 rounded-full bg-indigo-500 blur-3xl"></div>
-      <div class="absolute top-1/2 left-1/3 h-72 w-72 -translate-y-1/2 rounded-full bg-cyan-400/40 blur-3xl"></div>
+<body class="bg-slate-50 text-slate-900 font-sans">
+  <div class="relative min-h-screen">
+    <!-- soft gradient background -->
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <div class="absolute -top-32 -left-24 w-80 h-80 rounded-full bg-brand-200/50 blur-3xl"></div>
+      <div class="absolute -bottom-32 -right-24 w-96 h-96 rounded-full bg-brand-400/40 blur-3xl"></div>
+      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-sky-100/60 blur-3xl"></div>
     </div>
 
-    <!-- Content wrapper -->
-    <div class="relative z-10 max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
-      <!-- Top nav -->
-      <header class="flex items-center justify-between mb-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
+      <!-- Header / Nav -->
+      <header class="flex items-center justify-between gap-4 mb-8 sm:mb-10">
         <div class="flex items-center gap-3">
-          <div class="h-10 w-10 flex items-center justify-center rounded-2xl bg-slate-900/80 border border-sky-400/60 shadow-lg shadow-sky-500/40">
-            <span class="text-lg font-black tracking-tight">B</span>
+          <div class="h-10 w-10 rounded-2xl bg-slate-900 flex items-center justify-center shadow-lg shadow-brand-500/30">
+            <span class="text-white font-black text-lg tracking-tight">B</span>
           </div>
           <div>
-            <p class="text-xs uppercase tracking-[0.16em] text-sky-200/80">Ben Campbell</p>
-            <p class="text-sm text-slate-200/90">Senior Community Manager – Buffer Application Hub</p>
+            <p class="text-xs font-semibold text-slate-700 uppercase tracking-[0.18em]">
+              Ben Campbell
+            </p>
+            <p class="text-xs sm:text-sm text-slate-600">
+              Community-led marketer • Creator • Applicant for Senior Community Manager
+            </p>
+            <p class="text-[11px] text-slate-500 mt-1">
+              Last updated: February 2026 · This page is a living application hub.
+            </p>
           </div>
         </div>
-        <nav class="hidden md:flex items-center gap-6 text-sm text-slate-200/80">
-          <a href="#overview" class="hover:text-sky-300 transition nav-link">Overview</a>
-          <a href="#approach" class="hover:text-sky-300 transition nav-link">How I Applied</a>
-          <a href="#playbook" class="hover:text-sky-300 transition nav-link">Playbook</a>
-          <a href="#programs" class="hover:text-sky-300 transition nav-link">Programs</a>
-          <a href="#proof" class="hover:text-sky-300 transition nav-link">Results</a>
-          <a href="#plan90" class="hover:text-sky-300 transition nav-link">First 90 Days</a>
-          <a href="#contact" class="hover:text-sky-300 transition nav-link">Contact</a>
+
+        <nav class="hidden md:flex items-center gap-5 text-sm text-slate-600">
+          <a href="#hero" class="hover:text-brand-600 transition-colors">Overview</a>
+          <a href="#impact" class="hover:text-brand-600 transition-colors">Impact</a>
+          <a href="#apps" class="hover:text-brand-600 transition-colors">Builder</a>
+          <a href="#blueprint" class="hover:text-brand-600 transition-colors">Community Blueprint</a>
+          <a href="#plan" class="hover:text-brand-600 transition-colors">30·60·90</a>
+          <a href="#resources" class="hover:text-brand-600 transition-colors">Resources</a>
         </nav>
       </header>
 
       <!-- HERO -->
-      <section id="overview" class="mb-14 lg:mb-16">
+      <section id="hero" class="mb-10 sm:mb-12 lg:mb-14">
         <div class="grid gap-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] items-start">
-          <!-- Left: main copy -->
+          <!-- left -->
           <div>
-            <div class="inline-flex items-center gap-2 pill px-3 py-1 mb-4 soft-card border border-sky-500/60 bg-slate-900/80">
-              <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-              <p class="text-xs font-medium tracking-[0.18em] uppercase text-slate-100">
-                Ben x Buffer • Senior Community Manager
-              </p>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 text-xs text-slate-100 mb-4 shadow-brand-500/30 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="font-medium tracking-[0.18em] uppercase">
+                Community Hub · Built for Buffer
+              </span>
             </div>
 
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-4">
-              A living, breathing community resume<br class="hidden sm:block" />
-              built specifically for <span class="text-sky-300">Buffer</span>.
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 mb-3">
+              I build communities that feel human,
+              <span class="text-brand-600">and actually stick.</span>
             </h1>
 
-            <p class="text-base sm:text-lg text-slate-100/90 mb-3 max-w-xl">
-              I fell in love with Buffer years ago during the original #bufferchat days on Twitter.  
-              For this application, I did the deep dive: Open Hub, Discord Creator Camps and sprint challenges, the 2025 “everything we launched” recap, and pieces on people-first communities and transparency.
+            <p class="text-sm sm:text-base text-slate-700 mb-3 max-w-xl">
+              I’m Ben — a community-focused marketer who’s led a 6M+ follower ecosystem, run Slack communities for students and employers, moderated creator and gaming spaces, and shipped my own tools in public.
             </p>
 
-            <p class="text-sm text-slate-200/80 mb-5 max-w-xl">
-              What I see is a company where community means gentle accountability for creators, real feedback loops (like shipping Threads after 7,000 requests), and radical openness around salaries and metrics. That’s the kind of place I want to build with.
-            </p>
-
-            <p class="text-sm text-slate-200/80 mb-6 max-w-xl">
-              I’ve led multi-million–follower brand communities, built social systems for schools and nonprofits, helped moderate creator and gaming communities, and I’m actively building my own tools and games in beta—so I feel, in real time, how much community decides whether a product actually sticks.
+            <p class="text-sm sm:text-base text-slate-700 mb-4 max-w-xl">
+              This page is my living application for Buffer’s Senior Community Manager role: my track record, how I think, what I’d build with you, and how my own projects make me a better partner to your creators and customers.
             </p>
 
             <div class="flex flex-wrap gap-3 mb-6">
-              <a href="#playbook" class="pill inline-flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-400 text-slate-950 text-sm font-semibold shadow-lg shadow-sky-500/30 transition">
-                View 30-Day Community Playbook
+              <a href="#impact" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-600 text-white text-sm font-semibold shadow-md shadow-brand-500/40 hover:bg-brand-700 transition">
+                Start with impact
               </a>
-              <a href="#plan90" class="pill inline-flex items-center gap-2 px-4 py-2 bg-slate-900/80 border border-slate-500/70 text-sm font-medium hover:border-sky-400 hover:text-sky-200 transition">
-                See First 90-Day Plan
-              </a>
-              <a href="#contact" class="pill inline-flex items-center gap-2 px-4 py-2 bg-slate-900/80 border border-slate-700 text-xs sm:text-sm font-medium hover:border-sky-300 hover:text-sky-100 transition">
-                Download Resume & Get in Touch
+              <a href="#blueprint" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-xs sm:text-sm text-slate-800 hover:border-brand-400 hover:text-brand-700 transition">
+                View my Buffer community blueprint
               </a>
             </div>
 
-            <div class="flex flex-wrap gap-4 text-xs sm:text-sm text-slate-200/80">
+            <dl class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
               <div>
-                <p class="font-semibold text-slate-50">Community Focus</p>
-                <p>Creators • Small Businesses • Social Media Pros</p>
+                <dt class="text-slate-500">Community scale</dt>
+                <dd class="font-semibold text-slate-900">~6M+ followers</dd>
               </div>
               <div>
-                <p class="font-semibold text-slate-50">Platforms</p>
-                <p>Discord, Reddit, LinkedIn, Instagram, Threads, Bluesky</p>
+                <dt class="text-slate-500">Experience</dt>
+                <dd class="font-semibold text-slate-900">10+ years</dd>
               </div>
               <div>
-                <p class="font-semibold text-slate-50">Track Record</p>
-                <p>Grew brand communities to ~6M followers, +50% growth at Codeup</p>
+                <dt class="text-slate-500">Tools</dt>
+                <dd class="font-semibold text-slate-900">Buffer user · builder of apps & games</dd>
               </div>
-            </div>
+            </dl>
           </div>
 
-          <!-- Right: stats / quick facts card -->
-          <aside class="soft-card rounded-3xl p-5 lg:p-6 border border-sky-200/30 shadow-xl shadow-sky-500/20">
-            <p class="text-xs uppercase tracking-[0.18em] text-sky-200 mb-3">
-              At a glance
+          <!-- right: activity feed -->
+          <aside class="glass rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/80 p-5 sm:p-6">
+            <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 mb-2">
+              Activity · Senior Community Manager Application
+            </h2>
+            <p class="text-sm text-slate-700 mb-3">
+              A quick view of what I’ve already built for this role.
             </p>
-            <div class="space-y-4 text-sm">
-              <div class="flex justify-between gap-4">
-                <span class="text-slate-200/90">Years building communities</span>
-                <span class="font-semibold text-sky-300">10+ years</span>
+            <div class="space-y-3 text-xs">
+              <div class="flex items-start gap-2">
+                <span class="feed-dot bg-emerald-400 mt-1.5"></span>
+                <div>
+                  <p class="font-medium text-slate-900">
+                    Community blueprint drafted
+                  </p>
+                  <p class="text-slate-600">
+                    Outlined Discord rituals, Reddit launch, power user program, and cross-platform engagement plan specifically for Buffer.
+                  </p>
+                  <p class="text-[11px] text-slate-400 mt-0.5">Today</p>
+                </div>
               </div>
-              <div class="flex justify-between gap-4">
-                <span class="text-slate-200/90">Total audience managed</span>
-                <span class="font-semibold text-sky-300">~6M followers</span>
+
+              <div class="flex items-start gap-2">
+                <span class="feed-dot bg-brand-400 mt-1.5"></span>
+                <div>
+                  <p class="font-medium text-slate-900">
+                    30·60·90 plan shaped
+                  </p>
+                  <p class="text-slate-600">
+                    Built a listening-first ramp focusing on community insight loops, pilot programs, and honest reporting.
+                  </p>
+                  <p class="text-[11px] text-slate-400 mt-0.5">This week</p>
+                </div>
               </div>
-              <div class="flex justify-between gap-4">
-                <span class="text-slate-200/90">Creator & tool-builder</span>
-                <span class="font-semibold text-sky-300">Apps, games, guides (in active beta)</span>
-              </div>
-              <div class="flex justify-between gap-4">
-                <span class="text-slate-200/90">Previous wins</span>
-                <span class="font-semibold text-sky-300">+50% growth at Codeup</span>
+
+              <div class="flex items-start gap-2">
+                <span class="feed-dot bg-slate-400 mt-1.5"></span>
+                <div>
+                  <p class="font-medium text-slate-900">
+                    Creator tools & games tested
+                  </p>
+                  <p class="text-slate-600">
+                    Collected feedback from early users of my own apps and games to better understand creator friction and adoption.
+                  </p>
+                  <p class="text-[11px] text-slate-400 mt-0.5">Ongoing</p>
+                </div>
               </div>
             </div>
-            <div class="mt-5 border-t border-slate-600/60 pt-4">
-              <p class="text-xs text-slate-300/90 mb-2">
-                Quick intro video:
+
+            <div class="mt-4 pt-3 border-t border-slate-200">
+              <p class="text-[11px] text-slate-500">
+                This page will keep evolving if we move forward — just like a good community.
               </p>
-              <div class="aspect-video rounded-2xl bg-slate-900 border border-slate-600/70 flex items-center justify-center text-xs text-slate-400">
-                <!-- Replace this block with a Loom/YouTube embed when ready -->
-                [Placeholder for 30–45s “Hi Buffer” video]
-              </div>
             </div>
           </aside>
         </div>
       </section>
 
-      <!-- HOW I APPLIED / SABREEN-STYLE STEPS -->
-      <section id="approach" class="mb-14 lg:mb-18">
+      <!-- IMPACT SECTION -->
+      <section id="impact" class="mb-12 sm:mb-14 lg:mb-16">
         <div class="flex items-baseline justify-between gap-4 mb-5">
           <div>
-            <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-50 mb-2">
-              How I approached this application (in 4 steps).
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">
+              Why I’m the right person for this role.
             </h2>
-            <p class="text-sm sm:text-base text-slate-200/90 max-w-2xl">
-              Inspired by Sabreen’s playbook: context first, then story, then people, then treating it like the most important project on my plate.
+            <p class="text-sm sm:text-base text-slate-700 max-w-2xl">
+              I’ve led communities at scale, run feedback loops that changed real products, and kept things human in fast-moving creator spaces.
             </p>
           </div>
         </div>
 
-        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4 text-xs sm:text-sm">
-          <!-- Step 1 -->
-          <article class="soft-card rounded-2xl p-4 border border-slate-700/70">
-            <p class="text-[11px] uppercase tracking-[0.18em] text-sky-300 mb-1.5">Step 1 • Context</p>
-            <h3 class="font-semibold text-slate-50 mb-1.5">Obsessed over Buffer’s world</h3>
-            <ul class="space-y-1 text-slate-200/85">
-              <li>• Deep-dived Open Hub, transparency posts, and the 2025 launch recap.</li>
-              <li>• Joined and studied how Discord challenges (Creator Camp, sprints) create gentle accountability.</li>
-              <li>• Took notes on people-first community thinking and how 7,000 user requests led to Threads support.</li>
+        <div class="grid gap-6 md:grid-cols-3 text-sm">
+          <!-- Zoo -->
+          <article class="glass rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-1">
+              San Antonio Zoo
+            </h3>
+            <p class="font-semibold text-slate-900 mb-1">
+              Community at scale (~6M followers)
+            </p>
+            <p class="text-xs text-slate-700 mb-3">
+              Social & community lead for a major zoo — turning seasonal spikes into year-round relationships.
+            </p>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              <li>• Helped grow and nurture a multi-million–follower ecosystem across platforms.</li>
+              <li>• Turned events (Zoo Boo, new habitats, openings) into recurring community rituals instead of one-off promos.</li>
+              <li>• Built UGC and story-led formats that invited guests into the narrative, not just the comments.</li>
+              <li>• Partnered with PR, sponsorship, and operations to align community work with business goals.</li>
             </ul>
+
+            <details class="mt-3 text-xs">
+              <summary class="flex items-center justify-between cursor-pointer text-brand-700 hover:text-brand-800">
+                <span>How this shapes my Buffer approach</span>
+                <span class="rotate-icon transition-transform text-[11px]">▶</span>
+              </summary>
+              <div class="mt-2 text-slate-700">
+                I learned how to handle volume, keep messaging coherent across teams, and build formats that people look forward to — all things I’d carry into Buffer’s Discord, Reddit, and social programming.
+              </div>
+            </details>
           </article>
 
-          <!-- Step 2 -->
-          <article class="soft-card rounded-2xl p-4 border border-slate-700/70">
-            <p class="text-[11px] uppercase tracking-[0.18em] text-sky-300 mb-1.5">Step 2 • Connect the dots</p>
-            <h3 class="font-semibold text-slate-50 mb-1.5">Mapped my story to this role</h3>
-            <ul class="space-y-1 text-slate-200/85">
-              <li>• Zoo: multi-million follower ecosystem, rituals, and UGC around a mission.</li>
-              <li>• Codeup: student + employer Slack communities and recurring partner feedback loops.</li>
-              <li>• Creator side: moderating Twitch/gaming spaces and building my own apps in beta.</li>
+          <!-- Codeup -->
+          <article class="glass rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-1">
+              Codeup
+            </h3>
+            <p class="font-semibold text-slate-900 mb-1">
+              Slack communities & feedback loops
+            </p>
+            <p class="text-xs text-slate-700 mb-3">
+              Community & social for a coding bootcamp — bridging students, employer partners, and curriculum via Slack.
+            </p>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              <li>• Helped run two Slack communities: one for students, one for employer partners.</li>
+              <li>• Facilitated recurring employer feedback sessions (advisory-style) on how grads performed and where curriculum could improve.</li>
+              <li>• Translated qualitative feedback into changes in messaging, content, and student support.</li>
+              <li>• Grew social following by ~50% while keeping conversations grounded in outcomes, not vanity metrics.</li>
             </ul>
+
+            <details class="mt-3 text-xs">
+              <summary class="flex items-center justify-between cursor-pointer text-brand-700 hover:text-brand-800">
+                <span>How this shapes my Buffer approach</span>
+                <span class="rotate-icon transition-transform text-[11px]">▶</span>
+              </summary>
+              <div class="mt-2 text-slate-700">
+                This is my template for “community insights → product & marketing.” At Buffer, I’d use the same approach to turn Discord, Reddit, and Community inbox conversations into useful signals for Product, Advocacy, and Growth.
+              </div>
+            </details>
           </article>
 
-          <!-- Step 3 -->
-          <article class="soft-card rounded-2xl p-4 border border-slate-700/70">
-            <p class="text-[11px] uppercase tracking-[0.18em] text-sky-300 mb-1.5">Step 3 • Connections</p>
-            <h3 class="font-semibold text-slate-50 mb-1.5">Reached out to learn, not pitch</h3>
-            <ul class="space-y-1 text-slate-200/85">
-              <li>• Focused on short “thank you, this changed how I think” notes.</li>
-              <li>• Highlighted how Buffer content shaped this microsite and plan.</li>
-              <li>• Kept everything low-pressure, human, and aligned with Buffer’s tone.</li>
+          <!-- Creator / Mod -->
+          <article class="glass rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-1">
+              Creator & Gaming Spaces
+            </h3>
+            <p class="font-semibold text-slate-900 mb-1">
+              Real-time, messy, human community
+            </p>
+            <p class="text-xs text-slate-700 mb-3">
+              Moderating creator and gaming communities where chat moves fast and community norms are everything.
+            </p>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              <li>• Helped moderate Twitch and gaming communities with active chats and strong personalities.</li>
+              <li>• Managed conflict, reinforced norms, and kept spaces safe without killing the fun.</li>
+              <li>• Learned to read sentiment quickly and adjust how we showed up in conversation.</li>
+              <li>• Built relationships with regulars who became informal ambassadors.</li>
             </ul>
-          </article>
 
-          <!-- Step 4 -->
-          <article class="soft-card rounded-2xl p-4 border border-slate-700/70">
-            <p class="text-[11px] uppercase tracking-[0.18em] text-sky-300 mb-1.5">Step 4 • Project</p>
-            <h3 class="font-semibold text-slate-50 mb-1.5">Treated it like a real launch</h3>
-            <ul class="space-y-1 text-slate-200/85">
-              <li>• Built this microsite as a “Ben × Buffer Community HQ.”</li>
-              <li>• Drafted a detailed Discord/Reddit/social playbook and 90-day plan.</li>
-              <li>• Approached every artifact (site, plan, video, outreach) like I already worked here.</li>
-            </ul>
+            <details class="mt-3 text-xs">
+              <summary class="flex items-center justify-between cursor-pointer text-brand-700 hover:text-brand-800">
+                <span>How this shapes my Buffer approach</span>
+                <span class="rotate-icon transition-transform text-[11px]">▶</span>
+              </summary>
+              <div class="mt-2 text-slate-700">
+                This is the energy I’d bring to Discord and Reddit: human, present, and calm — with guardrails that let people be themselves while still aligning with Buffer’s values.
+              </div>
+            </details>
           </article>
-        </div>
-
-        <div class="mt-5 text-right text-[11px]">
-          <a href="#top" class="text-slate-400 hover:text-sky-300 underline underline-offset-2">Back to top ↑</a>
         </div>
       </section>
 
-      <!-- COMMUNITY PLAYBOOK -->
-      <section id="playbook" class="mb-14 lg:mb-20">
-        <div class="flex items-baseline justify-between gap-4 mb-6">
+      <!-- APPS & BUILDER SECTION -->
+      <section id="apps" class="mb-12 sm:mb-14 lg:mb-16">
+        <div class="flex items-baseline justify-between gap-4 mb-5">
           <div>
-            <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-50 mb-2">
-              A Community Playbook built for Buffer.
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">
+              I’m also a builder — which makes me a better community leader.
             </h2>
-            <p class="text-sm sm:text-base text-slate-200/90 max-w-2xl">
-              Strategic, but human. Structured, but flexible. Here’s how I’d approach
-              Discord, Reddit, and social engagement as your Senior Community Manager.
+            <p class="text-sm sm:text-base text-slate-700 max-w-2xl">
+              I don’t just support creators and small businesses — I live their reality. I ship my own tools and games in public, gather feedback, and iterate when things don’t land.
             </p>
           </div>
         </div>
 
-        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          <!-- Discord -->
-          <article class="soft-card rounded-2xl p-5 border border-slate-700/70">
-            <p class="text-xs uppercase tracking-[0.16em] text-sky-300 mb-2">Discord</p>
-            <h3 class="font-semibold mb-2 text-slate-50">The always-on Buffer lounge</h3>
-            <p class="text-xs text-slate-200/90 mb-3">
-              Daily rituals and channels designed around creators and small businesses — not just feature announcements.
+        <div class="grid gap-6 md:grid-cols-3 text-sm">
+          <!-- Planet Strength -->
+          <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-1">
+              Planet Strength (fitness app)
+            </h3>
+            <p class="font-semibold text-slate-900 mb-1">
+              Progressive overload & accountability in a browser.
             </p>
-            <ul class="space-y-1.5 text-xs text-slate-200/80">
-              <li>• Welcome flow that tags creators vs. small biz vs. social pros.</li>
-              <li>• Weekly rituals: Wins Monday, Build-in-Public Wednesday, Lab Friday.</li>
-              <li>• Private channels for power users & beta testers.</li>
-              <li>• Moderation that feels human, not heavy-handed.</li>
+            <p class="text-xs text-slate-700 mb-2">
+              A browser-based fitness tracker designed to make progressive overload and streaks simple, not intimidating.
+            </p>
+            <p class="text-[11px] font-semibold text-slate-500 mb-1">
+              What it taught me:
+            </p>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              <li>• Onboarding friction kills more users than missing features.</li>
+              <li>• People need a single, clear “win” per session more than a dashboard of metrics.</li>
+              <li>• Consistent little nudges (streaks, micro-wins) matter more than occasional big pushes.</li>
+            </ul>
+          </article>
+
+          <!-- Signal -->
+          <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-1">
+              Signal (breathing & focus app)
+            </h3>
+            <p class="font-semibold text-slate-900 mb-1">
+              Simple breathing, calm UI, real focus.
+            </p>
+            <p class="text-xs text-slate-700 mb-2">
+              A minimal app for guided breathing and short focus sessions, built for people who live online.
+            </p>
+            <p class="text-[11px] font-semibold text-slate-500 mb-1">
+              What it taught me:
+            </p>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              <li>• Rituals beat reminders — people stick with simple, repeatable flows.</li>
+              <li>• Language and microcopy can either calm people or overwhelm them.</li>
+              <li>• Community stories (“this helped me get through…”) are fuel for product decisions.</li>
+            </ul>
+          </article>
+
+          <!-- Plot Twisted / games -->
+          <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-1">
+              Plot Twisted & other games
+            </h3>
+            <p class="font-semibold text-slate-900 mb-1">
+              Trivia and game concepts tested with real players.
+            </p>
+            <p class="text-xs text-slate-700 mb-2">
+              Humorous, technically-accurate-but-misleading movie and game quizzes built as browser experiences.
+            </p>
+            <p class="text-[11px] font-semibold text-slate-500 mb-1">
+              What they taught me:
+            </p>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              <li>• Delight and humor make people want to come back, not just click once.</li>
+              <li>• Clear difficulty tuning and feedback loops are crucial for keeping players in flow.</li>
+              <li>• Players love being part of the iteration process — they become co-creators, not just users.</li>
+            </ul>
+          </article>
+        </div>
+
+        <p class="mt-4 text-[11px] text-slate-500 max-w-2xl">
+          All of this makes me more empathetic to Buffer’s customers — I know what it feels like to ship something, be proud of it, then watch where community either breathes life into it or quietly abandons it.
+        </p>
+      </section>
+
+      <!-- COMMUNITY BLUEPRINT -->
+      <section id="blueprint" class="mb-12 sm:mb-14 lg:mb-16">
+        <div class="flex items-baseline justify-between gap-4 mb-5">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">
+              My Buffer community blueprint.
+            </h2>
+            <p class="text-sm sm:text-base text-slate-700 max-w-2xl">
+              High-level by design, so it’s easy to scan. Each pillar could be deepened with the team — this is the foundation I’d bring on day one.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4 text-sm">
+          <!-- Discord -->
+          <article class="glass rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-1">
+              Discord
+            </h3>
+            <p class="font-semibold text-slate-900 mb-1">
+              The always-on living room for creators.
+            </p>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              <li>• Welcome flows that tag creators vs. small businesses vs. social pros.</li>
+              <li>• Weekly rituals (Wins Monday, Workflow Wednesday, Open Studio Friday).</li>
+              <li>• Creator Circles: small, themed cohorts for deeper support.</li>
+              <li>• Private channels for power users and beta feedback.</li>
             </ul>
           </article>
 
           <!-- Reddit -->
-          <article class="soft-card rounded-2xl p-5 border border-slate-700/70">
-            <p class="text-xs uppercase tracking-[0.16em] text-sky-300 mb-2">Reddit</p>
-            <h3 class="font-semibold mb-2 text-slate-50">A home base for honest creator talk</h3>
-            <p class="text-xs text-slate-200/90 mb-3">
-              Launching a subreddit that centers real workflows, experiments, and unpolished conversations.
+          <article class="glass rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-1">
+              Reddit
+            </h3>
+            <p class="font-semibold text-slate-900 mb-1">
+              Honest conversations about workflows and experiments.
             </p>
-            <ul class="space-y-1.5 text-xs text-slate-200/80">
-              <li>• Weekly “Show us your week in Buffer” threads.</li>
-              <li>• AMAs with creators, small biz owners, and Bufferoos.</li>
-              <li>• Template and workflow breakdowns pinned as resources.</li>
-              <li>• Clear rules to keep it useful, not salesy.</li>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              <li>• Launch a subreddit centered on “show your system,” not “show your stats.”</li>
+              <li>• Weekly threads: workflows, creator hurdles, office hours.</li>
+              <li>• Transparent feature and roadmap conversations where it makes sense.</li>
+              <li>• Guardrails that keep it useful, not promotional.</li>
             </ul>
           </article>
 
-          <!-- Social Engagement -->
-          <article class="soft-card rounded-2xl p-5 border-slate-700/70">
-            <p class="text-xs uppercase tracking-[0.16em] text-sky-300 mb-2">Social Engagement</p>
-            <h3 class="font-semibold mb-2 text-slate-50">Showing up where Buffer people already are</h3>
-            <p class="text-xs text-slate-200/90 mb-3">
-              Comment-first, human-first engagement across LinkedIn, Threads, Bluesky, and beyond.
+          <!-- Social engagement -->
+          <article class="glass rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-1">
+              Social engagement
+            </h3>
+            <p class="font-semibold text-slate-900 mb-1">
+              Comment-first, human-first presence.
             </p>
-            <ul class="space-y-1.5 text-xs text-slate-200/80">
-              <li>• Daily pass through key hashtags & creator posts.</li>
-              <li>• “We see you” replies that spotlight community wins.</li>
-              <li>• Turning great replies into content & case studies.</li>
-              <li>• Partnering with Advocacy to close the loop.</li>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              <li>• Daily “community passes” through LinkedIn, Threads, X, Bluesky.</li>
+              <li>• Replies that spotlight community wins and stories, not just features.</li>
+              <li>• Turning high-signal threads into case studies and resources.</li>
+              <li>• Close collaboration with Advocacy and Marketing to align tone and timing.</li>
             </ul>
           </article>
 
-          <!-- Power Users -->
-          <article class="soft-card rounded-2xl p-5 border border-slate-700/70">
-            <p class="text-xs uppercase tracking-[0.16em] text-sky-300 mb-2">Power Users</p>
-            <h3 class="font-semibold mb-2 text-slate-50">From happy users to loud advocates</h3>
-            <p class="text-xs text-slate-200/90 mb-3">
-              Structured beta and power user programs that feel like collaboration, not homework.
+          <!-- Power users / insights -->
+          <article class="glass rounded-2xl border border-slate-200 p-5">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-1">
+              Power users & insights
+            </h3>
+            <p class="font-semibold text-slate-900 mb-1">
+              From “happy users” to high-signal collaborators.
             </p>
-            <ul class="space-y-1.5 text-xs text-slate-200/80">
-              <li>• Lightweight feedback loops tied to roadmap moments.</li>
-              <li>• Early access, private AMAs, and small-group sessions.</li>
-              <li>• Co-created launch content with Buffer’s marketing team.</li>
-              <li>• Clear recognition & perks for high-impact advocates.</li>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              <li>• Identify power users across Discord, Community inbox, and social.</li>
+              <li>• Create a structured beta / advocates group with clear perks.</li>
+              <li>• Stand up a “Community Signals” digest for Product & Growth.</li>
+              <li>• Ship a light “state of the community” snapshot on a regular cadence.</li>
             </ul>
           </article>
-        </div>
-
-        <div class="mt-6 text-right text-[11px]">
-          <a href="#top" class="text-slate-400 hover:text-sky-300 underline underline-offset-2">Back to top ↑</a>
         </div>
       </section>
 
-      <!-- SIGNATURE PROGRAMS -->
-      <section id="programs" class="mb-14 lg:mb-20">
-        <div class="flex items-baseline justify-between gap-4 mb-6">
+      <!-- 30/60/90 PLAN -->
+      <section id="plan" class="mb-12 sm:mb-14 lg:mb-16">
+        <div class="flex items-baseline justify-between gap-4 mb-5">
           <div>
-            <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-50 mb-2">
-              Signature community programs I’d pilot.
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">
+              How I’d spend my first 90 days.
             </h2>
-            <p class="text-sm sm:text-base text-slate-200/90 max-w-2xl">
-              Community thrives on repeatable, human rituals. Here are a few I’d test and iterate with the team.
+            <p class="text-sm sm:text-base text-slate-700 max-w-2xl">
+              Listen first, then pilot, then scale what actually works. No stunts — just sustainable community building.
             </p>
           </div>
         </div>
 
-        <div class="grid gap-6 md:grid-cols-2">
-          <article class="soft-card rounded-2xl p-5 border border-slate-700/70">
-            <h3 class="font-semibold mb-1 text-slate-50">1. Creator Spotlight Sessions</h3>
-            <p class="text-xs text-slate-200/90 mb-2">
-              Monthly interviews or live sessions with Buffer users walking through their systems.
+        <div class="grid gap-6 md:grid-cols-3 text-sm">
+          <!-- 30 days -->
+          <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-1">
+              Days 0–30 · Learn & map
+            </h3>
+            <p class="font-semibold text-slate-900 mb-2">
+              Listen deeply, understand the current ecosystem, and earn trust.
             </p>
-            <ul class="space-y-1.5 text-xs text-slate-200/80">
-              <li>• Live in Discord, replayed across socials.</li>
-              <li>• Focus on workflows, not vanity metrics.</li>
-              <li>• Pull quotable moments into Buffer’s marketing content.</li>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              <li>• Audit Discord, Community inbox usage, social engagement, and prior programs.</li>
+              <li>• Meet with Marketing, Advocacy, Product, and Engineering partners.</li>
+              <li>• Run listening sessions with community members to hear what’s working and what’s not.</li>
+              <li>• Stand up a simple “Community Signals” doc to capture patterns and quick wins.</li>
             </ul>
           </article>
 
-          <article class="soft-card rounded-2xl p-5 border border-slate-700/70">
-            <h3 class="font-semibold mb-1 text-slate-50">2. Buffer Lab Weeks</h3>
-            <p class="text-xs text-slate-200/90 mb-2">
-              A themed week where the community experiments with one workflow together.
+          <!-- 60 days -->
+          <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-1">
+              Days 31–60 · Pilot & structure
+            </h3>
+            <p class="font-semibold text-slate-900 mb-2">
+              Introduce light structure and test small bets.
             </p>
-            <ul class="space-y-1.5 text-xs text-slate-200/80">
-              <li>• Themes like “Repurpose Week” or “30-Minute Content Systems”.</li>
-              <li>• Simple daily prompts in Discord & Reddit.</li>
-              <li>• Summary threads that become public resources.</li>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              <li>• Launch 1–2 Discord rituals and refine based on participation and sentiment.</li>
+              <li>• Soft-launch the subreddit with clear posting patterns and guidelines.</li>
+              <li>• Identify 10–20 power users across channels and invite them into a pilot feedback group.</li>
+              <li>• Work with cross-functional partners to integrate community feedback into product and content decisions.</li>
             </ul>
           </article>
 
-          <article class="soft-card rounded-2xl p-5 border border-slate-700/70">
-            <h3 class="font-semibold mb-1 text-slate-50">3. Power User Circles</h3>
-            <p class="text-xs text-slate-200/90 mb-2">
-              Small groups of power users matched by stage, platform, or niche.
+          <!-- 90 days -->
+          <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-1">
+              Days 61–90 · Scale & share
+            </h3>
+            <p class="font-semibold text-slate-900 mb-2">
+              Double down on what works and communicate clearly.
             </p>
-            <ul class="space-y-1.5 text-xs text-slate-200/80">
-              <li>• Quarterly cohorts (e.g., Agencies, Solo Creators, Small Biz).</li>
-              <li>• Feedback routes directly into Product and Marketing.</li>
-              <li>• Shared wins surfaced across Buffer’s content.</li>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              <li>• Expand successful programs and clearly communicate their purpose to the community.</li>
+              <li>• Formalize the power user / beta program with defined feedback loops and recognition.</li>
+              <li>• Partner with Growth and Brand to weave community stories into launch moments.</li>
+              <li>• Publish a light “state of the community” snapshot with honest wins and learnings.</li>
             </ul>
           </article>
-
-          <article class="soft-card rounded-2xl p-5 border border-slate-700/70">
-            <h3 class="font-semibold mb-1 text-slate-50">4. Creator Census</h3>
-            <p class="text-xs text-slate-200/90 mb-2">
-              A quarterly “state of the Buffer creator” survey turned into a public, transparent report.
-            </p>
-            <ul class="space-y-1.5 text-xs text-slate-200/80">
-              <li>• Informs product decisions and content strategy.</li>
-              <li>• Gives community a sense of belonging and visibility.</li>
-              <li>• Aligns with Buffer’s transparency DNA.</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="mt-6 text-right text-[11px]">
-          <a href="#top" class="text-slate-400 hover:text-sky-300 underline underline-offset-2">Back to top ↑</a>
         </div>
       </section>
 
-      <!-- PROOF / CASE STUDIES -->
-      <section id="proof" class="mb-14 lg:mb-20">
-        <div class="flex items-baseline justify-between gap-4 mb-6">
-          <div>
-            <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-50 mb-2">
-              Results from the communities I’ve led.
-            </h2>
-            <p class="text-sm sm:text-base text-slate-200/90 max-w-2xl">
-              I’ve spent my career turning “we should post more” into clear systems, measurable growth, and real people who feel seen.
-            </p>
-          </div>
-        </div>
-
-        <div class="grid gap-6 md:grid-cols-3">
-          <article class="soft-card rounded-2xl p-5 border border-slate-700/70 text-sm">
-            <p class="text-xs uppercase tracking-[0.16em] text-sky-300 mb-2">Zoo & Attractions</p>
-            <h3 class="font-semibold mb-2 text-slate-50">Built a 6M+ follower ecosystem</h3>
-            <p class="text-xs text-slate-200/90 mb-2">
-              Led social and community for a major zoo, turning seasonal campaigns into
-              year-round storytelling across platforms.
-            </p>
-            <ul class="space-y-1.5 text-xs text-slate-200/80">
-              <li>• Grew and nurtured an audience of ~6M across platforms.</li>
-              <li>• Launched themed campaigns, UGC programs, and live event coverage.</li>
-              <li>• Partnered with PR and marketing to align community with brand strategy.</li>
-            </ul>
-          </article>
-
-          <article class="soft-card rounded-2xl p-5 border border-slate-700/70 text-sm">
-            <p class="text-xs uppercase tracking-[0.16em] text-sky-300 mb-2">Tech & Education</p>
-            <h3 class="font-semibold mb-2 text-slate-50">+50% growth at Codeup</h3>
-            <p class="text-xs text-slate-200/90 mb-2">
-              At Codeup, I helped grow and facilitate both our student community in Slack and our employer partner community in Slack, while running recurring partner feedback sessions to keep our curriculum tightly aligned to hiring needs.
-            </p>
-            <ul class="space-y-1.5 text-xs text-slate-200/80">
-              <li>• Increased social following by 50%.</li>
-              <li>• Built and nurtured student & employer Slack communities.</li>
-              <li>• Hosted recurring partner feedback sessions (advisory-style) to adapt curriculum and messaging to real-world demands.</li>
-            </ul>
-          </article>
-
-          <article class="soft-card rounded-2xl p-5 border border-slate-700/70 text-sm">
-            <p class="text-xs uppercase tracking-[0.16em] text-sky-300 mb-2">Creator & Product</p>
-            <h3 class="font-semibold mb-2 text-slate-50">I build for the people Buffer serves</h3>
-            <p class="text-xs text-slate-200/90 mb-2">
-              From trivia games to fitness tools and marketing experiments I’m actively building and testing in beta, I work the same way many Buffer users do — shipping, iterating, and listening to feedback in public.
-            </p>
-            <ul class="space-y-1.5 text-xs text-slate-200/80">
-              <li>• Built and tested browser-based games and tools as live experiments.</li>
-              <li>• Launched digital products for parents and creators and iterated based on real feedback.</li>
-              <li>• Helped moderate creator communities (Twitch, gaming, online fandoms), giving me a grounded view of what healthy, supported community feels like inside the chat window.</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="mt-6 text-right text-[11px]">
-          <a href="#top" class="text-slate-400 hover:text-sky-300 underline underline-offset-2">Back to top ↑</a>
-        </div>
-      </section>
-
-      <!-- FIRST 90 DAYS -->
-      <section id="plan90" class="mb-14 lg:mb-20">
-        <div class="flex items-baseline justify-between gap-4 mb-6">
-          <div>
-            <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-50 mb-2">
-              How I’d approach my first 90 days at Buffer.
-            </h2>
-            <p class="text-sm sm:text-base text-slate-200/90 max-w-2xl">
-              Community isn’t a growth hack — it’s a relationship. Here’s how I’d balance listening, quick wins, and durable systems.
-            </p>
-          </div>
-        </div>
-
-        <div class="grid gap-6 md:grid-cols-3">
-          <article class="soft-card rounded-2xl p-5 border border-slate-700/70 text-sm">
-            <p class="text-xs uppercase tracking-[0.16em] text-sky-300 mb-2">Days 0–30</p>
-            <h3 class="font-semibold mb-2 text-slate-50">Listen, map, and earn trust</h3>
-            <ul class="space-y-1.5 text-xs text-slate-200/80">
-              <li>• Deep dive into existing Discord, Community inbox usage, socials, and prior community experiments.</li>
-              <li>• 1:1s with Marketing, Advocacy, Product, and Engineering partners.</li>
-              <li>• Community listening sessions: “What do you wish Buffer did more of?”</li>
-              <li>• Identify quick wins that reduce friction for creators and small businesses.</li>
-            </ul>
-          </article>
-
-          <article class="soft-card rounded-2xl p-5 border border-slate-700/70 text-sm">
-            <p class="text-xs uppercase tracking-[0.16em] text-sky-300 mb-2">Days 31–60</p>
-            <h3 class="font-semibold mb-2 text-slate-50">Launch rituals & pilot programs</h3>
-            <ul class="space-y-1.5 text-xs text-slate-200/80">
-              <li>• Introduce core Discord rituals and refine structure around existing Creator Camps and challenges.</li>
-              <li>• Soft-launch the Buffer subreddit with a clear content and engagement plan.</li>
-              <li>• Pilot one flagship program (e.g. Creator Spotlight Sessions).</li>
-              <li>• Formalize how insights flow into Product and Content roadmaps via a “Community Signals” digest.</li>
-            </ul>
-          </article>
-
-          <article class="soft-card rounded-2xl p-5 border border-slate-700/70 text-sm">
-            <p class="text-xs uppercase tracking-[0.16em] text-sky-300 mb-2">Days 61–90</p>
-            <h3 class="font-semibold mb-2 text-slate-50">Scale what works, sunset what doesn’t</h3>
-            <ul class="space-y-1.5 text-xs text-slate-200/80">
-              <li>• Expand successful programs and clearly communicate their purpose.</li>
-              <li>• Stand up a structured power user / beta program with clear feedback loops and perks.</li>
-              <li>• Partner with Growth & Brand to tie community stories into launch moments.</li>
-              <li>• Publish a light, transparent “state of the community” snapshot.</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="mt-6 text-right text-[11px]">
-          <a href="#top" class="text-slate-400 hover:text-sky-300 underline underline-offset-2">Back to top ↑</a>
-        </div>
-      </section>
-
-      <!-- CONTACT / CLOSING -->
-      <section id="contact" class="mb-10 lg:mb-14">
-        <div class="soft-card rounded-3xl p-6 lg:p-8 border border-sky-200/40">
-          <div class="grid gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] items-center">
+      <!-- RESOURCES / LINKS -->
+      <section id="resources" class="mb-10 sm:mb-12 lg:mb-14">
+        <div class="glass rounded-3xl border border-slate-200 p-6 sm:p-7 lg:p-8 shadow-lg shadow-slate-200/80">
+          <div class="grid gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] items-start">
             <div>
-              <h2 class="text-xl sm:text-2xl font-bold text-slate-50 mb-3">
-                Let’s build the next chapter of Buffer’s community.
+              <h2 class="text-2xl font-bold text-slate-900 mb-2">
+                Dive deeper or get in touch.
               </h2>
-              <p class="text-sm sm:text-base text-slate-200/90 mb-4 max-w-xl">
-                I’ve admired Buffer for years — not just as a tool, but as a signal
-                that you can build on the internet with kindness, clarity, and transparency.
-                I’d love to bring that same spirit into your Discord, Reddit, and beyond.
+              <p class="text-sm sm:text-base text-slate-700 mb-4 max-w-xl">
+                If this looks like the kind of community thinking you want at Buffer, here’s where you can learn more or reach me directly.
               </p>
-              <div class="flex flex-wrap gap-3 mb-3">
-                <a href="#" class="pill inline-flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-400 text-slate-950 text-sm font-semibold shadow-lg shadow-sky-500/30 transition">
-                  Download full resume (PDF)
+
+              <div class="flex flex-wrap gap-3 mb-3 text-sm">
+                <a href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-600 text-white font-semibold shadow-md shadow-brand-500/40 hover:bg-brand-700 transition">
+                  📄 Download my resume (PDF)
                 </a>
-                <a href="#" class="pill inline-flex items-center gap-2 px-4 py-2 bg-slate-900/80 border border-slate-600 text-xs sm:text-sm font-medium hover:border-sky-300 hover:text-sky-100 transition">
-                  View detailed community plan (Notion)
+                <a href="https://bencampbell.netlify.app" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-800 hover:border-brand-400 hover:text-brand-700 transition">
+                  🌐 View my full portfolio
                 </a>
               </div>
-              <p class="text-xs text-slate-300/90">
-                Or reach me directly at
-                <a href="mailto:hirebencampbell@gmail.com" class="text-sky-300 hover:text-sky-200 underline underline-offset-2">
+
+              <div class="flex flex-wrap gap-3 mb-3 text-xs sm:text-sm">
+                <a href="#" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 text-slate-100 hover:bg-slate-800 transition">
+                  📘 View detailed community plan (Notion)
+                </a>
+                <a href="#" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-slate-800 hover:border-brand-400 transition">
+                  🎥 Watch my short intro video
+                </a>
+              </div>
+
+              <p class="text-xs text-slate-600">
+                Or email me at
+                <a href="mailto:hirebencampbell@gmail.com" class="text-brand-700 font-medium hover:underline">
                   hirebencampbell@gmail.com
                 </a>.
               </p>
             </div>
-            <div class="text-xs text-slate-200/90 space-y-2">
-              <p class="font-semibold text-slate-50">This page is a living document.</p>
-              <p>
-                As the process moves forward, I can:
+
+            <div class="text-xs sm:text-sm text-slate-700 space-y-2">
+              <p class="font-semibold text-slate-900">
+                This hub is designed like the communities I build:
               </p>
-              <ul class="list-disc list-inside space-y-1">
-                <li>Add artifacts from a “Buffer Community Lab” pop-up Discord.</li>
-                <li>Share engagement metrics from test programs and experiments.</li>
-                <li>Update the 30- and 90-day plans with real learnings from the team.</li>
+              <ul class="list-disc list-inside space-y-1.5">
+                <li>Easy to scan at a glance.</li>
+                <li>Deeper context available when you’re ready for it.</li>
+                <li>Always evolving based on feedback and what’s working.</li>
               </ul>
-              <p class="pt-2 text-slate-300/90">
-                In other words: this isn’t just an application. It’s the starting point of how I’d work here.
+              <p class="pt-2 text-slate-600">
+                However this process plays out, thank you for taking the time to explore this. I care deeply about building communities where people feel seen, supported, and part of something that matters — and I see that same goal woven through Buffer’s story.
               </p>
             </div>
           </div>
         </div>
-
-        <div class="mt-6 text-right text-[11px]">
-          <a href="#top" class="text-slate-400 hover:text-sky-300 underline underline-offset-2">Back to top ↑</a>
-        </div>
       </section>
 
-      <footer class="py-4 text-[11px] text-slate-400 flex flex-wrap items-center justify-between gap-3">
-        <span>Built by Ben Campbell • Crafted specifically for the Senior Community Manager role at Buffer.</span>
-        <span>Best viewed after a good #bufferchat-style coffee.</span>
+      <!-- FOOTER -->
+      <footer class="py-4 border-t border-slate-200 mt-4 flex flex-wrap items-center justify-between gap-3 text-[11px] text-slate-500">
+        <span>© Ben Campbell · Built specifically for the Senior Community Manager role at Buffer.</span>
+        <span>Best enjoyed with a strong coffee and an open community tab.</span>
       </footer>
     </div>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
