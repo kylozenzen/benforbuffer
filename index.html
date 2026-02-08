@@ -4,403 +4,271 @@
   <meta charset="UTF-8" />
   <title>Ben for Buffer – Senior Community Manager</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Ben Campbell’s living, skimmable application hub for Buffer’s Senior Community Manager role."
-  />
+  <meta name="description"
+        content="Ben Campbell’s lightweight, skimmable application hub for Buffer’s Senior Community Manager role." />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="no-js">
-  <div class="page-shell">
-    <!-- LEFT RAIL / PROFILE -->
-    <aside class="rail">
-      <div class="rail-card">
-        <div class="rail-avatar">B</div>
-        <div class="rail-meta">
-          <p class="rail-name">Ben Campbell</p>
-          <p class="rail-role">Community-led marketer · Creator</p>
-          <p class="rail-tag">Built for Buffer’s Senior Community Manager role</p>
+<body>
+  <!-- Simple top bar, Buffer-style -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-brand">
+        <div class="avatar">B</div>
+        <div class="brand-text">
+          <span class="brand-name">Ben Campbell</span>
+          <span class="brand-role">Community-led marketer · Creator</span>
         </div>
       </div>
-
-      <nav class="rail-nav">
-        <!-- Tooltips subtly mirror Buffer values -->
-        <button
-          class="rail-link"
-          data-scroll="hero"
-          data-tooltip="Default to transparency (start here)"
-        >
-          Intro
-        </button>
-        <button
-          class="rail-link"
-          data-scroll="impact"
-          data-tooltip="Improve consistently (show the receipts)"
-        >
-          Impact
-        </button>
-        <button
-          class="rail-link"
-          data-scroll="plan"
-          data-tooltip="No-ego doing (here’s the plan)"
-        >
-          My plan
-        </button>
-        <button
-          class="rail-link"
-          data-scroll="timeline"
-          data-tooltip="Reflect & learn (first 90 days)"
-        >
-          30·60·90
-        </button>
-        <button
-          class="rail-link"
-          data-scroll="links"
-          data-tooltip="Show gratitude (and links)"
-        >
-          Links
-        </button>
+      <nav class="topbar-nav">
+        <button class="nav-link" data-scroll="intro">Intro</button>
+        <button class="nav-link" data-scroll="impact">Impact</button>
+        <button class="nav-link" data-scroll="plan">My plan</button>
+        <button class="nav-link" data-scroll="timeline">30·60·90</button>
+        <button class="nav-link" data-scroll="links">Links</button>
       </nav>
+    </div>
+  </header>
 
-      <div class="rail-foot">
-        <p class="rail-foot-title">How to use this page</p>
-        <ul>
-          <li>Skim the headlines & bullets like a social feed.</li>
-          <li>Tap “Deep dive” when you want full community-nerd mode.</li>
-          <li>If you read every word, I owe you a coffee at the next Buffer retreat.</li>
-        </ul>
+  <main class="page">
+    <!-- INTRO / HERO -->
+    <section id="intro" class="section hero">
+      <div class="hero-main">
+        <p class="eyebrow">Application hub · Senior Community Manager · Buffer</p>
+        <h1>
+          Buffer taught me why community matters.<br />
+          Now I’d love to help grow yours.
+        </h1>
+        <p class="hero-body">
+          I was one of those people who rearranged their calendar around
+          <span class="hash">#bufferchat</span>. That weekly ritual is where I first saw
+          how the right questions, tone, and humans can turn “audience” into
+          “I actually feel at home here.”
+        </p>
+        <p class="hero-body">
+          Since then I’ve led multi-million-follower communities, run Slack
+          ecosystems, moderated creator spaces, and shipped my own apps and
+          games as a builder.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn-primary" data-scroll="impact">
+            See quick impact
+          </button>
+          <button class="btn-ghost" data-scroll="plan">
+            Jump to my Buffer plan
+          </button>
+        </div>
+
+        <p class="hero-footnote">
+          Designed to be skimmed in under a minute. If you read every word,
+          you’re automatically in my “power user” cohort.
+        </p>
       </div>
-    </aside>
 
-    <!-- MAIN CONTENT -->
-    <main class="main">
-      <!-- HERO -->
-      <section id="hero" class="panel panel-hero reveal">
-        <div class="panel-header">
-          <p class="chip chip-soft">Application hub · Senior Community Manager</p>
-        </div>
-        <div class="hero-body">
-          <h1>
-            Buffer taught me why community matters.<br />
-            Now I’d love to help build yours.
-          </h1>
-          <p class="hero-sub">
-            #bufferchat is where I first learned that community isn’t a channel — it’s how people
-            feel when they show up. Since then, I’ve led big brand communities, run Slack ecosystems,
-            moderated creator spaces, and shipped my own tools as a creator.
-          </p>
+      <aside class="hero-card">
+        <h2>Why I’m a fit (at a glance)</h2>
+        <ul>
+          <li><strong>Community at scale</strong><br />
+            Helped lead a mission-driven brand with ~6M+ followers, turning big
+            campaigns into real visits, memberships, and sponsor value.</li>
+          <li><strong>Slack & feedback loops</strong><br />
+            Ran student + employer Slack communities at Codeup with recurring
+            sessions that shaped curriculum and hiring outcomes.</li>
+          <li><strong>Creator empathy</strong><br />
+            I ship my own tools — Planet Strength, Signal, Plot Twisted — so I
+            live the same “will anyone use this?” journey your customers are on.</li>
+        </ul>
+      </aside>
+    </section>
 
-          <div class="hero-grid">
-            <div class="hero-column">
-              <p class="hero-label">Why me, at a glance</p>
-              <ul class="hero-list">
-                <li><strong>Community at scale:</strong> Helped lead a mission-driven brand with ~6M+ followers, turning campaigns into visits, memberships, and sponsor value.</li>
-                <li><strong>Slack & feedback loops:</strong> Ran student and employer communities at Codeup, with recurring sessions that shaped curriculum and hiring decisions.</li>
-                <li><strong>Creator empathy:</strong> I build and ship my own apps and games in public, living the same “is anyone going to use this?” tension your customers feel.</li>
-              </ul>
-            </div>
-            <div class="hero-column hero-cta-wrap">
-              <button class="btn-primary" data-scroll="impact">See impact</button>
-              <button class="btn-ghost" data-scroll="plan">Jump to my Buffer plan</button>
-              <p class="hero-foot">
-                Built to be skimmed in under a minute — with optional deep dives if you want to see how far down the community rabbit hole I go. If this were a tweet thread, this is the “okay, I’m listening” part.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- IMPACT -->
-      <section id="impact" class="panel reveal">
-        <div class="panel-header">
-          <p class="chip">Experience & outcomes</p>
-          <h2>Proven community impact across brands, Slack, and creator spaces.</h2>
-          <p class="panel-sub">
-            Four different contexts, same throughline: human connection tied to real results.
-          </p>
-        </div>
-
-        <div class="card-grid">
-          <!-- Zoo -->
-          <article class="card">
-            <p class="card-label">San Antonio Zoo</p>
-            <h3>6M+ followers → more visits, memberships, and sponsor love.</h3>
-            <ul class="card-list">
-              <li>Helped nurture a multi-million–follower ecosystem across platforms.</li>
-              <li>Turned tentpole events (Zoo Boo, Zoo Lights, new habitats) into recurring community rituals, not one-off promos.</li>
-              <li>Partnered with PR & sponsors so the community always had a “front row seat.”</li>
-            </ul>
-            <button class="deep-toggle" data-target="deep-zoo">Deep dive ↓</button>
-          </article>
-
-          <!-- Codeup -->
-          <article class="card">
-            <p class="card-label">Codeup</p>
-            <h3>Slack communities that actually changed decisions.</h3>
-            <ul class="card-list">
-              <li>Supported two Slack ecosystems: one for students, one for employer partners.</li>
-              <li>Ran recurring employer feedback sessions about how grads were performing and where curriculum could evolve.</li>
-              <li>Fed those insights into messaging and support content so grads were more hireable and partners more confident.</li>
-            </ul>
-            <button class="deep-toggle" data-target="deep-codeup">Deep dive ↓</button>
-          </article>
-
-          <!-- Creator & gaming -->
-          <article class="card">
-            <p class="card-label">Creator & gaming communities</p>
-            <h3>Moderating messy, human spaces without killing the fun.</h3>
-            <ul class="card-list">
-              <li>Supported Twitch and gaming communities where chat is fast, emotional, and very honest.</li>
-              <li>Set norms, de-escalated conflict, and empowered regulars to act like hosts, not just bystanders.</li>
-              <li>Helped turn lurkers into participants and informal ambassadors.</li>
-            </ul>
-            <button class="deep-toggle" data-target="deep-creator">Deep dive ↓</button>
-          </article>
-
-          <!-- Builder journey -->
-          <article class="card">
-            <p class="card-label">Builder journey</p>
-            <h3>Apps & games tested in the wild, not on a whiteboard.</h3>
-            <ul class="card-list">
-              <li><strong>Planet Strength:</strong> a browser-based strength app focused on streaks and progressive overload.</li>
-              <li><strong>Signal:</strong> a simple breathing/focus tool for people who live online.</li>
-              <li><strong>Plot Twisted & others:</strong> trivia games built with real player feedback and iteration.</li>
-            </ul>
-            <button class="deep-toggle" data-target="deep-builder">Deep dive ↓</button>
-          </article>
-        </div>
-
-        <!-- IMPACT DEEP DIVES -->
-        <section class="deep-dive" id="deep-zoo">
-          <div class="deep-inner">
-            <h3>San Antonio Zoo · deeper context</h3>
-            <p>
-              At the zoo, volume wasn’t the problem — we already had millions of followers. The challenge was turning that crowd into
-              <em>community</em> that showed up, donated, and came back.
-            </p>
-            <ul>
-              <li>Built recurring series around big moments (Zoo Boo, Zoo Lights, new exhibits) so they felt like traditions the community owned.</li>
-              <li>Collaborated with PR, education, and sponsorship to make sure campaigns tied to real goals: attendance, memberships, sponsor value, and conservation storytelling.</li>
-              <li>Used comments, DMs, and in-person conversations to inform content choices — the best posts came straight from guest questions and keeper stories.</li>
-            </ul>
-            <p>
-              Same lens I’d bring to Buffer: fewer one-off “announcements,” more recurring, community-owned rituals that support growth and retention.
-            </p>
-          </div>
-        </section>
-
-        <section class="deep-dive" id="deep-codeup">
-          <div class="deep-inner">
-            <h3>Codeup · deeper context</h3>
-            <p>
-              At Codeup, community wasn’t just a nice-to-have — it directly affected whether grads got jobs and whether partners kept hiring.
-            </p>
-            <ul>
-              <li>Student Slack was the heartbeat for support, wins, peer learning, and alumni guidance.</li>
-              <li>Employer Slack and quarterly feedback sessions acted like an ongoing advisory council, surfacing gaps in grad readiness.</li>
-              <li>I translated those conversations into content, messaging tweaks, and suggestions for curriculum updates.</li>
-            </ul>
-            <p>
-              For Buffer, this experience maps directly to Discord, Reddit, and Community data becoming structured “signals” that Product, Advocacy, and Growth can use.
-            </p>
-          </div>
-        </section>
-
-        <section class="deep-dive" id="deep-creator">
-          <div class="deep-inner">
-            <h3>Creator & gaming communities · deeper context</h3>
-            <p>
-              Creator and gaming spaces taught me how quickly trust can be built — and broken — when everything happens in real time.
-            </p>
-            <ul>
-              <li>Moderated streams and communities where you’re juggling hype, safety, trolls, and burnout all at once.</li>
-              <li>Learned to set clear expectations, respond with empathy, and let community leaders emerge naturally.</li>
-              <li>Saw firsthand how thoughtful moderation and rituals can turn a chaotic chat into a place people feel safe coming back to.</li>
-            </ul>
-            <p>
-              That’s the energy I’d bring to Buffer’s Discord and future Reddit presence: human first, honest, and aligned with your values (and never “growth at all costs”).
-            </p>
-          </div>
-        </section>
-
-        <section class="deep-dive" id="deep-builder">
-          <div class="deep-inner">
-            <h3>Builder journey · deeper context</h3>
-            <p>
-              Building my own tools means I’m not just cheering from the sidelines — I’m living the same questions Buffer customers have.
-            </p>
-            <ul>
-              <li>What makes someone try this thing once? What makes them come back the third time?</li>
-              <li>How do onboarding, microcopy, and small UX decisions make or break retention?</li>
-              <li>How do you invite feedback without overwhelming people, and how do you respond with transparency?</li>
-            </ul>
-            <p>
-              Translation: I’ve shipped things my mom politely “likes” but does not use — and I know that gap is exactly where community and product teams should be talking.
-            </p>
-          </div>
-        </section>
-      </section>
-
-      <!-- PLAN -->
-      <section id="plan" class="panel reveal">
-        <div class="panel-header">
-          <p class="chip">If I joined Buffer…</p>
-          <h2>What I’d focus on first.</h2>
-          <p class="panel-sub">
-            A simple north star, a few focused bets, and clear feedback loops so community isn’t just “vibes” — it’s part of how Buffer grows.
-          </p>
-        </div>
-
-        <div class="plan-grid">
-          <article class="mini-card">
-            <h3>Community north star</h3>
-            <p>
-              Build spaces where Buffer customers feel:
-            </p>
-            <ul>
-              <li><strong>Seen</strong> — their use cases and constraints are reflected back.</li>
-              <li><strong>Supported</strong> — they have people and resources to lean on.</li>
-              <li><strong>Involved</strong> — their feedback clearly shapes the product and story.</li>
-            </ul>
-          </article>
-
-          <article class="mini-card">
-            <h3>Discord as “the studio”</h3>
-            <ul>
-              <li>Tighten onboarding so new members know where to go and who to meet.</li>
-              <li>Introduce 1–2 weekly rituals (wins, workflow show-and-tell) and measure participation + sentiment.</li>
-              <li>Highlight member stories, not just Buffer updates.</li>
-            </ul>
-          </article>
-
-          <article class="mini-card">
-            <h3>Reddit as “the workbench”</h3>
-            <ul>
-              <li>Launch a workflow-first subreddit around setups, experiments, and honest questions.</li>
-              <li>Use weekly threads and office-hour style posts for deeper, searchable discussions.</li>
-              <li>Keep it useful and candid — never just a repost of marketing content.</li>
-            </ul>
-          </article>
-
-          <article class="mini-card">
-            <h3>Social engagement layer</h3>
-            <ul>
-              <li>Comment-first strategy on LinkedIn, Threads, X, Bluesky.</li>
-              <li>Replies that showcase community wins and “you said / we did” moments.</li>
-              <li>Work with marketing to turn high-signal conversations into content and case studies.</li>
-            </ul>
-          </article>
-
-          <article class="mini-card">
-            <h3>Signals & advocates</h3>
-            <ul>
-              <li>Identify power users across Discord, Community, and social (beyond follower counts).</li>
-              <li>Create a lightweight beta / advocate group with clear expectations and perks.</li>
-              <li>Ship a simple “Community Signals” digest for Product, Advocacy, and Growth.</li>
-            </ul>
-          </article>
-        </div>
-
-        <button class="deep-toggle deep-toggle-wide" data-target="deep-plan">
-          Deep dive: what I’ve learned from Buffer already ↓
-        </button>
-
-        <section class="deep-dive" id="deep-plan">
-          <div class="deep-inner">
-            <h3>How I’m already thinking in “Buffer.”</h3>
-            <p>
-              I’ve spent time digging through Buffer’s blog, product updates, and community pages — not just to learn features,
-              but to understand the <em>why</em> behind them.
-            </p>
-            <ul>
-              <li>Discord is positioned as a gentle accountability space and creator camp, not just another server. I’d keep that human tone while layering in clearer journeys for different types of members.</li>
-              <li>Product decisions like Threads support and the Community inbox clearly came from listening to thousands of users. I’d make sure Discord, Reddit, and social replies feed that loop in a more structured way.</li>
-              <li>Transparency is a core value — from open salaries to sharing “small improvements.” Community work should mirror that with regular “here’s what we heard, here’s what we tried, here’s what changed” updates.</li>
-            </ul>
-            <p>
-              My goal isn’t to wallpaper Buffer with “Ben ideas,” but to deepen what’s already working and keep a clear line from
-              community → product → story.
-            </p>
-          </div>
-        </section>
-      </section>
-
-      <!-- 30 / 60 / 90 -->
-      <section id="timeline" class="panel reveal">
-        <div class="panel-header">
-          <p class="chip">First 90 days</p>
-          <h2>How I’d ramp in, realistically.</h2>
-        </div>
-
-        <div class="timeline-grid">
-          <article class="timeline-card">
-            <h3>Days 0–30 · Listen</h3>
-            <ul>
-              <li>Audit Discord, Community usage, and organic Reddit mentions.</li>
-              <li>Meet with Advocacy, Marketing, Product, and Engineering to understand goals and current experiments.</li>
-              <li>Run a few short listening calls with creators and small businesses.</li>
-              <li>Share a simple first “Community Signals” rundown with early patterns, not conclusions.</li>
-            </ul>
-          </article>
-
-          <article class="timeline-card">
-            <h3>Days 31–60 · Pilot</h3>
-            <ul>
-              <li>Launch one Discord ritual and a focused initial Reddit presence.</li>
-              <li>Invite a small wave of power users into a beta / advocate pilot.</li>
-              <li>Align with marketing on where community best supports upcoming launches.</li>
-              <li>Publish “what we tried / what we learned” updates internally.</li>
-            </ul>
-          </article>
-
-          <article class="timeline-card">
-            <h3>Days 61–90 · Systemize</h3>
-            <ul>
-              <li>Double down on rituals that work; gracefully sunset anything that doesn’t land.</li>
-              <li>Formalize a lightweight but delightful advocate program.</li>
-              <li>Integrate community stories into launch playbooks and content calendars.</li>
-              <li>Share a “state of the community” snapshot with honest wins and growth edges.</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <!-- LINKS -->
-      <section id="links" class="panel panel-links reveal">
-        <div class="panel-header">
-          <p class="chip">Want to go deeper?</p>
-          <h2>Resume, portfolio, and projects.</h2>
-        </div>
-
-        <div class="link-grid">
-          <!-- Replace href with your real resume file on this site -->
-          <a href="#" class="link-card primary-link">
-            <h3>📄 Download my resume</h3>
-            <p>One-page PDF tailored to this role.</p>
-          </a>
-
-          <a href="https://bencampbell.netlify.app/" class="link-card" target="_blank" rel="noreferrer">
-            <h3>🌐 View my full portfolio</h3>
-            <p>Social, community, content, and campaigns across brands.</p>
-          </a>
-
-          <!-- Replace href with a page or Notion hub of your tools/games -->
-          <a href="#" class="link-card">
-            <h3>🧰 Explore my apps & games</h3>
-            <p>Planet Strength, Signal, Plot Twisted and more — built in public with real user feedback.</p>
-          </a>
-        </div>
-
-        <p class="links-foot">
-          Email: <a href="mailto:hirebencampbell@gmail.com">hirebencampbell@gmail.com</a>
+    <!-- IMPACT -->
+    <section id="impact" class="section">
+      <header class="section-header">
+        <p class="eyebrow">Experience</p>
+        <h2>Community work that moved real numbers, not just vibes.</h2>
+        <p class="section-sub">
+          Short version below. Open a card if you want more detail.
         </p>
+      </header>
 
-        <p class="links-foot small">
-          However this plays out, thanks for reading. #bufferchat is where I first learned how powerful community can be — getting to help steward that kind of space at Buffer would be pretty surreal (in the good way).
+      <div class="card-grid">
+        <!-- Zoo -->
+        <article class="card">
+          <p class="card-tag">San Antonio Zoo</p>
+          <h3>6M+ followers → more visits & memberships.</h3>
+          <ul class="card-list">
+            <li>Helped nurture a multi-platform audience of ~6M+.</li>
+            <li>Turned events like Zoo Boo and new exhibits into recurring rituals.</li>
+            <li>Partnered with PR & sponsors so the community felt in the loop, not marketed at.</li>
+          </ul>
+          <button class="card-toggle" data-target="deep-zoo">More context</button>
+          <div id="deep-zoo" class="card-deep">
+            <p>
+              The goal wasn’t “post more animals” — it was
+              <strong>drive visits, memberships, and sponsor value</strong>.
+              That meant recurring series, live moments, and UGC that made
+              supporters feel like co-hosts of the zoo’s story.
+            </p>
+          </div>
+        </article>
+
+        <!-- Codeup -->
+        <article class="card">
+          <p class="card-tag">Codeup</p>
+          <h3>Slack communities that changed decisions.</h3>
+          <ul class="card-list">
+            <li>Supported student Slack as the heart of peer help & wins.</li>
+            <li>Ran an employer Slack + quarterly feedback sessions.</li>
+            <li>Turned those conversations into changes in messaging and support.</li>
+          </ul>
+          <button class="card-toggle" data-target="deep-codeup">More context</button>
+          <div id="deep-codeup" class="card-deep">
+            <p>
+              Employer feedback wasn’t a survey that disappeared into a folder —
+              it fed right into how we talked about grads, where we up-skilled
+              them, and how we helped them show up stronger for interviews.
+            </p>
+          </div>
+        </article>
+
+        <!-- Creator / builder -->
+        <article class="card">
+          <p class="card-tag">Creator & builder</p>
+          <h3>Moderating humans, not just usernames.</h3>
+          <ul class="card-list">
+            <li>Moderated Twitch & gaming communities where chat never sleeps.</li>
+            <li>Set norms that protected people without killing the fun.</li>
+            <li>Built my own apps & games in beta, iterating with real players.</li>
+          </ul>
+          <button class="card-toggle" data-target="deep-builder">More context</button>
+          <div id="deep-builder" class="card-deep">
+            <p>
+              Building my own tools means I’m constantly asking: “What made
+              someone try this once? Why did they come back?” That’s the same
+              loop I’d run with Buffer’s Discord, Reddit, and Community data.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PLAN FOR BUFFER -->
+    <section id="plan" class="section">
+      <header class="section-header">
+        <p class="eyebrow">If I joined Buffer…</p>
+        <h2>How I’d approach community for the next chapter.</h2>
+        <p class="section-sub">
+          One north star, a few focused bets, and clear feedback loops.
         </p>
-      </section>
-    </main>
-  </div>
+      </header>
+
+      <div class="card-grid">
+        <!-- North star -->
+        <article class="card">
+          <p class="card-tag">Community north star</p>
+          <h3>Buffer customers should feel:</h3>
+          <ul class="card-list">
+            <li><strong>Seen</strong> — their use cases actually show up in the content.</li>
+            <li><strong>Supported</strong> — they know where to go when things break or stall.</li>
+            <li><strong>Involved</strong> — they can clearly see “you said / we did” moments.</li>
+          </ul>
+        </article>
+
+        <!-- Discord + Reddit -->
+        <article class="card">
+          <p class="card-tag">Discord & Reddit</p>
+          <h3>One “studio,” one “workbench.”</h3>
+          <ul class="card-list">
+            <li>Discord as the studio: rituals, cohorts, and gentle accountability.</li>
+            <li>Reddit as the workbench: workflows, honest questions, and search-friendly answers.</li>
+            <li>Clear paths for new members so “Buffer curious” becomes “I have people here.”</li>
+          </ul>
+        </article>
+
+        <!-- Signals & social -->
+        <article class="card">
+          <p class="card-tag">Signals & social</p>
+          <h3>Community as a product input, not a side quest.</h3>
+          <ul class="card-list">
+            <li>Monthly “Community Signals” digest across Discord, Reddit, and Community inbox.</li>
+            <li>Comment-first engagement on LinkedIn, Threads, X, and Bluesky.</li>
+            <li>Simple, delightful advocate / beta program that feels human, not transactional.</li>
+          </ul>
+        </article>
+      </div>
+
+      <button class="inline-toggle" data-target="deep-buffer">
+        How this matches Buffer today
+      </button>
+      <div id="deep-buffer" class="inline-deep">
+        <p>
+          You’re already doing so much right: Discord as a gentle accountability space,
+          product changes shaped by thousands of user requests, and a culture of
+          transparency most companies would never dare to ship.
+        </p>
+        <p>
+          My job wouldn’t be to reinvent that — it would be to connect the dots:
+          clearer journeys, tighter feedback loops, and more visible “you asked, we
+          tried, here’s what happened” stories across channels.
+        </p>
+      </div>
+    </section>
+
+    <!-- 30 / 60 / 90 -->
+    <section id="timeline" class="section section-tight">
+      <header class="section-header">
+        <p class="eyebrow">First 90 days</p>
+        <h2>Simple ramp that respects the team and the community.</h2>
+      </header>
+
+      <div class="timeline">
+        <div class="timeline-step">
+          <h3>0–30</h3>
+          <p>Listen, map existing rituals & signals, meet the humans.</p>
+        </div>
+        <div class="timeline-step">
+          <h3>31–60</h3>
+          <p>Test a few small bets in Discord & Reddit, ship a first “signals” digest.</p>
+        </div>
+        <div class="timeline-step">
+          <h3>61–90</h3>
+          <p>Double down on what works, sunset what doesn’t, and document a steady cadence.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LINKS -->
+    <section id="links" class="section section-tight">
+      <header class="section-header">
+        <p class="eyebrow">Next clicks</p>
+        <h2>Resume, portfolio, and side projects.</h2>
+      </header>
+
+      <div class="links-grid">
+        <!-- update hrefs to your actual assets -->
+        <a href="#" class="link-tile primary-link">
+          <h3>📄 Download my resume</h3>
+          <p>One-page PDF tuned for this role.</p>
+        </a>
+
+        <a href="https://bencampbell.netlify.app/" target="_blank" rel="noreferrer" class="link-tile">
+          <h3>🌐 Full portfolio</h3>
+          <p>Campaigns, content, communities, and more context.</p>
+        </a>
+
+        <a href="#" class="link-tile">
+          <h3>🧰 Apps & games</h3>
+          <p>Planet Strength, Signal, Plot Twisted & friends.</p>
+        </a>
+      </div>
+
+      <p class="links-foot">
+        Email:
+        <a href="mailto:hirebencampbell@gmail.com">hirebencampbell@gmail.com</a>
+        · If nothing else, thanks for keeping #bufferchat kid alive in my brain all these years.
+      </p>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
