@@ -1,20 +1,21 @@
-// Remove no-js class so CSS knows JS is running
+// Basic enhancements only. Content is fully readable without JS.
+
+// 1. Mark JS enabled so CSS can animate
 document.body.classList.remove("no-js");
 
-// Smooth scroll for all buttons with data-scroll
-const scrollButtons = document.querySelectorAll("[data-scroll]");
+// 2. Smooth scroll for nav + buttons with data-scroll
+const scrollTriggers = document.querySelectorAll("[data-scroll]");
 
-scrollButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const targetId = btn.getAttribute("data-scroll");
-    const target = document.getElementById(targetId);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+scrollTriggers.forEach((el) => {
+  el.addEventListener("click", () => {
+    const id = el.getAttribute("data-scroll");
+    const target = document.getElementById(id);
+    if (!target) return;
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 
-// Scroll reveal
+// 3. IntersectionObserver for section reveal
 const revealEls = document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window) {
@@ -28,32 +29,31 @@ if ("IntersectionObserver" in window) {
       });
     },
     {
-      threshold: 0.15,
+      threshold: 0.18,
     }
   );
 
   revealEls.forEach((el) => observer.observe(el));
 } else {
-  // Fallback: just show everything
   revealEls.forEach((el) => el.classList.add("in-view"));
 }
 
-// Active nav highlighting
-const navLinks = document.querySelectorAll(".nav-link");
-const sectionIds = ["intro", "impact", "buffer-now", "plan", "resources"];
+// 4. Active state on left-nav links
+const navLinks = document.querySelectorAll(".rail-link");
+const sectionIds = ["hero", "impact", "plan", "timeline", "links"];
 const sections = sectionIds
   .map((id) => document.getElementById(id))
   .filter(Boolean);
 
 function updateActiveNav() {
-  const scrollPos = window.scrollY;
-  let activeId = "intro";
+  const scrollPosition = window.scrollY;
+  let activeId = "hero";
 
-  sections.forEach((sec) => {
-    const rect = sec.getBoundingClientRect();
+  sections.forEach((section) => {
+    const rect = section.getBoundingClientRect();
     const top = rect.top + window.scrollY;
-    if (scrollPos >= top - 140) {
-      activeId = sec.id;
+    if (scrollPosition >= top - 150) {
+      activeId = section.id;
     }
   });
 
@@ -70,3 +70,35 @@ function updateActiveNav() {
 window.addEventListener("scroll", updateActiveNav);
 window.addEventListener("load", updateActiveNav);
 
+// 5. Deep-dive toggle logic
+const deepButtons = document.querySelectorAll(".deep-toggle, .deep-toggle-wide");
+
+deepButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const targetId = btn.getAttribute("data-target");
+    const panel = document.getElementById(targetId);
+    if (!panel) return;
+
+    const isOpen = panel.classList.contains("open");
+
+    // Close any other deep dives inside the same parent panel
+    const parentPanel = btn.closest(".panel");
+    if (parentPanel) {
+      const allDeep = parentPanel.querySelectorAll(".deep-dive.open");
+      allDeep.forEach((d) => {
+        if (d !== panel) {
+          d.classList.remove("open");
+        }
+      });
+    }
+
+    if (isOpen) {
+      panel.classList.remove("open");
+      btn.textContent = btn.textContent.replace("↑", "↓");
+    } else {
+      panel.classList.add("open");
+      btn.textContent = btn.textContent.replace("↓", "↑");
+      panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  });
+});
