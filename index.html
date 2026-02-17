@@ -1,1031 +1,286 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Buffer Community Growth Blueprint (Ben-coded)</title>
-  <meta name="description" content="A Buffer-style community growth blueprint spanning Reddit, Discord, social, events, partnerships, and user spotlights." />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Building the Most Trusted Community for Buffer</title>
 
-  <!-- Fonts: Poppins (headings) + Roboto (body) per Buffer brand guidance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      /* From Buffer visual guidelines: primary blue + dark blue + black + yellow + light blue, etc. */
-      --blue:#2C4BFF;
-      --blueDark:#121E66;
-      --black:#231F20;
-      --yellow:#FADE2A;
-      --lightBlue:#6B81FF;
-      --teal:#00C8CF;
-      --pink:#D925AC;
-      --bg:#F6F7FB;
-      --card:#FFFFFF;
-      --muted:#6B7280;
-      --border:rgba(17,24,39,.10);
-      --shadow:0 18px 50px rgba(18,30,102,.12);
-      --shadowSoft:0 10px 25px rgba(17,24,39,.08);
-      --radius:18px;
-      --radius2:26px;
-      --max:1120px;
-    }
+<style>
+:root{
+  --blue:#2C4BFF;
+  --blueDark:#121E66;
+  --ink:#111827;
+  --muted:#6B7280;
+  --bg:#F6F7FB;
+  --card:#ffffff;
+  --border:rgba(17,24,39,.10);
+  --radius:18px;
+  --max:1000px;
+}
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
-      color:var(--black);
-      background:
-        radial-gradient(900px 500px at 15% 10%, rgba(44,75,255,.18), transparent 55%),
-        radial-gradient(700px 420px at 85% 15%, rgba(0,200,207,.16), transparent 60%),
-        radial-gradient(650px 420px at 60% 95%, rgba(250,222,42,.22), transparent 55%),
-        var(--bg);
-      overflow-x:hidden;
-    }
-    a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
-    .nav{
-      position:sticky; top:0; z-index:40;
-      backdrop-filter:saturate(180%) blur(12px);
-      background:rgba(246,247,251,.75);
-      border-bottom:1px solid var(--border);
-    }
-    .navInner{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0;
-      gap:14px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px; text-decoration:none;
-      font-family:Poppins, sans-serif; font-weight:800; letter-spacing:.2px;
-    }
-    .mark{
-      width:34px; height:34px; border-radius:12px;
-      background:linear-gradient(135deg, var(--blue), var(--lightBlue));
-      box-shadow:0 10px 22px rgba(44,75,255,.25);
-      position:relative;
-    }
-    .mark:after{
-      content:"";
-      position:absolute; inset:9px 10px 9px 10px;
-      border-radius:10px;
-      border:2px solid rgba(255,255,255,.92);
-      transform:skewX(-10deg);
-      opacity:.95;
-    }
-    .navLinks{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
-    .chip{
-      font-size:13px;
-      padding:8px 10px;
-      border:1px solid var(--border);
-      border-radius:999px;
-      background:rgba(255,255,255,.65);
-      text-decoration:none;
-      transition:transform .15s ease, background .15s ease;
-      white-space:nowrap;
-    }
-    .chip:hover{transform:translateY(-1px); background:#fff}
-    .btn{
-      appearance:none; border:0; cursor:pointer;
-      border-radius:999px;
-      padding:10px 14px;
-      font-weight:700;
-      font-size:14px;
-      display:inline-flex; align-items:center; gap:10px;
-      background:var(--blue);
-      color:#fff;
-      box-shadow:0 14px 28px rgba(44,75,255,.22);
-      transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
-      text-decoration:none;
-    }
-    .btn:hover{transform:translateY(-1px); filter:saturate(110%); box-shadow:0 18px 36px rgba(44,75,255,.26)}
-    .btn.secondary{
-      background:#fff; color:var(--blueDark);
-      border:1px solid var(--border);
-      box-shadow:var(--shadowSoft);
-    }
-    .btn.secondary:hover{box-shadow:0 14px 30px rgba(17,24,39,.10)}
-    .hero{
-      padding:58px 0 30px;
-      position:relative;
-    }
-    .grid{
-      display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:22px;
-      align-items:stretch;
-    }
-    .hTitle{
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      letter-spacing:-.6px;
-      font-size:52px;
-      line-height:1.02;
-      margin:0 0 12px;
-    }
-    .sub{
-      font-size:18px;
-      line-height:1.55;
-      color:#31343a;
-      margin:0 0 18px;
-      max-width:52ch;
-    }
-    .badges{display:flex; flex-wrap:wrap; gap:10px; margin:14px 0 18px}
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.72);
-      border:1px solid var(--border);
-      font-size:13px; color:#1f2937;
-    }
-    .dot{width:10px; height:10px; border-radius:50%}
-    .dot.blue{background:var(--blue)}
-    .dot.teal{background:var(--teal)}
-    .dot.yellow{background:var(--yellow)}
-    .dot.pink{background:var(--pink)}
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius2);
-      box-shadow:var(--shadowSoft);
-    }
-    .heroCard{
-      padding:18px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      gap:14px;
-      position:relative;
-      overflow:hidden;
-    }
-    .heroCard:before{
-      content:"";
-      position:absolute; inset:-60px -60px auto auto;
-      width:240px; height:240px;
-      background:radial-gradient(circle at 30% 30%, rgba(250,222,42,.65), transparent 60%),
-                 radial-gradient(circle at 70% 60%, rgba(44,75,255,.35), transparent 62%);
-      transform:rotate(18deg);
-      filter:blur(0px);
-      opacity:.9;
-      pointer-events:none;
-    }
-    .miniTitle{
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      margin:0 0 6px;
-      font-size:18px;
-      letter-spacing:-.2px;
-    }
-    .miniText{margin:0; color:#374151; font-size:14px; line-height:1.6}
-    .kpiRow{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:10px;
-    }
-    .kpi{
-      padding:12px;
-      border-radius:16px;
-      background:rgba(246,247,251,.9);
-      border:1px solid var(--border);
-    }
-    .kpi .num{
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      font-size:22px;
-      letter-spacing:-.3px;
-    }
-    .kpi .lbl{font-size:12px; color:var(--muted)}
-    .section{
-      padding:40px 0;
-    }
-    .sectionHeader{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap:18px;
-      margin-bottom:16px;
-    }
-    h2{
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      margin:0;
-      font-size:30px;
-      letter-spacing:-.3px;
-    }
-    .hint{margin:0; color:var(--muted); line-height:1.5; max-width:70ch}
-    .pillars{
-      display:grid;
-      grid-template-columns:repeat(4, 1fr);
-      gap:12px;
-    }
-    .pillar{
-      padding:14px;
-      border-radius:18px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.82);
-      box-shadow:0 10px 22px rgba(17,24,39,.06);
-      position:relative;
-      overflow:hidden;
-      min-height:120px;
-    }
-    .pillar:after{
-      content:"";
-      position:absolute; inset:auto -40px -40px auto;
-      width:120px; height:120px;
-      border-radius:36px;
-      background:rgba(44,75,255,.08);
-      transform:rotate(18deg);
-    }
-    .pillar h3{
-      margin:0 0 6px;
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      font-size:16px;
-      letter-spacing:-.2px;
-    }
-    .pillar p{margin:0; color:#374151; font-size:13px; line-height:1.55; position:relative; z-index:1}
-    .playbookControls{
-      display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;
-      margin:14px 0;
-    }
-    .filters{display:flex; flex-wrap:wrap; gap:8px}
-    .filterBtn{
-      border:1px solid var(--border);
-      background:#fff;
-      border-radius:999px;
-      padding:8px 10px;
-      font-size:13px;
-      cursor:pointer;
-      transition:transform .15s ease, box-shadow .15s ease;
-    }
-    .filterBtn:hover{transform:translateY(-1px)}
-    .filterBtn[aria-pressed="true"]{
-      background:rgba(44,75,255,.08);
-      border-color:rgba(44,75,255,.25);
-      box-shadow:0 12px 22px rgba(44,75,255,.10);
-      color:var(--blueDark);
-      font-weight:700;
-    }
-    .tools{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
-    .input{
-      border:1px solid var(--border);
-      background:#fff;
-      border-radius:999px;
-      padding:9px 12px;
-      font-size:13px;
-      min-width:240px;
-      outline:none;
-    }
-    .input:focus{border-color:rgba(44,75,255,.35); box-shadow:0 0 0 4px rgba(44,75,255,.12)}
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:12px;
-    }
-    .idea{
-      padding:14px;
-      border-radius:18px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.88);
-      box-shadow:0 10px 22px rgba(17,24,39,.06);
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      min-height:190px;
-    }
-    .tagRow{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
-    .tag{
-      font-size:12px;
-      border-radius:999px;
-      padding:6px 8px;
-      border:1px solid var(--border);
-      background:rgba(246,247,251,.9);
-      color:#111827;
-    }
-    .tag strong{font-weight:800}
-    .idea h4{
-      margin:0;
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      letter-spacing:-.2px;
-      font-size:16px;
-      line-height:1.25;
-    }
-    .idea p{margin:0; color:#374151; font-size:13px; line-height:1.55}
-    .idea .actions{
-      margin-top:auto;
-      display:flex;
-      gap:10px;
-      align-items:center;
-      justify-content:space-between;
-    }
-    .linkBtn{
-      border:1px solid var(--border);
-      background:#fff;
-      padding:8px 10px;
-      border-radius:999px;
-      font-size:13px;
-      cursor:pointer;
-    }
-    .linkBtn:hover{box-shadow:0 12px 22px rgba(17,24,39,.08)}
-    .tiny{font-size:12px; color:var(--muted)}
-    .twoCol{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-    .panel{
-      padding:16px;
-      border-radius:22px;
-      background:rgba(255,255,255,.86);
-      border:1px solid var(--border);
-      box-shadow:var(--shadowSoft);
-    }
-    .panel h3{
-      margin:0 0 8px;
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      font-size:18px;
-      letter-spacing:-.2px;
-    }
-    .list{
-      margin:0;
-      padding-left:18px;
-      color:#374151;
-      line-height:1.7;
-      font-size:13px;
-    }
-    .timeline{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:12px;
-    }
-    .step{
-      padding:14px;
-      border-radius:18px;
-      border:1px solid var(--border);
-      background:#fff;
-      box-shadow:0 10px 22px rgba(17,24,39,.06);
-    }
-    .step .when{
-      display:inline-flex;
-      border-radius:999px;
-      padding:6px 8px;
-      background:rgba(44,75,255,.08);
-      border:1px solid rgba(44,75,255,.18);
-      font-size:12px;
-      font-weight:700;
-      color:var(--blueDark);
-      margin-bottom:8px;
-    }
-    .step h4{margin:0 0 6px; font-family:Poppins, sans-serif; font-weight:800; font-size:15px}
-    .step p{margin:0; color:#374151; font-size:13px; line-height:1.55}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Roboto, system-ui;
+  background:var(--bg);
+  color:var(--ink);
+}
 
-    .cta{
-      padding:34px 0 60px;
-    }
-    .ctaBox{
-      padding:22px;
-      border-radius:28px;
-      background:linear-gradient(135deg, rgba(44,75,255,.12), rgba(0,200,207,.10), rgba(250,222,42,.16));
-      border:1px solid rgba(18,30,102,.12);
-      box-shadow:var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-    .ctaBox:after{
-      content:"";
-      position:absolute; inset:auto -90px -90px auto;
-      width:320px; height:320px;
-      background:radial-gradient(circle at 40% 40%, rgba(44,75,255,.35), transparent 60%),
-                 radial-gradient(circle at 60% 60%, rgba(0,200,207,.26), transparent 62%);
-      transform:rotate(10deg);
-      opacity:.9;
-      pointer-events:none;
-    }
-    .ctaGrid{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:14px;
-      position:relative;
-      z-index:1;
-      align-items:center;
-    }
-    .ctaGrid h2{margin:0 0 8px}
-    .ctaGrid p{margin:0; color:#2b2f36; line-height:1.6}
-    .ctaActions{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
-    footer{
-      padding:22px 0 40px;
-      color:var(--muted);
-      font-size:13px;
-    }
+.wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
 
-    /* Reveal */
-    .reveal{opacity:0; transform:translateY(10px); transition:opacity .45s ease, transform .45s ease}
-    .reveal.on{opacity:1; transform:translateY(0)}
-    @media (prefers-reduced-motion: reduce){
-      .reveal{transition:none}
-      .btn,.chip,.filterBtn{transition:none}
-      .btn:hover,.chip:hover,.filterBtn:hover{transform:none}
-    }
+header{
+  padding:60px 0 40px;
+  text-align:center;
+}
 
-    /* Responsive */
-    @media (max-width:980px){
-      .grid{grid-template-columns:1fr}
-      .hTitle{font-size:44px}
-      .pillars{grid-template-columns:1fr 1fr}
-      .cards{grid-template-columns:1fr 1fr}
-      .timeline{grid-template-columns:1fr 1fr}
-      .ctaGrid{grid-template-columns:1fr}
-      .ctaActions{justify-content:flex-start}
-    }
-    @media (max-width:640px){
-      .hTitle{font-size:38px}
-      .pillars,.cards,.twoCol,.timeline{grid-template-columns:1fr}
-      .input{min-width:0; width:100%}
-      .playbookControls{gap:12px}
-    }
-  </style>
+h1{
+  font-family:Poppins, sans-serif;
+  font-weight:800;
+  font-size:48px;
+  margin:0 0 16px;
+}
+
+.sub{
+  font-size:18px;
+  color:#374151;
+  max-width:720px;
+  margin:0 auto;
+  line-height:1.6;
+}
+
+section{
+  padding:60px 0;
+}
+
+h2{
+  font-family:Poppins, sans-serif;
+  font-weight:800;
+  font-size:28px;
+  margin-bottom:20px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:24px;
+  margin-bottom:16px;
+}
+
+details{
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:18px 20px;
+  margin-bottom:12px;
+  background:white;
+}
+
+summary{
+  font-weight:700;
+  cursor:pointer;
+  font-size:16px;
+}
+
+details p{
+  margin-top:10px;
+  color:#374151;
+  line-height:1.6;
+}
+
+ul{
+  margin-top:10px;
+  padding-left:20px;
+  color:#374151;
+}
+
+.bold-close{
+  font-family:Poppins, sans-serif;
+  font-weight:800;
+  font-size:22px;
+  text-align:center;
+  margin-top:30px;
+}
+
+.bio{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:30px;
+}
+
+.bio a{
+  color:var(--blue);
+  font-weight:600;
+  text-decoration:none;
+}
+
+footer{
+  text-align:center;
+  padding:40px 0 60px;
+  font-size:14px;
+  color:var(--muted);
+}
+</style>
 </head>
 
 <body>
-  <header class="nav">
-    <div class="wrap navInner">
-      <a class="brand" href="#top" aria-label="Community blueprint home">
-        <span class="mark" aria-hidden="true"></span>
-        <span>Community Blueprint</span>
-      </a>
-      <nav class="navLinks" aria-label="Page sections">
-        <a class="chip" href="#pillars">Pillars</a>
-        <a class="chip" href="#playbooks">Playbooks</a>
-        <a class="chip" href="#flywheel">Flywheel</a>
-        <a class="chip" href="#events">Events</a>
-        <a class="chip" href="#spotlights">Spotlights</a>
-        <a class="chip" href="#metrics">Metrics</a>
-      </nav>
-      <a class="btn" href="#cta">Join the Lab <span aria-hidden="true">→</span></a>
-    </div>
-  </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="wrap grid">
-        <div class="reveal">
-          <h1 class="hTitle">Grow together.<br/>Ship smarter.<br/>Stay human.</h1>
-          <p class="sub">
-            A Buffer-style community growth plan spanning <strong>Reddit</strong>, <strong>Discord</strong>, social, events, and partnerships —
-            built for a remote team and powered by the people doing the work (aka: your users, not your logo).
-          </p>
+<div class="wrap">
 
-          <div class="badges" aria-label="Value badges">
-            <span class="badge"><span class="dot blue"></span>Default to transparency</span>
-            <span class="badge"><span class="dot teal"></span>Cultivate positivity</span>
-            <span class="badge"><span class="dot yellow"></span>Show gratitude</span>
-            <span class="badge"><span class="dot pink"></span>Practice reflection</span>
-          </div>
+<header>
+<h1>Building the Most Trusted Community for Buffer</h1>
+<p class="sub">
+We advocate for creators. They advocate for us.  
+That mutual trust becomes the most durable form of growth.
+</p>
+</header>
 
-          <div style="display:flex; gap:10px; flex-wrap:wrap">
-            <a class="btn secondary" href="#playbooks">Explore the playbooks</a>
-            <button class="btn" id="spinBtn" type="button">Spin an idea <span aria-hidden="true">🎲</span></button>
-          </div>
+<section>
+<h2>Who This Is For</h2>
+<div class="card">
+<strong>Creators.</strong> Momentum and visibility.<br><br>
+<strong>Small Businesses.</strong> Clarity and consistency.<br><br>
+<strong>Agencies.</strong> Scale and confidence.
+<br><br>
+Community becomes the connective tissue across all three.
+</div>
+</section>
 
-          <p class="tiny" id="spinHint" style="margin-top:10px">
-            “Spin an idea” gives you one community move you can run this week. Zero fluff. Mildly Ben-coded.
-          </p>
-        </div>
+<section>
+<h2>The Advocacy System</h2>
 
-        <aside class="card heroCard reveal" aria-label="Quick dashboard preview">
-          <div>
-            <p class="miniTitle">This quarter’s focus</p>
-            <p class="miniText">
-              Build a community loop where users <strong>learn</strong>, <strong>connect</strong>, <strong>ship</strong>, and get <strong>spotlighted</strong>.
-              (Yes, it’s a flywheel. No, it’s not the scary kind.)
-            </p>
-          </div>
+<details>
+<summary>1. Show Up Publicly</summary>
+<p>
+We contribute meaningfully on Reddit and social platforms where conversations already exist.  
+Lessons learned. Transparent insights. No guru noise.
+</p>
+<ul>
+<li>Weekly Reddit rhythm</li>
+<li>“What we learned” posts</li>
+<li>Quarterly AMA</li>
+</ul>
+</details>
 
-          <div class="kpiRow" role="list" aria-label="Key metrics">
-            <div class="kpi" role="listitem">
-              <div class="num" data-count="28">0</div>
-              <div class="lbl">Templates shipped</div>
-            </div>
-            <div class="kpi" role="listitem">
-              <div class="num" data-count="12">0</div>
-              <div class="lbl">Community events</div>
-            </div>
-            <div class="kpi" role="listitem">
-              <div class="num" data-count="45">0</div>
-              <div class="lbl">User spotlights</div>
-            </div>
-          </div>
+<details>
+<summary>2. Build a Structured Space</summary>
+<p>
+Launch a Discord Growth Lab — not a chatroom, but a working room.
+</p>
+<ul>
+<li>Feedback swaps</li>
+<li>Monthly growth sprint</li>
+<li>Office hours with the Buffer team</li>
+<li>Clear onboarding structure</li>
+</ul>
+</details>
 
-          <div style="display:flex; gap:10px; align-items:center; justify-content:space-between">
-            <div class="tiny">Updated monthly • Transparent by default</div>
-            <a class="chip" href="#metrics" style="background:#fff">See metrics</a>
-          </div>
-        </aside>
-      </div>
-    </section>
+<details>
+<summary>3. Elevate the Builders</summary>
+<p>
+Spotlight real creators. Publish real wins. Host events that deepen relationships.
+</p>
+<ul>
+<li>Creator spotlight series</li>
+<li>Monthly workshops</li>
+<li>Quarterly Community Week</li>
+<li>Strategic ecosystem partnerships</li>
+</ul>
+</details>
 
-    <section class="section" id="pillars">
-      <div class="wrap">
-        <div class="sectionHeader reveal">
-          <div>
-            <h2>Four pillars. One vibe: helpful.</h2>
-            <p class="hint">Everything below ladders into these. Keep the strategy simple; let the execution be excellent.</p>
-          </div>
-        </div>
+</section>
 
-        <div class="pillars">
-          <div class="pillar reveal">
-            <h3>Education Engine</h3>
-            <p>Templates, experiments, and “here’s what worked” posts. Teach first. Convert later.</p>
-          </div>
-          <div class="pillar reveal">
-            <h3>Connection Engine</h3>
-            <p>Discord structure + events cadence + feedback rituals that don’t feel like homework.</p>
-          </div>
-          <div class="pillar reveal">
-            <h3>Amplification Engine</h3>
-            <p>User spotlights + partnerships. Community members become the distribution channel.</p>
-          </div>
-          <div class="pillar reveal">
-            <h3>Feedback Engine</h3>
-            <p>Office hours, roadmap votes, and transparent learnings. No big reveals. Just steady trust.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<section>
+<h2>AI, Used the Right Way</h2>
+<div class="card">
+AI increases clarity and speed. Humans maintain empathy.
+<br><br>
+Used for:
+<ul>
+<li>Summarizing trends</li>
+<li>Extracting insights</li>
+<li>Speeding up recaps</li>
+</ul>
+Not used for:
+<ul>
+<li>Automated fake engagement</li>
+<li>Canned responses</li>
+<li>Replacing human connection</li>
+</ul>
+</div>
+</section>
 
-    <section class="section" id="playbooks">
-      <div class="wrap">
-        <div class="sectionHeader reveal">
-          <div>
-            <h2>Channel playbooks</h2>
-            <p class="hint">Filter by channel. Copy templates. Ship a community move this week.</p>
-          </div>
-        </div>
+<section>
+<h2>My Commitments</h2>
+<div class="card">
+<ul>
+<li>Launch structured Growth Lab within 90 days</li>
+<li>Establish consistent public Reddit presence</li>
+<li>Publish recurring spotlight stories</li>
+<li>Host live workshops</li>
+<li>Ship transparent monthly community recap</li>
+</ul>
+</div>
+</section>
 
-        <div class="playbookControls reveal">
-          <div class="filters" role="group" aria-label="Playbook filters">
-            <button class="filterBtn" type="button" data-filter="all" aria-pressed="true">All</button>
-            <button class="filterBtn" type="button" data-filter="reddit" aria-pressed="false">Reddit</button>
-            <button class="filterBtn" type="button" data-filter="discord" aria-pressed="false">Discord</button>
-            <button class="filterBtn" type="button" data-filter="social" aria-pressed="false">Social</button>
-            <button class="filterBtn" type="button" data-filter="events" aria-pressed="false">Events</button>
-            <button class="filterBtn" type="button" data-filter="partners" aria-pressed="false">Partnerships</button>
-            <button class="filterBtn" type="button" data-filter="spotlight" aria-pressed="false">User Spotlights</button>
-          </div>
+<section>
+<h2>The Community Loop</h2>
+<div class="card">
+Value Shared → People Join → People Build → People Succeed →  
+People Share → More People Join
+<br><br>
+This is not a campaign.  
+It is infrastructure.
+</div>
+</section>
 
-          <div class="tools">
-            <input class="input" id="search" placeholder="Search ideas (e.g., AMA, template, audit)..." aria-label="Search ideas">
-            <button class="linkBtn" id="copyAll" type="button">Copy selected template</button>
-          </div>
-        </div>
+<section>
+<h2>About Me</h2>
+<div class="bio">
+I’m Ben Campbell — a social media strategist, community builder, and tech-forward marketer with nearly 6 million total followers managed across platforms.
+<br><br>
+I’ve led large-scale social growth at the San Antonio Zoo, increased social audiences by 50% at Codeup, built brand storytelling systems, and worked at the intersection of marketing, customer success, and product.
+<br><br>
+My background spans:
+<ul>
+<li>Social media leadership and viral content strategy</li>
+<li>Customer support and community management</li>
+<li>Technical product thinking and SaaS fluency</li>
+<li>Public storytelling and brand voice development</li>
+</ul>
+That hybrid experience allows me to:
+<ul>
+<li>Understand users deeply</li>
+<li>Translate feedback into action</li>
+<li>Bridge marketing and product</li>
+<li>Operate comfortably in remote-first environments</li>
+</ul>
+I’m not just building a community.  
+I’m building a system where users feel seen, supported, and successful.
+<br><br>
+Full portfolio:  
+<a href="https://bencampbell.netlify.app/" target="_blank">
+https://bencampbell.netlify.app/
+</a>
+</div>
+</section>
 
-        <div class="cards" id="ideaGrid">
-          <!-- Reddit -->
-          <article class="idea reveal" data-channel="reddit" data-template="Title: We tested [X] for [Y] days — here’s what moved the needle
-Body: Context • What we tried • What surprised us • What we’d do next • Your turn: what are you testing?">
-            <div class="tagRow">
-              <span class="tag"><strong>Reddit</strong></span><span class="tag">Data drop</span><span class="tag">Transparency</span>
-            </div>
-            <h4>Weekly “Data Drop” thread (no links, just receipts)</h4>
-            <p>Share one test, one result, one learning. End with a question that invites other builders in.</p>
-            <div class="actions">
-              <button class="linkBtn selectBtn" type="button">Select template</button>
-              <span class="tiny">10–15 min/week</span>
-            </div>
-          </article>
+<section>
+<p class="bold-close">
+Community is not an add-on.<br><br>
+It is how modern brands earn loyalty.<br><br>
+When our users win publicly, Buffer wins sustainably.
+</p>
+</section>
 
-          <article class="idea reveal" data-channel="reddit" data-template="AMA outline:
-1) Who we are (1–2 lines)
-2) What we’re sharing (focus on learnings)
-3) Ground rules (be constructive)
-4) Q&amp;A
-5) After: publish a recap with top learnings + what changes next">
-            <div class="tagRow">
-              <span class="tag"><strong>Reddit</strong></span><span class="tag">AMA</span><span class="tag">Trust</span>
-            </div>
-            <h4>Quarterly AMA: community + product learnings</h4>
-            <p>Do an AMA that’s more “we’re learning” than “we’re marketing.” Reddit respects humility.</p>
-            <div class="actions">
-              <button class="linkBtn selectBtn" type="button">Select template</button>
-              <span class="tiny">1x/quarter</span>
-            </div>
-          </article>
+<footer>
+Built with clarity, transparency, and just enough Ben punch.
+</footer>
 
-          <!-- Discord -->
-          <article class="idea reveal" data-channel="discord" data-template="Challenge post:
-Goal: [one outcome]
-Rules: 3 steps max
-Share format: screenshot + 1 sentence + 1 lesson
-Prize: spotlight + template pack + bragging rights (the best kind)">
-            <div class="tagRow">
-              <span class="tag"><strong>Discord</strong></span><span class="tag">Challenge</span><span class="tag">Activation</span>
-            </div>
-            <h4>Monthly “Growth Sprint” challenge</h4>
-            <p>Give members a small mission. The win is the habit, not the hype.</p>
-            <div class="actions">
-              <button class="linkBtn selectBtn" type="button">Select template</button>
-              <span class="tiny">1x/month</span>
-            </div>
-          </article>
-
-          <article class="idea reveal" data-channel="discord" data-template="Feedback swap prompt:
-1) What are you optimizing for?
-2) Who is it for?
-3) What’s the hook?
-4) What’s the CTA?
-5) Ask: what’s the one thing you’d change?">
-            <div class="tagRow">
-              <span class="tag"><strong>Discord</strong></span><span class="tag">Feedback</span><span class="tag">Positivity</span>
-            </div>
-            <h4>Weekly “Feedback Swap” with guardrails</h4>
-            <p>Keep it constructive and specific. Praise + one improvement + one question.</p>
-            <div class="actions">
-              <button class="linkBtn selectBtn" type="button">Select template</button>
-              <span class="tiny">45 min/week</span>
-            </div>
-          </article>
-
-          <!-- Social -->
-          <article class="idea reveal" data-channel="social" data-template="Post structure:
-Hook: counterintuitive truth
-Proof: 1 example
-How: 3 bullets
-Prompt: ask for their example
-Close: short, kind, confident (no guru vibes)">
-            <div class="tagRow">
-              <span class="tag"><strong>Social</strong></span><span class="tag">LinkedIn</span><span class="tag">Education</span>
-            </div>
-            <h4>“What we learned” posts (calm, confident, real)</h4>
-            <p>Ship learnings weekly. Be specific. Be humble. Be useful. (The Buffer trifecta.)</p>
-            <div class="actions">
-              <button class="linkBtn selectBtn" type="button">Select template</button>
-              <span class="tiny">2x/week</span>
-            </div>
-          </article>
-
-          <!-- Events -->
-          <article class="idea reveal" data-channel="events" data-template="Event run-of-show:
-00:00 Welcome + norms
-05:00 Lightning talk (10 min)
-15:00 Breakouts (20 min)
-35:00 Sharebacks (10 min)
-45:00 Closing: 1 takeaway + 1 next action + links">
-            <div class="tagRow">
-              <span class="tag"><strong>Events</strong></span><span class="tag">Workshop</span><span class="tag">Remote</span>
-            </div>
-            <h4>Monthly workshop + breakout rooms</h4>
-            <p>Short talk, then community does the work together. Remote-friendly and actually energizing.</p>
-            <div class="actions">
-              <button class="linkBtn selectBtn" type="button">Select template</button>
-              <span class="tiny">1x/month</span>
-            </div>
-          </article>
-
-          <!-- Partnerships -->
-          <article class="idea reveal" data-channel="partners" data-template="Partnership pitch:
-We can co-create: [template pack / research drop / event]
-Audience overlap: [who]
-Outcome: [what the community gets]
-No hard sell. Clear value. Shared recap.">
-            <div class="tagRow">
-              <span class="tag"><strong>Partnerships</strong></span><span class="tag">Co-create</span><span class="tag">Growth</span>
-            </div>
-            <h4>Community partnerships: co-create &gt; co-sell</h4>
-            <p>Run a co-made template pack or event. If it’s valuable, distribution follows.</p>
-            <div class="actions">
-              <button class="linkBtn selectBtn" type="button">Select template</button>
-              <span class="tiny">2/month</span>
-            </div>
-          </article>
-
-          <!-- Spotlights -->
-          <article class="idea reveal" data-channel="spotlight" data-template="Spotlight outline:
-1) Who they are
-2) Their goal
-3) Their workflow (step-by-step)
-4) One screenshot
-5) One lesson
-6) Their template (copy/paste)">
-            <div class="tagRow">
-              <span class="tag"><strong>User Spotlights</strong></span><span class="tag">Gratitude</span><span class="tag">UGC</span>
-            </div>
-            <h4>“Built with Buffer” user spotlights</h4>
-            <p>Make users the hero. Include the “how,” not just the “wow.” (This is the loop.)</p>
-            <div class="actions">
-              <button class="linkBtn selectBtn" type="button">Select template</button>
-              <span class="tiny">1–2/week</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="flywheel">
-      <div class="wrap">
-        <div class="sectionHeader reveal">
-          <div>
-            <h2>The community flywheel</h2>
-            <p class="hint">Simple loop. Easy to measure. Hard to copy.</p>
-          </div>
-        </div>
-
-        <div class="twoCol">
-          <div class="panel reveal">
-            <h3>Loop (aka: the thing that pays rent)</h3>
-            <ol class="list">
-              <li>Value on Reddit + Social →</li>
-              <li>Join Discord Growth Lab →</li>
-              <li>Complete a small challenge →</li>
-              <li>Share a win →</li>
-              <li>Get spotlighted →</li>
-              <li>Spotlight becomes new value content → repeat</li>
-            </ol>
-          </div>
-
-          <div class="panel reveal">
-            <h3>Ben-coded guardrails (so we don’t get weird)</h3>
-            <ul class="list">
-              <li>No fake urgency. No “10x” nonsense. (We’re adults.)</li>
-              <li>Help-first on Reddit. Earn attention.</li>
-              <li>Discord is structured. “General chat” is how communities die.</li>
-              <li>Spotlights include the workflow + template, not just praise.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="events">
-      <div class="wrap">
-        <div class="sectionHeader reveal">
-          <div>
-            <h2>Events cadence</h2>
-            <p class="hint">Remote-friendly, repeatable, and designed to turn lurkers into contributors.</p>
-          </div>
-        </div>
-
-        <div class="timeline">
-          <div class="step reveal">
-            <span class="when">Weekly</span>
-            <h4>Office hours</h4>
-            <p>Rotating Buffer team + live Q&amp;A. End with “what we’ll improve next.”</p>
-          </div>
-          <div class="step reveal">
-            <span class="when">Monthly</span>
-            <h4>Workshop + breakouts</h4>
-            <p>10-min talk, 20-min doing, 10-min shareback. Practical &amp; kind.</p>
-          </div>
-          <div class="step reveal">
-            <span class="when">Quarterly</span>
-            <h4>Community Week</h4>
-            <p>Workshops, creator panels, experiments, roadmap preview, awards.</p>
-          </div>
-          <div class="step reveal">
-            <span class="when">Always</span>
-            <h4>Transparent recaps</h4>
-            <p>Publish learnings + next actions. No big reveals. Just steady trust.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="spotlights">
-      <div class="wrap">
-        <div class="sectionHeader reveal">
-          <div>
-            <h2>User spotlights (the real growth channel)</h2>
-            <p class="hint">Gratitude as a strategy. Featuring users makes the product feel alive.</p>
-          </div>
-        </div>
-
-        <div class="twoCol">
-          <div class="panel reveal">
-            <h3>Spotlight formats</h3>
-            <ul class="list">
-              <li><strong>Creator of the Week</strong>: workflow + one result + a template</li>
-              <li><strong>Built With Buffer</strong>: deeper case study library</li>
-              <li><strong>Community MVP</strong>: helpfulness &gt; follower count</li>
-              <li><strong>Wall of Wins</strong>: short wins, high frequency</li>
-            </ul>
-          </div>
-          <div class="panel reveal">
-            <h3>Consent-forward checklist</h3>
-            <ul class="list">
-              <li>Opt-in form + clear usage rights</li>
-              <li>Let users approve the final writeup</li>
-              <li>Include “what they’d do differently” (reflection)</li>
-              <li>Link their work prominently (not buried)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="metrics">
-      <div class="wrap">
-        <div class="sectionHeader reveal">
-          <div>
-            <h2>Transparent metrics (monthly)</h2>
-            <p class="hint">Because “default to transparency” is only cute if it’s real. :contentReference[oaicite:8]{index=8}</p>
-          </div>
-        </div>
-
-        <div class="cards">
-          <div class="idea reveal" data-channel="metrics">
-            <div class="tagRow"><span class="tag"><strong>Community</strong></span><span class="tag">WAU</span></div>
-            <h4>Weekly Active Members</h4>
-            <p class="tiny">Public target: steady growth via activation, not invites.</p>
-            <div class="actions">
-              <span class="tiny"><strong id="m1">—</strong> this month</span>
-              <button class="linkBtn" type="button" id="refreshMetrics">Refresh</button>
-            </div>
-          </div>
-          <div class="idea reveal" data-channel="metrics">
-            <div class="tagRow"><span class="tag"><strong>Events</strong></span><span class="tag">Attendance</span></div>
-            <h4>Event Attendance Rate</h4>
-            <p class="tiny">Target: improve show-up rate with better reminders + clearer outcomes.</p>
-            <div class="actions">
-              <span class="tiny"><strong id="m2">—</strong> avg</span>
-              <span class="tiny">last 30 days</span>
-            </div>
-          </div>
-          <div class="idea reveal" data-channel="metrics">
-            <div class="tagRow"><span class="tag"><strong>Amplification</strong></span><span class="tag">Spotlights</span></div>
-            <h4>Spotlights Published</h4>
-            <p class="tiny">Aka: how often we put users center stage.</p>
-            <div class="actions">
-              <span class="tiny"><strong id="m3">—</strong> published</span>
-              <span class="tiny">this month</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta" id="cta">
-      <div class="wrap">
-        <div class="ctaBox reveal">
-          <div class="ctaGrid">
-            <div>
-              <h2>Ready to build this for real?</h2>
-              <p>
-                Ship a community move this week: run a feedback swap, publish a transparent learning,
-                or spotlight a user with a template others can steal (legally).
-              </p>
-            </div>
-            <div class="ctaActions">
-              <a class="btn" href="#playbooks">Pick a playbook →</a>
-              <button class="btn secondary" type="button" id="downloadPlan">Download plan (text)</button>
-            </div>
-          </div>
-        </div>
-
-        <footer class="wrap" style="padding-left:0; padding-right:0">
-          <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center">
-            <div>Made with Buffer-ish calm + a tiny bit of Ben punch.</div>
-            <div class="tiny">Tip: Deploy on Netlify in ~30 seconds. (No, I’m not timing you.)</div>
-          </div>
-        </footer>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    // --- Reveal on scroll ---
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const revealEls = Array.from(document.querySelectorAll('.reveal'));
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('on');
-      });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => io.observe(el));
-
-    // --- Counter animation (hero KPIs) ---
-    function animateCount(el, to){
-      const start = 0;
-      const dur = prefersReduced ? 1 : 900;
-      const t0 = performance.now();
-      function tick(t){
-        const p = Math.min(1, (t - t0) / dur);
-        const val = Math.round(start + (to - start) * (1 - Math.pow(1-p, 3)));
-        el.textContent = val;
-        if (p < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    }
-    document.querySelectorAll('[data-count]').forEach(el => {
-      const to = Number(el.getAttribute('data-count') || '0');
-      animateCount(el, to);
-    });
-
-    // --- Playbook filtering + search ---
-    const grid = document.getElementById('ideaGrid');
-    const cards = Array.from(grid.querySelectorAll('.idea'));
-    const filterBtns = Array.from(document.querySelectorAll('.filterBtn'));
-    const search = document.getElementById('search');
-    let activeFilter = 'all';
-
-    function applyFilters(){
-      const q = (search.value || '').trim().toLowerCase();
-      cards.forEach(card => {
-        const ch = card.dataset.channel;
-        const text = (card.innerText || '').toLowerCase();
-        const matchFilter = (activeFilter === 'all') || (ch === activeFilter);
-        const matchSearch = !q || text.includes(q);
-        card.style.display = (matchFilter && matchSearch) ? '' : 'none';
-      });
-    }
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.setAttribute('aria-pressed', 'false'));
-        btn.setAttribute('aria-pressed', 'true');
-        activeFilter = btn.dataset.filter;
-        applyFilters();
-      });
-    });
-    search.addEventListener('input', applyFilters);
-
-    // --- Template selection + copy ---
-    let selectedTemplate = '';
-    grid.addEventListener('click', async (e) => {
-      const btn = e.target.closest('.selectBtn');
-      if (!btn) return;
-      const card = e.target.closest('.idea');
-      selectedTemplate = (card && card.dataset.template) ? card.dataset.template : '';
-      document.querySelectorAll('.idea').forEach(c => c.style.outline = 'none');
-      if (card) card.style.outline = '3px solid rgba(44,75,255,.25)';
-      btn.textContent = 'Selected ✓';
-      setTimeout(() => btn.textContent = 'Select template', 900);
-    });
-
-    document.getElementById('copyAll').addEventListener('click', async () => {
-      if (!selectedTemplate){
-        alert('Select a template first (click “Select template” on any card).');
-        return;
-      }
-      try{
-        await navigator.clipboard.writeText(selectedTemplate);
-        alert('Copied. Go forth and be helpful.');
-      }catch{
-        alert('Couldn’t copy automatically. Your browser is being shy.');
-      }
-    });
-
-    // --- Idea spinner (Ben-coded fun, still on brand) ---
-    const spinnerIdeas = [
-      "Run a Discord feedback swap with a 5-question prompt. Keep it kind. Keep it specific.",
-      "Post a Reddit ‘what we learned’ thread. No links. Just receipts and a question.",
-      "Spotlight one user: workflow + screenshot + template. Make them the hero.",
-      "Host a 45-minute workshop: 10-min talk, 20-min breakout, 10-min shareback.",
-      "Ship a tiny template pack (3 templates). Publish it with ‘here’s when to use each.’",
-      "Do an AMA focused on learnings. Bonus points for admitting what didn’t work."
-    ];
-    document.getElementById('spinBtn').addEventListener('click', () => {
-      const idea = spinnerIdeas[Math.floor(Math.random() * spinnerIdeas.length)];
-      document.getElementById('spinHint').textContent = "This week’s move: " + idea;
-      document.getElementById('spinHint').scrollIntoView({behavior: prefersReduced ? 'auto' : 'smooth', block:'center'});
-    });
-
-    // --- Metrics mock (refreshable) ---
-    function rand(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
-    function refreshMetrics(){
-      document.getElementById('m1').textContent = rand(1200, 3200);
-      document.getElementById('m2').textContent = rand(58, 86) + '%';
-      document.getElementById('m3').textContent = rand(8, 22);
-    }
-    refreshMetrics();
-    document.getElementById('refreshMetrics').addEventListener('click', refreshMetrics);
-
-    // --- Download plan (simple text export) ---
-    document.getElementById('downloadPlan').addEventListener('click', () => {
-      const text =
-`COMMUNITY BLUEPRINT (Buffer-style, Ben-coded)
-- Pillars: Education • Connection • Amplification • Feedback
-- Reddit: weekly data drop + quarterly AMA
-- Discord: Growth Lab with structured channels + monthly challenge + weekly feedback swap
-- Social: platform-native learnings + user spotlights
-- Events: weekly office hours • monthly workshop • quarterly community week
-- Partnerships: co-create > co-sell
-- Spotlights: include workflow + template
-- Metrics: publish monthly. Transparent by default.
-
-Ship one move this week: pick a playbook card and run it.`;
-      const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'community-blueprint.txt';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    });
-  </script>
+</div>
 </body>
 </html>
