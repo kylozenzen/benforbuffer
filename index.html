@@ -1,286 +1,1311 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Building the Most Trusted Community for Buffer</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mutual Advocacy Community Blueprint — Buffer x Ben</title>
+  <meta name="description" content="A premium, skim-first, expand-for-depth community blueprint: Reddit, Discord, Social, Events, Partnerships — centered on mutual advocacy and human-first AI." />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --blue:#2C4BFF;
-  --blueDark:#121E66;
-  --ink:#111827;
-  --muted:#6B7280;
-  --bg:#F6F7FB;
-  --card:#ffffff;
-  --border:rgba(17,24,39,.10);
-  --radius:18px;
-  --max:1000px;
-}
+  <style>
+    :root{
+      --blue:#2C4BFF;
+      --blue2:#6B81FF;
+      --blueDark:#121E66;
+      --ink:#111827;
+      --muted:#6B7280;
+      --bg:#F6F7FB;
+      --card:#FFFFFF;
+      --border:rgba(17,24,39,.10);
+      --border2:rgba(44,75,255,.18);
+      --shadow:0 22px 60px rgba(18,30,102,.12);
+      --shadowSoft:0 12px 30px rgba(17,24,39,.08);
+      --radius:18px;
+      --radius2:26px;
+      --max:1120px;
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Roboto, system-ui;
-  background:var(--bg);
-  color:var(--ink);
-}
+      --ok: rgba(16,185,129,.14);
+      --warn: rgba(245,158,11,.14);
+      --note: rgba(59,130,246,.10);
+      --pink: rgba(217,37,172,.10);
+    }
 
-.wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(900px 520px at 12% 8%, rgba(44,75,255,.18), transparent 55%),
+        radial-gradient(740px 420px at 88% 16%, rgba(107,129,255,.16), transparent 60%),
+        radial-gradient(650px 420px at 55% 96%, rgba(18,30,102,.12), transparent 55%),
+        var(--bg);
+      overflow-x:hidden;
+    }
 
-header{
-  padding:60px 0 40px;
-  text-align:center;
-}
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
 
-h1{
-  font-family:Poppins, sans-serif;
-  font-weight:800;
-  font-size:48px;
-  margin:0 0 16px;
-}
+    /* Top progress bar */
+    .progress{
+      position:fixed; top:0; left:0; right:0; height:3px; z-index:80;
+      background:transparent;
+    }
+    .progress > div{
+      height:3px; width:0%;
+      background:linear-gradient(90deg, var(--blue), var(--blue2));
+      box-shadow:0 10px 26px rgba(44,75,255,.35);
+    }
 
-.sub{
-  font-size:18px;
-  color:#374151;
-  max-width:720px;
-  margin:0 auto;
-  line-height:1.6;
-}
+    /* Sticky nav */
+    .nav{
+      position:sticky; top:0; z-index:70;
+      backdrop-filter:saturate(180%) blur(12px);
+      background:rgba(246,247,251,.78);
+      border-bottom:1px solid var(--border);
+    }
+    .navInner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; text-decoration:none;
+      font-family:Poppins, sans-serif; font-weight:800; letter-spacing:-.2px;
+    }
+    .mark{
+      width:34px; height:34px; border-radius:12px;
+      background:linear-gradient(135deg, var(--blue), var(--blue2));
+      box-shadow:0 12px 26px rgba(44,75,255,.20);
+      position:relative;
+    }
+    .mark:after{
+      content:"";
+      position:absolute; inset:9px 10px;
+      border-radius:10px;
+      border:2px solid rgba(255,255,255,.95);
+      transform:skewX(-10deg);
+      opacity:.95;
+    }
+    .navLinks{
+      display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:flex-end;
+    }
+    .chip{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.70);
+      border-radius:999px;
+      padding:8px 10px;
+      font-size:13px;
+      text-decoration:none;
+      transition:transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space:nowrap;
+    }
+    .chip:hover{transform:translateY(-1px); background:#fff; border-color:rgba(44,75,255,.22)}
+    .chip.active{
+      background:rgba(44,75,255,.08);
+      border-color:rgba(44,75,255,.28);
+      color:var(--blueDark);
+      font-weight:700;
+    }
+    .btn{
+      appearance:none; border:0; cursor:pointer;
+      border-radius:999px;
+      padding:10px 14px;
+      font-weight:800;
+      font-size:14px;
+      display:inline-flex; align-items:center; gap:10px;
+      background:var(--blue);
+      color:#fff;
+      box-shadow:0 16px 30px rgba(44,75,255,.22);
+      transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+      text-decoration:none;
+    }
+    .btn:hover{transform:translateY(-1px); filter:saturate(110%); box-shadow:0 18px 36px rgba(44,75,255,.26)}
+    .btn.secondary{
+      background:#fff; color:var(--blueDark);
+      border:1px solid var(--border);
+      box-shadow:var(--shadowSoft);
+    }
+    .btn.secondary:hover{box-shadow:0 16px 34px rgba(17,24,39,.10)}
 
-section{
-  padding:60px 0;
-}
+    /* Hero */
+    .hero{
+      padding:54px 0 26px;
+      position:relative;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    h1{
+      font-family:Poppins, sans-serif;
+      font-weight:800;
+      font-size:54px;
+      line-height:1.02;
+      letter-spacing:-.8px;
+      margin:0 0 12px;
+    }
+    .sub{
+      font-size:18px;
+      line-height:1.6;
+      color:#374151;
+      margin:0 0 18px;
+      max-width:68ch;
+    }
+    .badges{display:flex; flex-wrap:wrap; gap:10px; margin:14px 0 18px}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.72);
+      border:1px solid var(--border);
+      font-size:13px;
+    }
+    .dot{width:10px; height:10px; border-radius:50%}
+    .dot.b{background:var(--blue)}
+    .dot.t{background:#00C8CF}
+    .dot.y{background:#FADE2A}
+    .dot.p{background:#D925AC}
 
-h2{
-  font-family:Poppins, sans-serif;
-  font-weight:800;
-  font-size:28px;
-  margin-bottom:20px;
-}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius2);
+      box-shadow:var(--shadowSoft);
+    }
+    .heroCard{
+      padding:18px;
+      display:flex; flex-direction:column; gap:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .heroCard:before{
+      content:"";
+      position:absolute; inset:-80px -80px auto auto;
+      width:280px; height:280px;
+      background:
+        radial-gradient(circle at 28% 30%, rgba(44,75,255,.35), transparent 60%),
+        radial-gradient(circle at 70% 55%, rgba(250,222,42,.35), transparent 62%);
+      transform:rotate(14deg);
+      opacity:.85;
+      pointer-events:none;
+    }
+    .miniTitle{
+      font-family:Poppins, sans-serif;
+      font-weight:800;
+      margin:0 0 6px;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .miniText{margin:0; color:#374151; font-size:14px; line-height:1.65}
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:24px;
-  margin-bottom:16px;
-}
+    .kpiRow{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+    }
+    .kpi{
+      padding:12px;
+      border-radius:16px;
+      background:rgba(246,247,251,.92);
+      border:1px solid var(--border);
+    }
+    .kpi .num{
+      font-family:Poppins, sans-serif;
+      font-weight:800;
+      font-size:22px;
+      letter-spacing:-.3px;
+    }
+    .kpi .lbl{font-size:12px; color:var(--muted)}
 
-details{
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:18px 20px;
-  margin-bottom:12px;
-  background:white;
-}
+    /* Sections */
+    .section{padding:42px 0}
+    .sectionHeader{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:16px; margin-bottom:14px;
+    }
+    h2{
+      font-family:Poppins, sans-serif;
+      font-weight:800;
+      margin:0;
+      font-size:30px;
+      letter-spacing:-.3px;
+    }
+    .hint{margin:0; color:var(--muted); line-height:1.55; max-width:78ch}
 
-summary{
-  font-weight:700;
-  cursor:pointer;
-  font-size:16px;
-}
+    /* ICP cards */
+    .grid3{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px}
+    .tile{
+      padding:16px;
+      border-radius:22px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.88);
+      box-shadow:0 10px 22px rgba(17,24,39,.06);
+      position:relative;
+      overflow:hidden;
+      min-height:170px;
+    }
+    .tile:after{
+      content:"";
+      position:absolute; inset:auto -60px -60px auto;
+      width:160px; height:160px;
+      border-radius:46px;
+      background:rgba(44,75,255,.08);
+      transform:rotate(14deg);
+    }
+    .tile h3{
+      margin:0 0 8px;
+      font-family:Poppins, sans-serif;
+      font-weight:800;
+      font-size:18px;
+      letter-spacing:-.2px;
+      position:relative;
+      z-index:1;
+    }
+    .tile p{margin:0; color:#374151; font-size:13px; line-height:1.6; position:relative; z-index:1}
+    .pill{
+      display:inline-flex; align-items:center;
+      border:1px solid var(--border);
+      background:rgba(246,247,251,.92);
+      border-radius:999px;
+      padding:6px 8px;
+      font-size:12px;
+      margin-top:10px;
+      position:relative; z-index:1;
+    }
 
-details p{
-  margin-top:10px;
-  color:#374151;
-  line-height:1.6;
-}
+    /* System blocks */
+    .systemGrid{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px}
+    .system{
+      padding:16px;
+      border-radius:22px;
+      border:1px solid var(--border);
+      background:#fff;
+      box-shadow:var(--shadowSoft);
+    }
+    .system .top{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:8px;
+    }
+    .system .label{
+      font-family:Poppins, sans-serif;
+      font-weight:800;
+      letter-spacing:-.2px;
+      font-size:18px;
+      margin:0;
+    }
+    .system .tag{
+      font-size:12px;
+      border-radius:999px;
+      padding:6px 8px;
+      border:1px solid var(--border);
+      background:rgba(44,75,255,.06);
+      color:var(--blueDark);
+      font-weight:700;
+      white-space:nowrap;
+    }
+    .system ul{margin:10px 0 0; padding-left:18px; color:#374151; line-height:1.7; font-size:13px}
 
-ul{
-  margin-top:10px;
-  padding-left:20px;
-  color:#374151;
-}
+    /* Expandable */
+    details{
+      border-radius:22px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.90);
+      box-shadow:0 10px 22px rgba(17,24,39,.06);
+      overflow:hidden;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      padding:16px 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    .sumLeft{
+      display:flex; flex-direction:column; gap:4px;
+    }
+    .sumTitle{
+      font-family:Poppins, sans-serif;
+      font-weight:800;
+      letter-spacing:-.2px;
+      font-size:16px;
+      margin:0;
+    }
+    .sumSub{font-size:13px; color:var(--muted); margin:0}
+    .chev{
+      width:36px; height:36px; border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      display:flex; align-items:center; justify-content:center;
+      transition:transform .2s ease, border-color .2s ease;
+      flex:0 0 auto;
+    }
+    details[open] .chev{transform:rotate(180deg); border-color:rgba(44,75,255,.25)}
+    .content{
+      padding:0 16px 16px 16px;
+      border-top:1px solid var(--border);
+    }
+    .contentGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+    .panel{
+      padding:14px;
+      border-radius:18px;
+      border:1px solid var(--border);
+      background:rgba(246,247,251,.86);
+    }
+    .panel h4{
+      margin:0 0 8px;
+      font-family:Poppins, sans-serif;
+      font-weight:800;
+      font-size:14px;
+      letter-spacing:-.15px;
+    }
+    .panel ul{margin:0; padding-left:18px; color:#374151; line-height:1.65; font-size:13px}
+    .panel p{margin:0; color:#374151; line-height:1.6; font-size:13px}
 
-.bold-close{
-  font-family:Poppins, sans-serif;
-  font-weight:800;
-  font-size:22px;
-  text-align:center;
-  margin-top:30px;
-}
+    /* AI box */
+    .aiGrid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    .callout{
+      padding:16px;
+      border-radius:22px;
+      border:1px solid var(--border);
+      background:#fff;
+      box-shadow:var(--shadowSoft);
+    }
+    .callout h3{
+      margin:0 0 8px;
+      font-family:Poppins, sans-serif;
+      font-weight:800;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .callout p{margin:0; color:#374151; line-height:1.65}
+    .stamp{
+      display:inline-flex;
+      font-size:12px;
+      padding:6px 8px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      margin-top:10px;
+      background:rgba(44,75,255,.06);
+      color:var(--blueDark);
+      font-weight:700;
+    }
+    .boxOk{background:linear-gradient(135deg, #fff, var(--ok))}
+    .boxWarn{background:linear-gradient(135deg, #fff, var(--warn))}
+    .boxNote{background:linear-gradient(135deg, #fff, var(--note))}
+    .boxPink{background:linear-gradient(135deg, #fff, var(--pink))}
 
-.bio{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:30px;
-}
+    /* Timeline */
+    .timeline{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:12px;
+    }
+    .phase{
+      padding:16px;
+      border-radius:22px;
+      border:1px solid var(--border);
+      background:#fff;
+      box-shadow:var(--shadowSoft);
+      position:relative;
+      overflow:hidden;
+      min-height:180px;
+    }
+    .phase:after{
+      content:"";
+      position:absolute; inset:auto -60px -60px auto;
+      width:170px; height:170px;
+      border-radius:52px;
+      background:rgba(44,75,255,.07);
+      transform:rotate(12deg);
+    }
+    .phase .k{
+      display:inline-flex;
+      font-size:12px;
+      padding:6px 8px;
+      border-radius:999px;
+      border:1px solid rgba(44,75,255,.20);
+      background:rgba(44,75,255,.08);
+      color:var(--blueDark);
+      font-weight:800;
+      margin-bottom:8px;
+      position:relative; z-index:1;
+    }
+    .phase h3{
+      margin:0 0 8px;
+      font-family:Poppins, sans-serif;
+      font-weight:800;
+      font-size:18px;
+      letter-spacing:-.2px;
+      position:relative; z-index:1;
+    }
+    .phase ul{
+      margin:0; padding-left:18px;
+      color:#374151; line-height:1.65; font-size:13px;
+      position:relative; z-index:1;
+    }
 
-.bio a{
-  color:var(--blue);
-  font-weight:600;
-  text-decoration:none;
-}
+    /* Bio */
+    .bio{
+      padding:18px;
+      border-radius:26px;
+      border:1px solid var(--border);
+      background:#fff;
+      box-shadow:var(--shadowSoft);
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:12px;
+      align-items:stretch;
+    }
+    .bio h3{
+      margin:0 0 8px;
+      font-family:Poppins, sans-serif;
+      font-weight:800;
+      font-size:20px;
+      letter-spacing:-.2px;
+    }
+    .bio p{margin:0; color:#374151; line-height:1.7}
+    .bio a{color:var(--blue); font-weight:800; text-decoration:none}
+    .bio a:hover{text-decoration:underline}
+    .bioRight{
+      border-radius:20px;
+      border:1px solid var(--border);
+      background:rgba(246,247,251,.86);
+      padding:14px;
+    }
+    .bioRight h4{
+      margin:0 0 8px;
+      font-family:Poppins, sans-serif;
+      font-weight:800;
+      font-size:14px;
+      letter-spacing:-.15px;
+    }
+    .bioRight ul{margin:0; padding-left:18px; color:#374151; line-height:1.65; font-size:13px}
 
-footer{
-  text-align:center;
-  padding:40px 0 60px;
-  font-size:14px;
-  color:var(--muted);
-}
-</style>
+    /* Close CTA */
+    .closeBox{
+      padding:22px;
+      border-radius:28px;
+      background:linear-gradient(135deg, rgba(44,75,255,.14), rgba(107,129,255,.10), rgba(18,30,102,.10));
+      border:1px solid rgba(18,30,102,.12);
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .closeBox:after{
+      content:"";
+      position:absolute; inset:auto -100px -100px auto;
+      width:340px; height:340px;
+      background:
+        radial-gradient(circle at 40% 40%, rgba(44,75,255,.35), transparent 60%),
+        radial-gradient(circle at 60% 60%, rgba(107,129,255,.22), transparent 62%);
+      transform:rotate(10deg);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .closeGrid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:14px;
+      position:relative; z-index:1;
+      align-items:center;
+    }
+    .closeGrid h2{margin:0 0 10px}
+    .closeGrid p{margin:0; color:#2b2f36; line-height:1.7}
+    .closeActions{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+
+    footer{
+      padding:22px 0 50px;
+      color:var(--muted);
+      font-size:13px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    /* Reveal */
+    .reveal{
+      opacity:0;
+      transform:translateY(10px);
+      transition:opacity .55s ease, transform .55s ease;
+      will-change:opacity, transform;
+    }
+    .reveal.on{opacity:1; transform:translateY(0)}
+    @media (prefers-reduced-motion: reduce){
+      .reveal{transition:none}
+      .btn,.chip{transition:none}
+      .btn:hover,.chip:hover{transform:none}
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns:1fr}
+      h1{font-size:44px}
+      .grid3{grid-template-columns:1fr}
+      .systemGrid{grid-template-columns:1fr}
+      .contentGrid{grid-template-columns:1fr}
+      .aiGrid{grid-template-columns:1fr}
+      .timeline{grid-template-columns:1fr}
+      .bio{grid-template-columns:1fr}
+      .closeGrid{grid-template-columns:1fr}
+      .closeActions{justify-content:flex-start}
+      .navLinks{display:none}
+    }
+  </style>
 </head>
 
 <body>
+  <div class="progress" aria-hidden="true"><div id="prog"></div></div>
 
-<div class="wrap">
+  <header class="nav">
+    <div class="wrap navInner">
+      <a class="brand" href="#top" aria-label="Back to top">
+        <span class="mark" aria-hidden="true"></span>
+        <span>Community Blueprint</span>
+      </a>
 
-<header>
-<h1>Building the Most Trusted Community for Buffer</h1>
-<p class="sub">
-We advocate for creators. They advocate for us.  
-That mutual trust becomes the most durable form of growth.
-</p>
-</header>
+      <nav class="navLinks" aria-label="Sections">
+        <a class="chip" href="#who">Who</a>
+        <a class="chip" href="#system">System</a>
+        <a class="chip" href="#plans">Platform Plans</a>
+        <a class="chip" href="#ai">AI</a>
+        <a class="chip" href="#goals">Goals</a>
+        <a class="chip" href="#bio">About Ben</a>
+      </nav>
 
-<section>
-<h2>Who This Is For</h2>
-<div class="card">
-<strong>Creators.</strong> Momentum and visibility.<br><br>
-<strong>Small Businesses.</strong> Clarity and consistency.<br><br>
-<strong>Agencies.</strong> Scale and confidence.
-<br><br>
-Community becomes the connective tissue across all three.
-</div>
-</section>
+      <a class="btn" href="#close">View the plan <span aria-hidden="true">→</span></a>
+    </div>
+  </header>
 
-<section>
-<h2>The Advocacy System</h2>
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap heroGrid">
+        <div class="reveal">
+          <h1>We advocate for users.<br/>Users advocate for Buffer.</h1>
+          <p class="sub">
+            A community system for <strong>Creators</strong>, <strong>Small Businesses</strong>, and <strong>Agencies</strong> that makes Buffer feel less like software
+            and more like a place where people actually get better.
+          </p>
 
-<details>
-<summary>1. Show Up Publicly</summary>
-<p>
-We contribute meaningfully on Reddit and social platforms where conversations already exist.  
-Lessons learned. Transparent insights. No guru noise.
-</p>
-<ul>
-<li>Weekly Reddit rhythm</li>
-<li>“What we learned” posts</li>
-<li>Quarterly AMA</li>
-</ul>
-</details>
+          <div class="badges" aria-label="Values">
+            <span class="badge"><span class="dot b"></span>Default to transparency</span>
+            <span class="badge"><span class="dot t"></span>Cultivate positivity</span>
+            <span class="badge"><span class="dot y"></span>Show gratitude</span>
+            <span class="badge"><span class="dot p"></span>Practice reflection</span>
+          </div>
 
-<details>
-<summary>2. Build a Structured Space</summary>
-<p>
-Launch a Discord Growth Lab — not a chatroom, but a working room.
-</p>
-<ul>
-<li>Feedback swaps</li>
-<li>Monthly growth sprint</li>
-<li>Office hours with the Buffer team</li>
-<li>Clear onboarding structure</li>
-</ul>
-</details>
+          <div style="display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn secondary" href="#plans">Jump to platform plans</a>
+            <button class="btn" id="toggleAll" type="button">Expand all details <span aria-hidden="true">▾</span></button>
+          </div>
 
-<details>
-<summary>3. Elevate the Builders</summary>
-<p>
-Spotlight real creators. Publish real wins. Host events that deepen relationships.
-</p>
-<ul>
-<li>Creator spotlight series</li>
-<li>Monthly workshops</li>
-<li>Quarterly Community Week</li>
-<li>Strategic ecosystem partnerships</li>
-</ul>
-</details>
+          <p style="margin:10px 0 0; color:var(--muted); line-height:1.55">
+            Skim in 3–5 minutes. Expand sections when you want the “how.”
+            <span style="color:var(--blueDark); font-weight:700">No templates. No gimmicks. Just a real plan.</span>
+          </p>
+        </div>
 
-</section>
+        <aside class="card heroCard reveal" aria-label="Executive summary">
+          <div>
+            <p class="miniTitle">Executive overview</p>
+            <p class="miniText">
+              We’ll build a community that’s useful in public (Reddit + Social), structured in private (Discord Growth Lab),
+              and loud in the best way (spotlights, events, partnerships). The product wins because the people win.
+            </p>
+          </div>
 
-<section>
-<h2>AI, Used the Right Way</h2>
-<div class="card">
-AI increases clarity and speed. Humans maintain empathy.
-<br><br>
-Used for:
-<ul>
-<li>Summarizing trends</li>
-<li>Extracting insights</li>
-<li>Speeding up recaps</li>
-</ul>
-Not used for:
-<ul>
-<li>Automated fake engagement</li>
-<li>Canned responses</li>
-<li>Replacing human connection</li>
-</ul>
-</div>
-</section>
+          <div class="kpiRow" aria-label="What success looks like (signals)">
+            <div class="kpi">
+              <div class="num" data-count="12">0</div>
+              <div class="lbl">Spotlights in 90 days</div>
+            </div>
+            <div class="kpi">
+              <div class="num" data-count="6">0</div>
+              <div class="lbl">Community events shipped</div>
+            </div>
+            <div class="kpi">
+              <div class="num" data-count="1">0</div>
+              <div class="lbl">Growth Lab launched</div>
+            </div>
+          </div>
 
-<section>
-<h2>My Commitments</h2>
-<div class="card">
-<ul>
-<li>Launch structured Growth Lab within 90 days</li>
-<li>Establish consistent public Reddit presence</li>
-<li>Publish recurring spotlight stories</li>
-<li>Host live workshops</li>
-<li>Ship transparent monthly community recap</li>
-</ul>
-</div>
-</section>
+          <div style="display:flex; gap:10px; align-items:center; justify-content:space-between">
+            <span style="font-size:12px; color:var(--muted)">Remote-first • low drama • high clarity</span>
+            <a class="chip" href="#goals" style="background:#fff">See goals</a>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-<section>
-<h2>The Community Loop</h2>
-<div class="card">
-Value Shared → People Join → People Build → People Succeed →  
-People Share → More People Join
-<br><br>
-This is not a campaign.  
-It is infrastructure.
-</div>
-</section>
+    <!-- WHO -->
+    <section class="section" id="who">
+      <div class="wrap">
+        <div class="sectionHeader reveal">
+          <div>
+            <h2>Who this is for</h2>
+            <p class="hint">Clear ICP alignment. Different needs, same community backbone.</p>
+          </div>
+        </div>
 
-<section>
-<h2>About Me</h2>
-<div class="bio">
-I’m Ben Campbell — a social media strategist, community builder, and tech-forward marketer with nearly 6 million total followers managed across platforms.
-<br><br>
-I’ve led large-scale social growth at the San Antonio Zoo, increased social audiences by 50% at Codeup, built brand storytelling systems, and worked at the intersection of marketing, customer success, and product.
-<br><br>
-My background spans:
-<ul>
-<li>Social media leadership and viral content strategy</li>
-<li>Customer support and community management</li>
-<li>Technical product thinking and SaaS fluency</li>
-<li>Public storytelling and brand voice development</li>
-</ul>
-That hybrid experience allows me to:
-<ul>
-<li>Understand users deeply</li>
-<li>Translate feedback into action</li>
-<li>Bridge marketing and product</li>
-<li>Operate comfortably in remote-first environments</li>
-</ul>
-I’m not just building a community.  
-I’m building a system where users feel seen, supported, and successful.
-<br><br>
-Full portfolio:  
-<a href="https://bencampbell.netlify.app/" target="_blank">
-https://bencampbell.netlify.app/
-</a>
-</div>
-</section>
+        <div class="grid3">
+          <div class="tile reveal">
+            <h3>Creators</h3>
+            <p><strong>Need:</strong> momentum, consistency, visibility without burning out.<br/>
+               <strong>Community delivers:</strong> feedback, small wins, spotlights, and repeatable workflows.</p>
+            <span class="pill">Outcome: confidence + proof</span>
+          </div>
 
-<section>
-<p class="bold-close">
-Community is not an add-on.<br><br>
-It is how modern brands earn loyalty.<br><br>
-When our users win publicly, Buffer wins sustainably.
-</p>
-</section>
+          <div class="tile reveal">
+            <h3>Small Businesses</h3>
+            <p><strong>Need:</strong> clarity and time savings (because they’re doing everything).<br/>
+               <strong>Community delivers:</strong> practical play patterns, Q&A, and guardrails that prevent wasted effort.</p>
+            <span class="pill">Outcome: consistency + simplicity</span>
+          </div>
 
-<footer>
-Built with clarity, transparency, and just enough Ben punch.
-</footer>
+          <div class="tile reveal">
+            <h3>Agencies</h3>
+            <p><strong>Need:</strong> scale, reliability, and client confidence.<br/>
+               <strong>Community delivers:</strong> shared systems, templates-in-spirit (not on-page), and peer problem-solving.</p>
+            <span class="pill">Outcome: scale + trust</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <!-- SYSTEM -->
+    <section class="section" id="system">
+      <div class="wrap">
+        <div class="sectionHeader reveal">
+          <div>
+            <h2>The mutual advocacy system</h2>
+            <p class="hint">We create the space. Users create the proof. The brand grows because the people grow.</p>
+          </div>
+        </div>
+
+        <div class="systemGrid">
+          <div class="system reveal">
+            <div class="top">
+              <div class="label">1) Show up publicly</div>
+              <div class="tag">Trust</div>
+            </div>
+            <div class="miniText">
+              Participate where creators already talk. Share lessons, not hype.
+            </div>
+            <ul>
+              <li>Human-first presence on Reddit</li>
+              <li>“What we learned” content on social</li>
+              <li>Transparent recaps that invite discussion</li>
+            </ul>
+          </div>
+
+          <div class="system reveal">
+            <div class="top">
+              <div class="label">2) Build structured belonging</div>
+              <div class="tag">Retention</div>
+            </div>
+            <div class="miniText">
+              Discord Growth Lab: not a chat room—an engine for progress.
+            </div>
+            <ul>
+              <li>Weekly feedback ritual</li>
+              <li>Monthly growth sprint</li>
+              <li>Office hours + visible follow-through</li>
+            </ul>
+          </div>
+
+          <div class="system reveal">
+            <div class="top">
+              <div class="label">3) Elevate the builders</div>
+              <div class="tag">Advocacy</div>
+            </div>
+            <div class="miniText">
+              We advocate for users publicly. They advocate for Buffer naturally.
+            </div>
+            <ul>
+              <li>Recurring spotlight series</li>
+              <li>Workshops + Community Week</li>
+              <li>Partnerships that co-create value</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLATFORM PLANS -->
+    <section class="section" id="plans">
+      <div class="wrap">
+        <div class="sectionHeader reveal">
+          <div>
+            <h2>Platform plans</h2>
+            <p class="hint">Skim the summary line. Expand for the exact operating model, cadence, guardrails, and success signals.</p>
+          </div>
+        </div>
+
+        <!-- REDDIT -->
+        <details class="reveal">
+          <summary>
+            <div class="sumLeft">
+              <div class="sumTitle">Reddit</div>
+              <p class="sumSub">Help-first credibility in high-trust communities (humans first, brand second).</p>
+            </div>
+            <div class="chev" aria-hidden="true">⌄</div>
+          </summary>
+          <div class="content">
+            <div class="contentGrid">
+              <div class="panel boxNote">
+                <h4>What we do</h4>
+                <ul>
+                  <li>Participate as humans with consistent presence and tone.</li>
+                  <li>Post weekly “what we learned” threads (data + reflection + question).</li>
+                  <li>Run quarterly AMAs focused on learnings, not product promotion.</li>
+                  <li>Publish recap posts after AMAs with top insights + what changes next.</li>
+                </ul>
+              </div>
+
+              <div class="panel boxWarn">
+                <h4>Guardrails (so Reddit doesn’t roast us)</h4>
+                <ul>
+                  <li>No link dumping. Value must live in the post.</li>
+                  <li>No forced branding. Keep it helpful and humble.</li>
+                  <li>No “growth hacks.” We earn trust with clarity and receipts.</li>
+                  <li>Strong moderation norms: constructive feedback only.</li>
+                </ul>
+              </div>
+
+              <div class="panel boxOk">
+                <h4>Cadence</h4>
+                <ul>
+                  <li>Weekly: 1 learning thread + 3–5 high-quality comments.</li>
+                  <li>Monthly: 1 community “question round-up” post.</li>
+                  <li>Quarterly: AMA + recap.</li>
+                </ul>
+              </div>
+
+              <div class="panel boxPink">
+                <h4>Success signals</h4>
+                <ul>
+                  <li>People replying with their own learnings (community activation).</li>
+                  <li>Organic “Buffer mentioned” moments in other threads.</li>
+                  <li>Repeat commenters returning week to week.</li>
+                  <li>Questions shifting from “what is Buffer?” to “how do I use Buffer for X?”</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- DISCORD -->
+        <details class="reveal">
+          <summary>
+            <div class="sumLeft">
+              <div class="sumTitle">Discord Growth Lab</div>
+              <p class="sumSub">Structured belonging: a working room where people actually improve (no ghost town).</p>
+            </div>
+            <div class="chev" aria-hidden="true">⌄</div>
+          </summary>
+          <div class="content">
+            <div class="contentGrid">
+              <div class="panel boxNote">
+                <h4>Structure that works</h4>
+                <ul>
+                  <li>#wins-and-weird-flexes (celebrate progress)</li>
+                  <li>#feedback-swap (guided prompt)</li>
+                  <li>#experiments (hypothesis → test → results)</li>
+                  <li>#office-hours (Buffer team rotation)</li>
+                  <li>#resources (recaps + curated learnings)</li>
+                  <li>#partners (community collabs)</li>
+                </ul>
+              </div>
+
+              <div class="panel boxOk">
+                <h4>Rituals (this is what keeps it alive)</h4>
+                <ul>
+                  <li>Weekly feedback swap (45 min, prompt-based, kind-by-design)</li>
+                  <li>Monthly growth sprint (small mission, public wins)</li>
+                  <li>Bi-weekly office hours + “what we’re changing next”</li>
+                  <li>Monthly recap post: learnings, wins, what’s next</li>
+                </ul>
+              </div>
+
+              <div class="panel boxWarn">
+                <h4>Guardrails</h4>
+                <ul>
+                  <li>No “general chat as the whole server.” Channels have jobs.</li>
+                  <li>No automated engagement. Humans respond, always.</li>
+                  <li>Positivity standards: specific feedback, no dunking.</li>
+                  <li>Clear onboarding: first post, first win, first connection.</li>
+                </ul>
+              </div>
+
+              <div class="panel boxPink">
+                <h4>Success signals</h4>
+                <ul>
+                  <li>Members post wins without prompting.</li>
+                  <li>Peer-to-peer help grows (community self-sustains).</li>
+                  <li>Creators share external posts about what they learned.</li>
+                  <li>“I’m stuck” turns into “here’s what worked for me.”</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- SOCIAL -->
+        <details class="reveal">
+          <summary>
+            <div class="sumLeft">
+              <div class="sumTitle">Social</div>
+              <p class="sumSub">Community becomes the content: learnings, spotlights, and transparent progress.</p>
+            </div>
+            <div class="chev" aria-hidden="true">⌄</div>
+          </summary>
+          <div class="content">
+            <div class="contentGrid">
+              <div class="panel boxNote">
+                <h4>Content pillars</h4>
+                <ul>
+                  <li>What we learned (weekly)</li>
+                  <li>Builder spotlights (recurring)</li>
+                  <li>Community recaps (monthly)</li>
+                  <li>Behind-the-scenes community building (as it happens)</li>
+                </ul>
+              </div>
+
+              <div class="panel boxOk">
+                <h4>Platform intent</h4>
+                <ul>
+                  <li><strong>LinkedIn:</strong> thoughtful learnings + creator stories</li>
+                  <li><strong>X:</strong> fast insights + experiments + quotes</li>
+                  <li><strong>Instagram:</strong> visual education + spotlight clips</li>
+                </ul>
+              </div>
+
+              <div class="panel boxWarn">
+                <h4>Guardrails</h4>
+                <ul>
+                  <li>No “marketing about community.” Only community outcomes.</li>
+                  <li>Spotlights include the workflow, not just praise.</li>
+                  <li>Minimal jargon. Clear, human writing.</li>
+                </ul>
+              </div>
+
+              <div class="panel boxPink">
+                <h4>Success signals</h4>
+                <ul>
+                  <li>Spotlight shares from users (advocacy in motion).</li>
+                  <li>Comments become conversations, not applause.</li>
+                  <li>Creators tagging Buffer in their own wins.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- EVENTS -->
+        <details class="reveal">
+          <summary>
+            <div class="sumLeft">
+              <div class="sumTitle">Events</div>
+              <p class="sumSub">Depth + relationships: workshops, teardowns, and Community Week.</p>
+            </div>
+            <div class="chev" aria-hidden="true">⌄</div>
+          </summary>
+          <div class="content">
+            <div class="contentGrid">
+              <div class="panel boxNote">
+                <h4>Event types</h4>
+                <ul>
+                  <li>Monthly workshop (10-min talk → breakouts → shareback)</li>
+                  <li>Creator teardown night (structured + kind)</li>
+                  <li>Office hours (Q&A + follow-through)</li>
+                </ul>
+              </div>
+
+              <div class="panel boxOk">
+                <h4>Quarterly: Community Week</h4>
+                <ul>
+                  <li>Workshops + creator panels</li>
+                  <li>Experiment lab sessions</li>
+                  <li>Roadmap preview + feedback</li>
+                  <li>Community recognition (gratitude as strategy)</li>
+                </ul>
+              </div>
+
+              <div class="panel boxWarn">
+                <h4>Guardrails</h4>
+                <ul>
+                  <li>Always publish recaps (learnings + what changes).</li>
+                  <li>“Do the work” design: breakouts > long lectures.</li>
+                  <li>Remote-friendly timing + accessibility.</li>
+                </ul>
+              </div>
+
+              <div class="panel boxPink">
+                <h4>Success signals</h4>
+                <ul>
+                  <li>Attendees post takeaways publicly.</li>
+                  <li>Event-to-community conversion improves.</li>
+                  <li>Repeat attendance and member-led sessions grow.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- PARTNERSHIPS -->
+        <details class="reveal">
+          <summary>
+            <div class="sumLeft">
+              <div class="sumTitle">Partnerships</div>
+              <p class="sumSub">Co-create value with adjacent communities (distribution without being salesy).</p>
+            </div>
+            <div class="chev" aria-hidden="true">⌄</div>
+          </summary>
+          <div class="content">
+            <div class="contentGrid">
+              <div class="panel boxNote">
+                <h4>Partnership formats</h4>
+                <ul>
+                  <li>Co-hosted workshops and panels</li>
+                  <li>Shared research drops</li>
+                  <li>Community exchange weeks</li>
+                  <li>Co-created “resource packs” (hosted as content, not copy tools)</li>
+                </ul>
+              </div>
+
+              <div class="panel boxOk">
+                <h4>Partner targets</h4>
+                <ul>
+                  <li>Creator education communities</li>
+                  <li>Newsletter + content platforms</li>
+                  <li>Indie builder ecosystems</li>
+                  <li>Agency communities and collectives</li>
+                </ul>
+              </div>
+
+              <div class="panel boxWarn">
+                <h4>Guardrails</h4>
+                <ul>
+                  <li>Co-create > co-sell</li>
+                  <li>Clear value for members (not just exposure)</li>
+                  <li>Recaps and assets published after the event</li>
+                </ul>
+              </div>
+
+              <div class="panel boxPink">
+                <h4>Success signals</h4>
+                <ul>
+                  <li>Members from partner communities become active contributors.</li>
+                  <li>Joint content gets saved/shared more than announced.</li>
+                  <li>Partnerships become recurring, not one-off.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- AI -->
+    <section class="section" id="ai">
+      <div class="wrap">
+        <div class="sectionHeader reveal">
+          <div>
+            <h2>AI, used the right way</h2>
+            <p class="hint">AI supports clarity and consistency. Human connection stays human. Always.</p>
+          </div>
+        </div>
+
+        <div class="aiGrid">
+          <div class="callout reveal boxOk">
+            <h3>Where AI helps</h3>
+            <p>Speed + synthesis without losing the human voice.</p>
+            <ul style="margin:10px 0 0; padding-left:18px; color:#374151; line-height:1.7; font-size:13px">
+              <li>Summarize trends from community discussions</li>
+              <li>Extract themes from feedback for monthly recaps</li>
+              <li>Draft outlines for learning posts (human edits final)</li>
+              <li>Turn “raw notes” into clear, helpful artifacts</li>
+            </ul>
+            <span class="stamp">AI as co-pilot</span>
+          </div>
+
+          <div class="callout reveal boxWarn">
+            <h3>Where AI never goes</h3>
+            <p>No fake relationship-building. No canned empathy.</p>
+            <ul style="margin:10px 0 0; padding-left:18px; color:#374151; line-height:1.7; font-size:13px">
+              <li>No automated replies in community spaces</li>
+              <li>No “personalized” DMs written by bots</li>
+              <li>No replacing real moderation and presence</li>
+              <li>No pretending AI wrote something “from the heart”</li>
+            </ul>
+            <span class="stamp">Human-first always</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GOALS -->
+    <section class="section" id="goals">
+      <div class="wrap">
+        <div class="sectionHeader reveal">
+          <div>
+            <h2>90-day plan and success signals</h2>
+            <p class="hint">Clear commitments (yours), clear outcomes (community), clear signals (what’s working).</p>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="phase reveal">
+            <div class="k">Days 0–30</div>
+            <h3>Foundation</h3>
+            <ul>
+              <li>Discord Growth Lab structure + onboarding flow</li>
+              <li>Weekly Reddit rhythm established</li>
+              <li>First spotlight pipeline (opt-in + approvals)</li>
+              <li>Define positivity and moderation norms</li>
+            </ul>
+          </div>
+
+          <div class="phase reveal">
+            <div class="k">Days 31–60</div>
+            <h3>Activation</h3>
+            <ul>
+              <li>Weekly feedback ritual launches</li>
+              <li>First monthly workshop + recap</li>
+              <li>Spotlights become recurring</li>
+              <li>First partnership co-event scoped</li>
+            </ul>
+          </div>
+
+          <div class="phase reveal">
+            <div class="k">Days 61–90</div>
+            <h3>Amplification</h3>
+            <ul>
+              <li>Quarterly AMA (Reddit) + recap</li>
+              <li>Community Week plan drafted (next quarter)</li>
+              <li>Monthly public community recap cadence</li>
+              <li>Member-led contributions begin increasing</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" class="reveal">
+          <details>
+            <summary>
+              <div class="sumLeft">
+                <div class="sumTitle">What “working” looks like (signals)</div>
+                <p class="sumSub">Not vanity metrics. Behavioral proof of trust, belonging, and advocacy.</p>
+              </div>
+              <div class="chev" aria-hidden="true">⌄</div>
+            </summary>
+            <div class="content">
+              <div class="contentGrid">
+                <div class="panel boxOk">
+                  <h4>Trust signals</h4>
+                  <ul>
+                    <li>Repeat commenters and repeat event attendees</li>
+                    <li>People asking better questions over time</li>
+                    <li>Organic mentions of Buffer in peer conversations</li>
+                  </ul>
+                </div>
+                <div class="panel boxNote">
+                  <h4>Belonging signals</h4>
+                  <ul>
+                    <li>Peer-to-peer help increases (not just Buffer-led)</li>
+                    <li>Members share wins without prompting</li>
+                    <li>Feedback threads become a weekly habit</li>
+                  </ul>
+                </div>
+                <div class="panel boxPink">
+                  <h4>Advocacy signals</h4>
+                  <ul>
+                    <li>Spotlight shares and “thank you” posts from users</li>
+                    <li>Creators tagging Buffer in progress updates</li>
+                    <li>New members joining because of a user story</li>
+                  </ul>
+                </div>
+                <div class="panel boxWarn">
+                  <h4>Early warning signs</h4>
+                  <ul>
+                    <li>Discord becomes “general chat” only</li>
+                    <li>Events feel lecture-heavy with no outcomes</li>
+                    <li>Posts announce community instead of showing community</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIO -->
+    <section class="section" id="bio">
+      <div class="wrap">
+        <div class="sectionHeader reveal">
+          <div>
+            <h2>About Ben</h2>
+            <p class="hint">Hybrid powerhouse: social + community + customer success instincts + tech fluency.</p>
+          </div>
+        </div>
+
+        <div class="bio reveal">
+          <div>
+            <h3>Ben Campbell</h3>
+            <p>
+              I’m a social media and community operator who’s built systems that scale: content strategy, audience growth, and brand storytelling —
+              with the added advantage of being fluent in the realities of SaaS and customer experience.
+              I’ve led high-visibility social work (including nearly <strong>6M total followers</strong> managed across platforms),
+              driven measurable audience growth (including a <strong>50% increase</strong> at Codeup),
+              and I’m obsessive—in a healthy way—about clarity, consistency, and making communities feel genuinely human.
+            </p>
+            <p style="margin-top:10px">
+              My edge is hybrid: I can think like marketing, operate like support/success, and collaborate like product.
+              That’s exactly what community needs to become a core part of the team—not a side project.
+            </p>
+            <p style="margin-top:10px">
+              Full portfolio: <a href="https://bencampbell.netlify.app/" target="_blank" rel="noopener">bencampbell.netlify.app</a>
+            </p>
+          </div>
+
+          <div class="bioRight">
+            <h4>What I bring to Buffer</h4>
+            <ul>
+              <li><strong>Social expertise:</strong> platform-native storytelling + growth instincts</li>
+              <li><strong>Community craft:</strong> rituals, norms, and belonging by design</li>
+              <li><strong>Support mindset:</strong> empathy + clarity + action, not canned replies</li>
+              <li><strong>Tech fluency:</strong> SaaS thinking, feedback loops, systems</li>
+              <li><strong>Remote-ready:</strong> async-first operations that still feel personal</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSE -->
+    <section class="section" id="close">
+      <div class="wrap">
+        <div class="closeBox reveal">
+          <div class="closeGrid">
+            <div>
+              <h2>Community is not an add-on.</h2>
+              <p>
+                It’s how modern brands earn loyalty.
+                We will build the most trusted space for creators, small businesses, and agencies using Buffer —
+                and we’ll do it by advocating for them loudly and consistently.
+                When our users win publicly, Buffer wins sustainably.
+              </p>
+            </div>
+            <div class="closeActions">
+              <a class="btn" href="#plans">Review platform plans →</a>
+              <a class="btn secondary" href="https://bencampbell.netlify.app/" target="_blank" rel="noopener">View portfolio</a>
+            </div>
+          </div>
+        </div>
+
+        <footer>
+          <div>Premium, skim-first, expand-for-depth. Built for a remote team review.</div>
+          <div>Subtle Ben-coded note: no gurus were harmed in the making of this plan.</div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Smooth anchor scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (!id || id === '#') return;
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+        history.pushState(null, '', id);
+      });
+    });
+
+    // Progress bar
+    const prog = document.getElementById('prog');
+    function updateProgress(){
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop || document.body.scrollTop;
+      const height = doc.scrollHeight - doc.clientHeight;
+      const pct = height > 0 ? (scrollTop / height) * 100 : 0;
+      prog.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateProgress, {passive:true});
+    updateProgress();
+
+    // Reveal on scroll
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealEls = Array.from(document.querySelectorAll('.reveal'));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+
+    // Counter animation in hero
+    function animateCount(el, to){
+      const dur = prefersReduced ? 1 : 900;
+      const t0 = performance.now();
+      function tick(t){
+        const p = Math.min(1, (t - t0) / dur);
+        const val = Math.round(to * (1 - Math.pow(1-p, 3)));
+        el.textContent = val;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const to = Number(el.getAttribute('data-count') || '0');
+      animateCount(el, to);
+    });
+
+    // Active nav chip based on section in view (desktop chips only)
+    const chips = Array.from(document.querySelectorAll('.navLinks .chip'));
+    const sections = chips
+      .map(c => document.querySelector(c.getAttribute('href')))
+      .filter(Boolean);
+
+    const navIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        chips.forEach(c => c.classList.remove('active'));
+        const activeChip = chips.find(c => c.getAttribute('href') === '#' + entry.target.id);
+        if (activeChip) activeChip.classList.add('active');
+      });
+    }, { rootMargin: '-30% 0px -65% 0px', threshold: 0.01 });
+
+    sections.forEach(sec => navIO.observe(sec));
+
+    // Expand/Collapse all details
+    const toggleAllBtn = document.getElementById('toggleAll');
+    let expanded = false;
+
+    function setAllDetails(open){
+      document.querySelectorAll('details').forEach(d => { d.open = open; });
+      expanded = open;
+      toggleAllBtn.innerHTML = open ? 'Collapse all details <span aria-hidden="true">▴</span>'
+                                   : 'Expand all details <span aria-hidden="true">▾</span>';
+    }
+    toggleAllBtn.addEventListener('click', () => setAllDetails(!expanded));
+  </script>
 </body>
 </html>
