@@ -1,1311 +1,1415 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mutual Advocacy Community Blueprint — Buffer x Ben</title>
-  <meta name="description" content="A premium, skim-first, expand-for-depth community blueprint: Reddit, Discord, Social, Events, Partnerships — centered on mutual advocacy and human-first AI." />
-
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Buffer × Ben — Community Blueprint</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --blue:#2C4BFF;
-      --blue2:#6B81FF;
-      --blueDark:#121E66;
-      --ink:#111827;
-      --muted:#6B7280;
-      --bg:#F6F7FB;
-      --card:#FFFFFF;
-      --border:rgba(17,24,39,.10);
-      --border2:rgba(44,75,255,.18);
-      --shadow:0 22px 60px rgba(18,30,102,.12);
-      --shadowSoft:0 12px 30px rgba(17,24,39,.08);
-      --radius:18px;
-      --radius2:26px;
-      --max:1120px;
-
-      --ok: rgba(16,185,129,.14);
-      --warn: rgba(245,158,11,.14);
-      --note: rgba(59,130,246,.10);
-      --pink: rgba(217,37,172,.10);
+    :root {
+      --cream:   #F9F6F0;
+      --paper:   #FFFCF7;
+      --ink:     #1A1814;
+      --ink2:    #4A4640;
+      --muted:   #9A9590;
+      --border:  rgba(26,24,20,.09);
+      --orange:  #C95F2A;
+      --orange-s:rgba(201,95,42,.10);
+      --teal:    #2A7A72;
+      --teal-s:  rgba(42,122,114,.10);
+      --navy:    #2A3F6A;
+      --navy-s:  rgba(42,63,106,.10);
+      --r: 18px;
+      --max: 860px;
+      --ffd: 'Fraunces', Georgia, serif;
+      --ffb: 'Instrument Sans', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ffb);
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
-      color:var(--ink);
-      background:
-        radial-gradient(900px 520px at 12% 8%, rgba(44,75,255,.18), transparent 55%),
-        radial-gradient(740px 420px at 88% 16%, rgba(107,129,255,.16), transparent 60%),
-        radial-gradient(650px 420px at 55% 96%, rgba(18,30,102,.12), transparent 55%),
-        var(--bg);
-      overflow-x:hidden;
+    /* ── PROGRESS ── */
+    #prog {
+      position: fixed; top: 0; left: 0; height: 2px; z-index: 200;
+      background: var(--orange); width: 0;
+      transition: width .08s linear;
     }
 
-    a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(249,246,240,.93);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max); margin: 0 auto;
+      padding: 0 20px;
+      height: 52px;
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    }
+    .nav-brand {
+      font-family: var(--ffd); font-weight: 600; font-size: 15px;
+      color: var(--ink); text-decoration: none; white-space: nowrap;
+    }
+    .nav-brand em { font-style: italic; color: var(--orange); }
+    .nav-pills { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+    .nav-pills::-webkit-scrollbar { display: none; }
+    .nav-pill {
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      text-decoration: none; padding: 5px 11px; border-radius: 999px;
+      transition: color .15s, background .15s; white-space: nowrap;
+    }
+    .nav-pill:hover { color: var(--ink); background: rgba(26,24,20,.05); }
+    .nav-pill.active { color: var(--orange); background: var(--orange-s); font-weight: 600; }
 
-    /* Top progress bar */
-    .progress{
-      position:fixed; top:0; left:0; right:0; height:3px; z-index:80;
-      background:transparent;
-    }
-    .progress > div{
-      height:3px; width:0%;
-      background:linear-gradient(90deg, var(--blue), var(--blue2));
-      box-shadow:0 10px 26px rgba(44,75,255,.35);
-    }
+    /* ── PAGE CONTAINER ── */
+    .page { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
 
-    /* Sticky nav */
-    .nav{
-      position:sticky; top:0; z-index:70;
-      backdrop-filter:saturate(180%) blur(12px);
-      background:rgba(246,247,251,.78);
-      border-bottom:1px solid var(--border);
+    /* ── HERO ── */
+    .hero {
+      max-width: var(--max); margin: 0 auto;
+      padding: 56px 20px 40px;
     }
-    .navInner{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px; padding:14px 0;
+    .eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--orange);
+      display: flex; align-items: center; gap: 8px; margin-bottom: 22px;
     }
-    .brand{
-      display:flex; align-items:center; gap:10px; text-decoration:none;
-      font-family:Poppins, sans-serif; font-weight:800; letter-spacing:-.2px;
+    .eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--orange); }
+    .hero h1 {
+      font-family: var(--ffd);
+      font-size: clamp(36px, 7vw, 64px);
+      font-weight: 700; line-height: 1.04;
+      letter-spacing: -.5px; margin-bottom: 0;
+      max-width: 13ch;
     }
-    .mark{
-      width:34px; height:34px; border-radius:12px;
-      background:linear-gradient(135deg, var(--blue), var(--blue2));
-      box-shadow:0 12px 26px rgba(44,75,255,.20);
-      position:relative;
-    }
-    .mark:after{
-      content:"";
-      position:absolute; inset:9px 10px;
-      border-radius:10px;
-      border:2px solid rgba(255,255,255,.95);
-      transform:skewX(-10deg);
-      opacity:.95;
-    }
-    .navLinks{
-      display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:flex-end;
-    }
-    .chip{
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.70);
-      border-radius:999px;
-      padding:8px 10px;
-      font-size:13px;
-      text-decoration:none;
-      transition:transform .15s ease, background .15s ease, border-color .15s ease;
-      white-space:nowrap;
-    }
-    .chip:hover{transform:translateY(-1px); background:#fff; border-color:rgba(44,75,255,.22)}
-    .chip.active{
-      background:rgba(44,75,255,.08);
-      border-color:rgba(44,75,255,.28);
-      color:var(--blueDark);
-      font-weight:700;
-    }
-    .btn{
-      appearance:none; border:0; cursor:pointer;
-      border-radius:999px;
-      padding:10px 14px;
-      font-weight:800;
-      font-size:14px;
-      display:inline-flex; align-items:center; gap:10px;
-      background:var(--blue);
-      color:#fff;
-      box-shadow:0 16px 30px rgba(44,75,255,.22);
-      transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
-      text-decoration:none;
-    }
-    .btn:hover{transform:translateY(-1px); filter:saturate(110%); box-shadow:0 18px 36px rgba(44,75,255,.26)}
-    .btn.secondary{
-      background:#fff; color:var(--blueDark);
-      border:1px solid var(--border);
-      box-shadow:var(--shadowSoft);
-    }
-    .btn.secondary:hover{box-shadow:0 16px 34px rgba(17,24,39,.10)}
+    .hero h1 em { font-style: italic; color: var(--orange); }
 
-    /* Hero */
-    .hero{
-      padding:54px 0 26px;
-      position:relative;
+    /* Hero layout: text + image side by side on desktop */
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 36px;
     }
-    .heroGrid{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:18px;
-      align-items:stretch;
+    .hero-img {
+      border-radius: var(--r);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      position: relative;
     }
-    h1{
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      font-size:54px;
-      line-height:1.02;
-      letter-spacing:-.8px;
-      margin:0 0 12px;
+    .hero-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .6s ease;
     }
-    .sub{
-      font-size:18px;
-      line-height:1.6;
-      color:#374151;
-      margin:0 0 18px;
-      max-width:68ch;
-    }
-    .badges{display:flex; flex-wrap:wrap; gap:10px; margin:14px 0 18px}
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.72);
-      border:1px solid var(--border);
-      font-size:13px;
-    }
-    .dot{width:10px; height:10px; border-radius:50%}
-    .dot.b{background:var(--blue)}
-    .dot.t{background:#00C8CF}
-    .dot.y{background:#FADE2A}
-    .dot.p{background:#D925AC}
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius2);
-      box-shadow:var(--shadowSoft);
-    }
-    .heroCard{
-      padding:18px;
-      display:flex; flex-direction:column; gap:14px;
-      position:relative;
-      overflow:hidden;
-    }
-    .heroCard:before{
-      content:"";
-      position:absolute; inset:-80px -80px auto auto;
-      width:280px; height:280px;
-      background:
-        radial-gradient(circle at 28% 30%, rgba(44,75,255,.35), transparent 60%),
-        radial-gradient(circle at 70% 55%, rgba(250,222,42,.35), transparent 62%);
-      transform:rotate(14deg);
-      opacity:.85;
-      pointer-events:none;
-    }
-    .miniTitle{
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      margin:0 0 6px;
-      font-size:18px;
-      letter-spacing:-.2px;
-    }
-    .miniText{margin:0; color:#374151; font-size:14px; line-height:1.65}
-
-    .kpiRow{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:10px;
-    }
-    .kpi{
-      padding:12px;
-      border-radius:16px;
-      background:rgba(246,247,251,.92);
-      border:1px solid var(--border);
-    }
-    .kpi .num{
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      font-size:22px;
-      letter-spacing:-.3px;
-    }
-    .kpi .lbl{font-size:12px; color:var(--muted)}
-
-    /* Sections */
-    .section{padding:42px 0}
-    .sectionHeader{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap:16px; margin-bottom:14px;
-    }
-    h2{
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      margin:0;
-      font-size:30px;
-      letter-spacing:-.3px;
-    }
-    .hint{margin:0; color:var(--muted); line-height:1.55; max-width:78ch}
-
-    /* ICP cards */
-    .grid3{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px}
-    .tile{
-      padding:16px;
-      border-radius:22px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.88);
-      box-shadow:0 10px 22px rgba(17,24,39,.06);
-      position:relative;
-      overflow:hidden;
-      min-height:170px;
-    }
-    .tile:after{
-      content:"";
-      position:absolute; inset:auto -60px -60px auto;
-      width:160px; height:160px;
-      border-radius:46px;
-      background:rgba(44,75,255,.08);
-      transform:rotate(14deg);
-    }
-    .tile h3{
-      margin:0 0 8px;
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      font-size:18px;
-      letter-spacing:-.2px;
-      position:relative;
-      z-index:1;
-    }
-    .tile p{margin:0; color:#374151; font-size:13px; line-height:1.6; position:relative; z-index:1}
-    .pill{
-      display:inline-flex; align-items:center;
-      border:1px solid var(--border);
-      background:rgba(246,247,251,.92);
-      border-radius:999px;
-      padding:6px 8px;
-      font-size:12px;
-      margin-top:10px;
-      position:relative; z-index:1;
+    .hero-img:hover img { transform: scale(1.03); }
+    .hero-img-credit {
+      position: absolute; bottom: 8px; right: 10px;
+      font-size: 10px; color: rgba(255,255,255,.6);
+      font-style: italic;
     }
 
-    /* System blocks */
-    .systemGrid{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px}
-    .system{
-      padding:16px;
-      border-radius:22px;
-      border:1px solid var(--border);
-      background:#fff;
-      box-shadow:var(--shadowSoft);
+    /* Compact note */
+    .note {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      border-radius: 0 var(--r) var(--r) 0;
+      padding: 16px 20px;
+      margin-bottom: 32px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
     }
-    .system .top{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      margin-bottom:8px;
+    .note-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--orange-s);
+      border: 1.5px solid rgba(201,95,42,.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
     }
-    .system .label{
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      letter-spacing:-.2px;
-      font-size:18px;
-      margin:0;
+    .note-body { flex: 1; min-width: 0; }
+    .note-text {
+      font-family: var(--ffd);
+      font-size: 15px; font-style: italic; font-weight: 300;
+      color: var(--ink2); line-height: 1.65;
     }
-    .system .tag{
-      font-size:12px;
-      border-radius:999px;
-      padding:6px 8px;
-      border:1px solid var(--border);
-      background:rgba(44,75,255,.06);
-      color:var(--blueDark);
-      font-weight:700;
-      white-space:nowrap;
+    .note-text strong { font-style: normal; font-weight: 600; color: var(--ink); }
+    .note-sig {
+      font-size: 12px; color: var(--muted); font-weight: 500;
+      margin-top: 6px; display: flex; align-items: center; gap: 6px;
     }
-    .system ul{margin:10px 0 0; padding-left:18px; color:#374151; line-height:1.7; font-size:13px}
+    .note-sig::before { content: '—'; color: var(--muted); }
 
-    /* Expandable */
-    details{
-      border-radius:22px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.90);
-      box-shadow:0 10px 22px rgba(17,24,39,.06);
-      overflow:hidden;
+    /* Chapters */
+    .chapters {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
-    details + details{margin-top:10px}
-    summary{
-      cursor:pointer;
-      list-style:none;
-      padding:16px 16px;
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      user-select:none;
+    .chapter {
+      display: block; text-decoration: none;
+      background: var(--paper);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r);
+      padding: 16px 18px;
+      transition: border-color .2s, transform .18s, box-shadow .2s;
     }
-    summary::-webkit-details-marker{display:none}
-    .sumLeft{
-      display:flex; flex-direction:column; gap:4px;
-    }
-    .sumTitle{
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      letter-spacing:-.2px;
-      font-size:16px;
-      margin:0;
-    }
-    .sumSub{font-size:13px; color:var(--muted); margin:0}
-    .chev{
-      width:36px; height:36px; border-radius:999px;
-      border:1px solid var(--border);
-      background:#fff;
-      display:flex; align-items:center; justify-content:center;
-      transition:transform .2s ease, border-color .2s ease;
-      flex:0 0 auto;
-    }
-    details[open] .chev{transform:rotate(180deg); border-color:rgba(44,75,255,.25)}
-    .content{
-      padding:0 16px 16px 16px;
-      border-top:1px solid var(--border);
-    }
-    .contentGrid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin-top:14px;
-    }
-    .panel{
-      padding:14px;
-      border-radius:18px;
-      border:1px solid var(--border);
-      background:rgba(246,247,251,.86);
-    }
-    .panel h4{
-      margin:0 0 8px;
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      font-size:14px;
-      letter-spacing:-.15px;
-    }
-    .panel ul{margin:0; padding-left:18px; color:#374151; line-height:1.65; font-size:13px}
-    .panel p{margin:0; color:#374151; line-height:1.6; font-size:13px}
+    .chapter:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,24,20,.08); }
+    .chapter.o:hover { border-color: var(--orange); }
+    .chapter.t:hover { border-color: var(--teal); }
+    .chapter.n:hover { border-color: var(--navy); }
+    .chapter-icon { font-size: 18px; margin-bottom: 7px; display: block; }
+    .chapter-title { font-family: var(--ffd); font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+    .chapter-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .chapter-go { font-size: 11.5px; font-weight: 600; margin-top: 8px; display: block; }
+    .chapter.o .chapter-go { color: var(--orange); }
+    .chapter.t .chapter-go { color: var(--teal); }
+    .chapter.n .chapter-go { color: var(--navy); }
 
-    /* AI box */
-    .aiGrid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-    .callout{
-      padding:16px;
-      border-radius:22px;
-      border:1px solid var(--border);
-      background:#fff;
-      box-shadow:var(--shadowSoft);
-    }
-    .callout h3{
-      margin:0 0 8px;
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      font-size:18px;
-      letter-spacing:-.2px;
-    }
-    .callout p{margin:0; color:#374151; line-height:1.65}
-    .stamp{
-      display:inline-flex;
-      font-size:12px;
-      padding:6px 8px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      margin-top:10px;
-      background:rgba(44,75,255,.06);
-      color:var(--blueDark);
-      font-weight:700;
-    }
-    .boxOk{background:linear-gradient(135deg, #fff, var(--ok))}
-    .boxWarn{background:linear-gradient(135deg, #fff, var(--warn))}
-    .boxNote{background:linear-gradient(135deg, #fff, var(--note))}
-    .boxPink{background:linear-gradient(135deg, #fff, var(--pink))}
+    /* ── DIVIDER ── */
+    hr { border: none; border-top: 1px solid var(--border); }
 
-    /* Timeline */
-    .timeline{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:12px;
+    /* ── SECTION ── */
+    .section { max-width: var(--max); margin: 0 auto; padding: 56px 20px; }
+    .sec-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
     }
-    .phase{
-      padding:16px;
-      border-radius:22px;
-      border:1px solid var(--border);
-      background:#fff;
-      box-shadow:var(--shadowSoft);
-      position:relative;
-      overflow:hidden;
-      min-height:180px;
+    .sec-eyebrow::before { content: ''; display: block; width: 14px; height: 1px; }
+    .sec-eyebrow.orange { color: var(--orange); }
+    .sec-eyebrow.orange::before { background: var(--orange); }
+    .sec-eyebrow.teal { color: var(--teal); }
+    .sec-eyebrow.teal::before { background: var(--teal); }
+    .sec-eyebrow.navy { color: var(--navy); }
+    .sec-eyebrow.navy::before { background: var(--navy); }
+    .section h2 {
+      font-family: var(--ffd);
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700; letter-spacing: -.3px;
+      line-height: 1.12; margin-bottom: 8px;
     }
-    .phase:after{
-      content:"";
-      position:absolute; inset:auto -60px -60px auto;
-      width:170px; height:170px;
-      border-radius:52px;
-      background:rgba(44,75,255,.07);
-      transform:rotate(12deg);
-    }
-    .phase .k{
-      display:inline-flex;
-      font-size:12px;
-      padding:6px 8px;
-      border-radius:999px;
-      border:1px solid rgba(44,75,255,.20);
-      background:rgba(44,75,255,.08);
-      color:var(--blueDark);
-      font-weight:800;
-      margin-bottom:8px;
-      position:relative; z-index:1;
-    }
-    .phase h3{
-      margin:0 0 8px;
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      font-size:18px;
-      letter-spacing:-.2px;
-      position:relative; z-index:1;
-    }
-    .phase ul{
-      margin:0; padding-left:18px;
-      color:#374151; line-height:1.65; font-size:13px;
-      position:relative; z-index:1;
+    .sec-sub {
+      font-size: 15px; color: var(--ink2);
+      max-width: 60ch; line-height: 1.7;
+      margin-bottom: 32px;
     }
 
-    /* Bio */
-    .bio{
-      padding:18px;
-      border-radius:26px;
-      border:1px solid var(--border);
-      background:#fff;
-      box-shadow:var(--shadowSoft);
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:12px;
-      align-items:stretch;
+    /* ── IMAGE STRIP — full-bleed band ── */
+    .img-strip {
+      display: grid;
+      gap: 10px;
+      margin: 0 0 28px;
+      align-items: stretch;
     }
-    .bio h3{
-      margin:0 0 8px;
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      font-size:20px;
-      letter-spacing:-.2px;
+    .img-strip.two   { grid-template-columns: 1fr 1fr; }
+    .img-strip.three { grid-template-columns: 1fr 1fr 1fr; }
+    .strip-img {
+      border-radius: var(--r);
+      overflow: hidden;
+      position: relative;
+      background: transparent;
     }
-    .bio p{margin:0; color:#374151; line-height:1.7}
-    .bio a{color:var(--blue); font-weight:800; text-decoration:none}
-    .bio a:hover{text-decoration:underline}
-    .bioRight{
-      border-radius:20px;
-      border:1px solid var(--border);
-      background:rgba(246,247,251,.86);
-      padding:14px;
-    }
-    .bioRight h4{
-      margin:0 0 8px;
-      font-family:Poppins, sans-serif;
-      font-weight:800;
-      font-size:14px;
-      letter-spacing:-.15px;
-    }
-    .bioRight ul{margin:0; padding-left:18px; color:#374151; line-height:1.65; font-size:13px}
+    .strip-img svg { display: block; width: 100%; height: 100%; transition: transform .5s ease; }
+    .strip-img:hover svg { transform: scale(1.02); }
+    .strip-img.tall { aspect-ratio: 4/5; }
+    .strip-img.wide { aspect-ratio: 2/1; }
+    .strip-img.sq   { aspect-ratio: 1/1; }
 
-    /* Close CTA */
-    .closeBox{
-      padding:22px;
-      border-radius:28px;
-      background:linear-gradient(135deg, rgba(44,75,255,.14), rgba(107,129,255,.10), rgba(18,30,102,.10));
-      border:1px solid rgba(18,30,102,.12);
-      box-shadow:var(--shadow);
-      position:relative;
-      overflow:hidden;
+    /* ── PILLARS ── */
+    .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .pillar {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: var(--r); padding: 22px;
     }
-    .closeBox:after{
-      content:"";
-      position:absolute; inset:auto -100px -100px auto;
-      width:340px; height:340px;
-      background:
-        radial-gradient(circle at 40% 40%, rgba(44,75,255,.35), transparent 60%),
-        radial-gradient(circle at 60% 60%, rgba(107,129,255,.22), transparent 62%);
-      transform:rotate(10deg);
-      opacity:.9;
-      pointer-events:none;
+    .pillar-num {
+      font-family: var(--ffd); font-size: 48px; font-weight: 700;
+      line-height: 1; margin-bottom: 10px; letter-spacing: -2px;
     }
-    .closeGrid{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:14px;
-      position:relative; z-index:1;
-      align-items:center;
+    .pillar:nth-child(1) .pillar-num { color: rgba(201,95,42,.14); }
+    .pillar:nth-child(2) .pillar-num { color: rgba(42,122,114,.14); }
+    .pillar:nth-child(3) .pillar-num { color: rgba(42,63,106,.14); }
+    .pillar-tag {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 999px; margin-bottom: 10px;
     }
-    .closeGrid h2{margin:0 0 10px}
-    .closeGrid p{margin:0; color:#2b2f36; line-height:1.7}
-    .closeActions{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .pillar:nth-child(1) .pillar-tag { background: var(--orange-s); color: var(--orange); }
+    .pillar:nth-child(2) .pillar-tag { background: var(--teal-s);   color: var(--teal);   }
+    .pillar:nth-child(3) .pillar-tag { background: var(--navy-s);   color: var(--navy);   }
+    .pillar h3 {
+      font-family: var(--ffd); font-size: 17px; font-weight: 600;
+      letter-spacing: -.15px; margin-bottom: 8px;
+    }
+    .pillar p { font-size: 13.5px; color: var(--ink2); line-height: 1.6; margin-bottom: 12px; }
+    .pillar ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .pillar ul li {
+      font-size: 13px; color: var(--ink2);
+      padding-left: 14px; position: relative; line-height: 1.5;
+    }
+    .pillar ul li::before { content: '–'; position: absolute; left: 0; color: var(--muted); font-size: 12px; }
 
-    footer{
-      padding:22px 0 50px;
-      color:var(--muted);
-      font-size:13px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:space-between;
-      align-items:center;
+    /* ── ICP ── */
+    .icp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .icp {
+      background: var(--paper); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 20px;
+    }
+    .icp-n { font-family: var(--ffd); font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: .06em; margin-bottom: 7px; }
+    .icp h3 { font-family: var(--ffd); font-size: 19px; font-weight: 700; letter-spacing: -.2px; margin-bottom: 12px; }
+    .icp-row { margin-bottom: 9px; }
+    .icp-lbl { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+    .icp-val { font-size: 13px; color: var(--ink2); line-height: 1.5; }
+    .icp-chip {
+      display: inline-block; font-size: 12px; font-weight: 600;
+      padding: 4px 11px; border-radius: 999px; margin-top: 10px;
+    }
+    .icp:nth-child(1) .icp-chip { background: var(--orange-s); color: var(--orange); }
+    .icp:nth-child(2) .icp-chip { background: var(--teal-s);   color: var(--teal);   }
+    .icp:nth-child(3) .icp-chip { background: var(--navy-s);   color: var(--navy);   }
+
+    /* ── TABS ── */
+    .tabs-shell {
+      background: var(--paper);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+    .tab-strip {
+      display: flex; border-bottom: 1px solid var(--border);
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .tab-strip::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex: 1 0 auto; padding: 13px 15px;
+      border: none; background: none; cursor: pointer;
+      font-family: var(--ffb); font-size: 13px; font-weight: 500;
+      color: var(--muted); border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color .15s, border-color .15s, background .15s;
+      white-space: nowrap; display: flex; align-items: center; gap: 6px;
+    }
+    .tab-btn:hover { color: var(--ink); background: rgba(26,24,20,.02); }
+    .tab-btn.active { color: var(--orange); border-bottom-color: var(--orange); font-weight: 600; }
+    .tab-pane { display: none; padding: 24px; }
+    .tab-pane.active { display: block; }
+    .tab-head { margin-bottom: 20px; }
+    .tab-head h3 { font-family: var(--ffd); font-size: 20px; font-weight: 700; letter-spacing: -.2px; margin-bottom: 4px; }
+    .tab-head p { font-size: 13.5px; color: var(--ink2); line-height: 1.6; }
+    .tab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .panel {
+      border-radius: 14px; padding: 15px;
+      border: 1px solid transparent;
+    }
+    .panel.blue  { background: rgba(42,63,106,.05);  border-color: rgba(42,63,106,.12); }
+    .panel.green { background: rgba(42,122,114,.05); border-color: rgba(42,122,114,.12); }
+    .panel.amber { background: rgba(180,130,0,.06);  border-color: rgba(180,130,0,.13); }
+    .panel.rust  { background: rgba(201,95,42,.05);  border-color: rgba(201,95,42,.12); }
+    .panel h4 { font-family: var(--ffd); font-size: 13px; font-weight: 600; margin-bottom: 9px; color: var(--ink); }
+    .panel ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .panel ul li {
+      font-size: 13px; color: var(--ink2);
+      padding-left: 13px; position: relative; line-height: 1.5;
+    }
+    .panel ul li::before { content: '–'; position: absolute; left: 0; color: var(--muted); font-size: 11px; }
+
+    /* ── EXPAND CARDS ── */
+    .expand-card {
+      background: var(--paper);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r); margin-bottom: 10px; overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .expand-card:hover { border-color: rgba(26,24,20,.16); }
+    .expand-card.open            { border-color: var(--navy);   box-shadow: 0 4px 24px rgba(42,63,106,.08); }
+    .expand-card.open.teal-theme { border-color: var(--teal);   box-shadow: 0 4px 24px rgba(42,122,114,.08); }
+    .expand-trigger {
+      width: 100%; background: none; border: none; cursor: pointer;
+      padding: 18px 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      text-align: left; font-family: var(--ffb);
+      transition: background .15s;
+    }
+    .expand-trigger:hover { background: rgba(26,24,20,.02); }
+    .expand-left { display: flex; align-items: center; gap: 12px; }
+    .expand-ico {
+      width: 36px; height: 36px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; background: var(--cream); border: 1px solid var(--border);
+      flex-shrink: 0; transition: background .2s;
+    }
+    .expand-card.open            .expand-ico { background: var(--navy-s);  border-color: rgba(42,63,106,.2); }
+    .expand-card.open.teal-theme .expand-ico { background: var(--teal-s);  border-color: rgba(42,122,114,.2); }
+    .expand-title { font-family: var(--ffd); font-size: 16px; font-weight: 600; letter-spacing: -.1px; color: var(--ink); margin-bottom: 2px; }
+    .expand-peek  { font-size: 12.5px; color: var(--muted); line-height: 1.4; }
+    .expand-pill {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 12px; font-weight: 600; color: var(--muted);
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 999px; padding: 5px 11px;
+      white-space: nowrap; flex-shrink: 0;
+      transition: color .2s, background .2s, border-color .2s;
+    }
+    .expand-arrow { display: inline-block; transition: transform .25s ease; font-size: 10px; }
+    .expand-card.open            .expand-pill { color: var(--navy);  background: var(--navy-s);  border-color: rgba(42,63,106,.2); }
+    .expand-card.open.teal-theme .expand-pill { color: var(--teal);  background: var(--teal-s);  border-color: rgba(42,122,114,.2); }
+    .expand-card.open .expand-arrow { transform: rotate(180deg); }
+    .expand-body { max-height: 0; overflow: hidden; transition: max-height .38s cubic-bezier(.4,0,.2,1); }
+    .expand-inner { padding: 0 20px 20px; border-top: 1px solid var(--border); }
+    .expand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+
+    /* ── TIMELINE ── */
+    .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 10px; }
+    .phase {
+      background: var(--paper); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 20px;
+    }
+    .phase-dot-row { display: flex; align-items: center; gap: 7px; margin-bottom: 12px; }
+    .phase-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .phase:nth-child(1) .phase-dot { background: var(--orange); }
+    .phase:nth-child(2) .phase-dot { background: var(--teal); }
+    .phase:nth-child(3) .phase-dot { background: var(--navy); }
+    .phase-lbl { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .phase h3 { font-family: var(--ffd); font-size: 18px; font-weight: 700; letter-spacing: -.15px; margin-bottom: 10px; }
+    .phase ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .phase ul li {
+      font-size: 13px; color: var(--ink2);
+      padding-left: 14px; position: relative; line-height: 1.5;
+    }
+    .phase ul li::before {
+      content: ''; position: absolute; left: 0; top: 6px;
+      width: 5px; height: 5px; border-radius: 50%;
+    }
+    .phase:nth-child(1) ul li::before { background: rgba(201,95,42,.4); }
+    .phase:nth-child(2) ul li::before { background: rgba(42,122,114,.4); }
+    .phase:nth-child(3) ul li::before { background: rgba(42,63,106,.4); }
+
+    /* signals grid */
+    .signals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+    .sig-card { border-radius: 14px; padding: 14px; border: 1px solid transparent; }
+    .sig-card h5 { font-family: var(--ffd); font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+    .sig-card ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .sig-card ul li { font-size: 13px; color: var(--ink2); padding-left: 14px; position: relative; line-height: 1.45; }
+    .sig-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--muted); font-size: 10px; top: 3px; }
+    .sig-card.trust    { background: rgba(42,122,114,.06); border-color: rgba(42,122,114,.13); }
+    .sig-card.belong   { background: rgba(42,63,106,.05);  border-color: rgba(42,63,106,.12); }
+    .sig-card.advocacy { background: rgba(201,95,42,.05);  border-color: rgba(201,95,42,.12); }
+    .sig-card.warn     { background: rgba(180,130,0,.06);  border-color: rgba(180,130,0,.13); }
+
+    /* ai pair */
+    .ai-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .ai-card { border: 1px solid var(--border); border-radius: var(--r); padding: 22px; }
+    .ai-card.yes { background: rgba(42,122,114,.05); border-color: rgba(42,122,114,.15); }
+    .ai-card.no  { background: rgba(180,60,50,.04);  border-color: rgba(180,60,50,.12); }
+    .ai-badge {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 999px; margin-bottom: 10px;
+    }
+    .ai-card.yes .ai-badge { background: var(--teal-s); color: var(--teal); }
+    .ai-card.no  .ai-badge { background: rgba(180,60,50,.10); color: #A83232; }
+    .ai-card h3 { font-family: var(--ffd); font-size: 17px; font-weight: 600; letter-spacing: -.15px; margin-bottom: 6px; }
+    .ai-card p  { font-size: 13px; color: var(--ink2); margin-bottom: 12px; line-height: 1.6; }
+    .ai-card ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .ai-card ul li { font-size: 13px; color: var(--ink2); padding-left: 17px; position: relative; line-height: 1.5; }
+    .ai-card.yes ul li::before { content: '✓'; position: absolute; left: 0; color: var(--teal);   font-size: 12px; font-weight: 700; }
+    .ai-card.no  ul li::before { content: '✗'; position: absolute; left: 0; color: #A83232; font-size: 12px; font-weight: 700; }
+
+    /* ── BIO ── */
+    .bio-card {
+      background: var(--paper); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 28px;
+      display: grid; grid-template-columns: 1.15fr .85fr;
+      gap: 24px; align-items: start;
+    }
+    .bio-name { font-family: var(--ffd); font-size: 24px; font-weight: 700; letter-spacing: -.25px; margin-bottom: 3px; }
+    .bio-role { font-size: 12.5px; color: var(--orange); font-weight: 600; margin-bottom: 14px; letter-spacing: .02em; }
+    .bio-body { font-size: 14px; color: var(--ink2); line-height: 1.75; }
+    .bio-body strong { font-weight: 600; color: var(--ink); }
+    .bio-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      margin-top: 14px; font-size: 13px; font-weight: 600;
+      color: var(--orange); text-decoration: none;
+      border-bottom: 1px solid rgba(201,95,42,.3); padding-bottom: 1px;
+    }
+    .bio-link:hover { border-bottom-color: var(--orange); }
+    .bio-skills { background: var(--cream); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
+    .bio-skills h4 { font-family: var(--ffd); font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+    .bio-skills ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .bio-skills ul li { font-size: 13px; color: var(--ink2); padding-left: 15px; position: relative; line-height: 1.5; }
+    .bio-skills ul li::before { content: '✦'; position: absolute; left: 0; color: var(--orange); font-size: 9px; top: 4px; }
+    .bio-skills strong { font-weight: 600; color: var(--ink); }
+
+    /* ── CTA ── */
+    .cta {
+      background: var(--ink); border-radius: var(--r);
+      padding: 40px 36px;
+      max-width: var(--max); margin: 0 auto 0;
+      display: grid; grid-template-columns: 1.2fr .8fr;
+      gap: 24px; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(500px 350px at 85% 50%, rgba(201,95,42,.18), transparent);
+      pointer-events: none;
+    }
+    .cta h2 {
+      font-family: var(--ffd);
+      font-size: clamp(20px, 3.5vw, 30px);
+      font-weight: 700; color: #fff;
+      letter-spacing: -.25px; line-height: 1.15; margin-bottom: 8px;
+    }
+    .cta h2 em { font-style: italic; color: #E8895A; }
+    .cta p { font-size: 13.5px; color: rgba(255,255,255,.5); line-height: 1.7; }
+    .cta-btns { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; position: relative; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 18px; border-radius: 999px;
+      font-size: 13px; font-weight: 600; text-decoration: none;
+      transition: opacity .15s, transform .15s;
+      font-family: var(--ffb); white-space: nowrap;
+    }
+    .cta-btn:hover { opacity: .85; transform: translateY(-1px); }
+    .cta-btn.prim { background: var(--orange); color: #fff; }
+    .cta-btn.sec  { background: rgba(255,255,255,.08); color: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.14); }
+
+    footer {
+      max-width: var(--max); margin: 0 auto;
+      padding: 20px 20px 44px;
+      display: flex; justify-content: space-between; flex-wrap: wrap;
+      gap: 8px; font-size: 12px; color: var(--muted);
+    }
+    footer em { font-style: italic; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+    .d1 { transition-delay: .08s; }
+    .d2 { transition-delay: .16s; }
+    .d3 { transition-delay: .24s; }
+
+    /* ══ MOBILE ══ */
+    @media (max-width: 680px) {
+      .hero-layout { grid-template-columns: 1fr; }
+      .hero-img { display: none; } /* hero image hidden on small screens for clarity */
+      .hero h1 { font-size: clamp(34px, 9vw, 44px); }
+      .chapters { grid-template-columns: 1fr; gap: 8px; }
+      .chapter { display: flex; align-items: center; gap: 12px; padding: 13px 16px; }
+      .chapter-icon { margin-bottom: 0; font-size: 20px; flex-shrink: 0; }
+      .chapter-go { margin-top: 2px; }
+      .pillars { grid-template-columns: 1fr; }
+      .icp-grid { grid-template-columns: 1fr; }
+      .tab-grid { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 1fr; }
+      .expand-grid { grid-template-columns: 1fr; }
+      .signals-grid { grid-template-columns: 1fr; }
+      .ai-pair { grid-template-columns: 1fr; }
+      .bio-card { grid-template-columns: 1fr; }
+      .cta { grid-template-columns: 1fr; padding: 28px 22px; }
+      .cta-btns { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+      .img-strip.two, .img-strip.three { grid-template-columns: 1fr 1fr; }
+      .img-strip.three .strip-img:nth-child(3) { display: none; }
+      .nav-pills { gap: 0; }
+      .nav-pill { padding: 5px 8px; font-size: 12px; }
+      .tab-btn { padding: 12px 11px; font-size: 12px; }
     }
 
-    /* Reveal */
-    .reveal{
-      opacity:0;
-      transform:translateY(10px);
-      transition:opacity .55s ease, transform .55s ease;
-      will-change:opacity, transform;
-    }
-    .reveal.on{opacity:1; transform:translateY(0)}
-    @media (prefers-reduced-motion: reduce){
-      .reveal{transition:none}
-      .btn,.chip{transition:none}
-      .btn:hover,.chip:hover{transform:none}
+    @media (max-width: 420px) {
+      .img-strip.two, .img-strip.three { grid-template-columns: 1fr; }
+      .img-strip.two .strip-img:nth-child(2),
+      .img-strip.three .strip-img:nth-child(2),
+      .img-strip.three .strip-img:nth-child(3) { display: none; }
     }
 
-    /* Responsive */
-    @media (max-width: 980px){
-      .heroGrid{grid-template-columns:1fr}
-      h1{font-size:44px}
-      .grid3{grid-template-columns:1fr}
-      .systemGrid{grid-template-columns:1fr}
-      .contentGrid{grid-template-columns:1fr}
-      .aiGrid{grid-template-columns:1fr}
-      .timeline{grid-template-columns:1fr}
-      .bio{grid-template-columns:1fr}
-      .closeGrid{grid-template-columns:1fr}
-      .closeActions{justify-content:flex-start}
-      .navLinks{display:none}
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; }
+      * { transition-duration: 0s !important; }
     }
   </style>
 </head>
-
 <body>
-  <div class="progress" aria-hidden="true"><div id="prog"></div></div>
 
-  <header class="nav">
-    <div class="wrap navInner">
-      <a class="brand" href="#top" aria-label="Back to top">
-        <span class="mark" aria-hidden="true"></span>
-        <span>Community Blueprint</span>
-      </a>
+<div id="prog"></div>
 
-      <nav class="navLinks" aria-label="Sections">
-        <a class="chip" href="#who">Who</a>
-        <a class="chip" href="#system">System</a>
-        <a class="chip" href="#plans">Platform Plans</a>
-        <a class="chip" href="#ai">AI</a>
-        <a class="chip" href="#goals">Goals</a>
-        <a class="chip" href="#bio">About Ben</a>
-      </nav>
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">Buffer <em>×</em> Ben</a>
+    <nav class="nav-pills">
+      <a class="nav-pill" href="#strategy" data-s="strategy">Strategy</a>
+      <a class="nav-pill" href="#platforms" data-s="platforms">Platforms</a>
+      <a class="nav-pill" href="#goals" data-s="goals">90-Day Plan</a>
+      <a class="nav-pill" href="#bio" data-s="bio">About Ben</a>
+    </nav>
+  </div>
+</header>
 
-      <a class="btn" href="#close">View the plan <span aria-hidden="true">→</span></a>
+<main id="top">
+
+  <!-- ══ HERO ══ -->
+  <div class="hero reveal">
+    <div class="eyebrow">A community blueprint for Buffer</div>
+
+    <div class="hero-layout">
+      <div>
+        <h1>We grow with <em>people,</em> not at them.</h1>
+      </div>
+      <div class="hero-img">
+        <svg viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" aria-label="Illustration of people connecting in community">
+          <!-- Background wash -->
+          <rect width="480" height="360" fill="#F2EDE4"/>
+          <!-- Soft blobs -->
+          <ellipse cx="380" cy="80" rx="120" ry="100" fill="rgba(201,95,42,.10)"/>
+          <ellipse cx="100" cy="280" rx="110" ry="90" fill="rgba(42,122,114,.08)"/>
+          <ellipse cx="240" cy="180" rx="160" ry="120" fill="rgba(42,63,106,.05)"/>
+          <!-- Connection lines -->
+          <line x1="160" y1="160" x2="240" y2="130" stroke="rgba(201,95,42,.25)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <line x1="240" y1="130" x2="320" y2="155" stroke="rgba(201,95,42,.25)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <line x1="160" y1="160" x2="200" y2="230" stroke="rgba(42,122,114,.22)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <line x1="320" y1="155" x2="280" y2="230" stroke="rgba(42,122,114,.22)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <line x1="200" y1="230" x2="280" y2="230" stroke="rgba(42,63,106,.2)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <!-- Person 1 - left -->
+          <circle cx="160" cy="140" r="22" fill="#E8D5C4"/>
+          <circle cx="160" cy="128" r="10" fill="#C4956A"/>
+          <path d="M138 162 Q160 152 182 162 L185 185 H135 Z" fill="#C95F2A" opacity=".85"/>
+          <!-- Person 2 - center top -->
+          <circle cx="240" cy="108" r="22" fill="#E8D5C4"/>
+          <circle cx="240" cy="96" r="10" fill="#A07850"/>
+          <path d="M218 130 Q240 120 262 130 L265 153 H215 Z" fill="#2A7A72" opacity=".85"/>
+          <!-- Person 3 - right -->
+          <circle cx="320" cy="135" r="22" fill="#E8D5C4"/>
+          <circle cx="320" cy="123" r="10" fill="#C4956A"/>
+          <path d="M298 157 Q320 147 342 157 L345 180 H295 Z" fill="#2A3F6A" opacity=".85"/>
+          <!-- Person 4 - bottom left -->
+          <circle cx="200" cy="212" r="18" fill="#E8D5C4"/>
+          <circle cx="200" cy="202" r="8" fill="#A07850"/>
+          <path d="M182 228 Q200 220 218 228 L220 246 H180 Z" fill="#C95F2A" opacity=".7"/>
+          <!-- Person 5 - bottom right -->
+          <circle cx="280" cy="212" r="18" fill="#E8D5C4"/>
+          <circle cx="280" cy="202" r="8" fill="#C4956A"/>
+          <path d="M262 228 Q280 220 298 228 L300 246 H260 Z" fill="#2A7A72" opacity=".7"/>
+          <!-- Floating dots - rhythm -->
+          <circle cx="90" cy="110" r="4" fill="rgba(201,95,42,.3)"/>
+          <circle cx="78" cy="130" r="2.5" fill="rgba(201,95,42,.2)"/>
+          <circle cx="390" cy="200" r="4" fill="rgba(42,122,114,.3)"/>
+          <circle cx="405" cy="218" r="2.5" fill="rgba(42,122,114,.2)"/>
+          <circle cx="240" cy="290" r="5" fill="rgba(42,63,106,.2)"/>
+          <circle cx="260" cy="305" r="3" fill="rgba(42,63,106,.15)"/>
+          <!-- Small speech bubble -->
+          <rect x="348" y="98" width="60" height="32" rx="10" fill="white" opacity=".85"/>
+          <path d="M358 130 L355 142 L368 130Z" fill="white" opacity=".85"/>
+          <circle cx="364" cy="114" r="3" fill="rgba(201,95,42,.6)"/>
+          <circle cx="376" cy="114" r="3" fill="rgba(201,95,42,.4)"/>
+          <circle cx="388" cy="114" r="3" fill="rgba(201,95,42,.25)"/>
+          <!-- Label -->
+        </svg>
+      </div>
     </div>
-  </header>
 
-  <main id="top">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="wrap heroGrid">
-        <div class="reveal">
-          <h1>We advocate for users.<br/>Users advocate for Buffer.</h1>
-          <p class="sub">
-            A community system for <strong>Creators</strong>, <strong>Small Businesses</strong>, and <strong>Agencies</strong> that makes Buffer feel less like software
-            and more like a place where people actually get better.
-          </p>
-
-          <div class="badges" aria-label="Values">
-            <span class="badge"><span class="dot b"></span>Default to transparency</span>
-            <span class="badge"><span class="dot t"></span>Cultivate positivity</span>
-            <span class="badge"><span class="dot y"></span>Show gratitude</span>
-            <span class="badge"><span class="dot p"></span>Practice reflection</span>
-          </div>
-
-          <div style="display:flex; gap:10px; flex-wrap:wrap">
-            <a class="btn secondary" href="#plans">Jump to platform plans</a>
-            <button class="btn" id="toggleAll" type="button">Expand all details <span aria-hidden="true">▾</span></button>
-          </div>
-
-          <p style="margin:10px 0 0; color:var(--muted); line-height:1.55">
-            Skim in 3–5 minutes. Expand sections when you want the “how.”
-            <span style="color:var(--blueDark); font-weight:700">No templates. No gimmicks. Just a real plan.</span>
-          </p>
-        </div>
-
-        <aside class="card heroCard reveal" aria-label="Executive summary">
-          <div>
-            <p class="miniTitle">Executive overview</p>
-            <p class="miniText">
-              We’ll build a community that’s useful in public (Reddit + Social), structured in private (Discord Growth Lab),
-              and loud in the best way (spotlights, events, partnerships). The product wins because the people win.
-            </p>
-          </div>
-
-          <div class="kpiRow" aria-label="What success looks like (signals)">
-            <div class="kpi">
-              <div class="num" data-count="12">0</div>
-              <div class="lbl">Spotlights in 90 days</div>
-            </div>
-            <div class="kpi">
-              <div class="num" data-count="6">0</div>
-              <div class="lbl">Community events shipped</div>
-            </div>
-            <div class="kpi">
-              <div class="num" data-count="1">0</div>
-              <div class="lbl">Growth Lab launched</div>
-            </div>
-          </div>
-
-          <div style="display:flex; gap:10px; align-items:center; justify-content:space-between">
-            <span style="font-size:12px; color:var(--muted)">Remote-first • low drama • high clarity</span>
-            <a class="chip" href="#goals" style="background:#fff">See goals</a>
-          </div>
-        </aside>
+    <!-- Compact note -->
+    <div class="note">
+      <div class="note-avatar">👋</div>
+      <div class="note-body">
+        <p class="note-text">Hi Buffer team — the fact that you're hiring for this role tells me something: <strong>you already know community matters, and you're ready to invest in it properly.</strong> That's rare, and it's exactly the kind of foundation I want to build on. This is how I'd grow it — who it's for, how it works across every platform, and what success looks like. Skim in five minutes, or click anywhere and go deep.</p>
+        <div class="note-sig">Ben Campbell, Social & Community Strategist</div>
       </div>
-    </section>
+    </div>
 
-    <!-- WHO -->
-    <section class="section" id="who">
-      <div class="wrap">
-        <div class="sectionHeader reveal">
-          <div>
-            <h2>Who this is for</h2>
-            <p class="hint">Clear ICP alignment. Different needs, same community backbone.</p>
-          </div>
+    <!-- Chapter nav -->
+    <div class="chapters">
+      <a class="chapter o d1 reveal" href="#strategy">
+        <span class="chapter-icon">🧭</span>
+        <div>
+          <div class="chapter-title">The strategy</div>
+          <div class="chapter-desc">System, philosophy, who it's for</div>
+          <span class="chapter-go">Start here →</span>
         </div>
-
-        <div class="grid3">
-          <div class="tile reveal">
-            <h3>Creators</h3>
-            <p><strong>Need:</strong> momentum, consistency, visibility without burning out.<br/>
-               <strong>Community delivers:</strong> feedback, small wins, spotlights, and repeatable workflows.</p>
-            <span class="pill">Outcome: confidence + proof</span>
-          </div>
-
-          <div class="tile reveal">
-            <h3>Small Businesses</h3>
-            <p><strong>Need:</strong> clarity and time savings (because they’re doing everything).<br/>
-               <strong>Community delivers:</strong> practical play patterns, Q&A, and guardrails that prevent wasted effort.</p>
-            <span class="pill">Outcome: consistency + simplicity</span>
-          </div>
-
-          <div class="tile reveal">
-            <h3>Agencies</h3>
-            <p><strong>Need:</strong> scale, reliability, and client confidence.<br/>
-               <strong>Community delivers:</strong> shared systems, templates-in-spirit (not on-page), and peer problem-solving.</p>
-            <span class="pill">Outcome: scale + trust</span>
-          </div>
+      </a>
+      <a class="chapter t d2 reveal" href="#platforms">
+        <span class="chapter-icon">🛠</span>
+        <div>
+          <div class="chapter-title">Platform plans</div>
+          <div class="chapter-desc">Reddit, Discord, Social, Events, Partnerships</div>
+          <span class="chapter-go">See the detail →</span>
         </div>
+      </a>
+      <a class="chapter n d3 reveal" href="#bio">
+        <span class="chapter-icon">👤</span>
+        <div>
+          <div class="chapter-title">About Ben</div>
+          <div class="chapter-desc">6M+ followers built. What I bring.</div>
+          <span class="chapter-go">Meet me →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ══ STRATEGY ══ -->
+  <section class="section" id="strategy">
+
+    <div class="sec-eyebrow orange reveal">The Framework</div>
+    <h2 class="reveal">The mutual<br>advocacy system.</h2>
+    <p class="sec-sub reveal">Three moves that compound. We create the space. Users create the proof. The brand grows because the people grow.</p>
+
+    <!-- SVG illustration strip before pillars -->
+    <div class="img-strip three reveal">
+      <div class="strip-img tall">
+        <svg viewBox="0 0 260 340" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" aria-label="Show up publicly illustration">
+          <rect width="260" height="340" fill="#F5EFE6"/>
+          <ellipse cx="130" cy="170" rx="110" ry="130" fill="rgba(201,95,42,.07)"/>
+          <!-- Reddit-style post card -->
+          <rect x="30" y="60" width="200" height="110" rx="12" fill="white" opacity=".9"/>
+          <rect x="30" y="60" width="200" height="6" rx="6" fill="var(--orange, #C95F2A)" opacity=".6"/>
+          <rect x="46" y="84" width="120" height="7" rx="3.5" fill="rgba(26,24,20,.18)"/>
+          <rect x="46" y="98" width="160" height="5" rx="2.5" fill="rgba(26,24,20,.1)"/>
+          <rect x="46" y="110" width="140" height="5" rx="2.5" fill="rgba(26,24,20,.08)"/>
+          <rect x="46" y="122" width="100" height="5" rx="2.5" fill="rgba(26,24,20,.08)"/>
+          <!-- upvote + comment chips -->
+          <rect x="46" y="140" width="44" height="20" rx="10" fill="rgba(201,95,42,.12)"/>
+          <text x="68" y="154" text-anchor="middle" fill="#C95F2A" font-size="9" font-family="system-ui" font-weight="600">▲ 142</text>
+          <rect x="98" y="140" width="54" height="20" rx="10" fill="rgba(42,63,106,.08)"/>
+          <text x="125" y="154" text-anchor="middle" fill="#2A3F6A" font-size="9" font-family="system-ui" font-weight="600">💬 38</text>
+          <!-- Second card, offset -->
+          <rect x="48" y="188" width="180" height="80" rx="10" fill="white" opacity=".75"/>
+          <rect x="64" y="204" width="100" height="6" rx="3" fill="rgba(26,24,20,.14)"/>
+          <rect x="64" y="216" width="140" height="4" rx="2" fill="rgba(26,24,20,.08)"/>
+          <rect x="64" y="226" width="110" height="4" rx="2" fill="rgba(26,24,20,.06)"/>
+          <rect x="64" y="246" width="40" height="16" rx="8" fill="rgba(201,95,42,.1)"/>
+          <text x="84" y="258" text-anchor="middle" fill="#C95F2A" font-size="8" font-family="system-ui" font-weight="600">▲ 89</text>
+          <!-- Floating dots -->
+          <circle cx="38" cy="290" r="5" fill="rgba(201,95,42,.25)"/>
+          <circle cx="52" cy="304" r="3" fill="rgba(201,95,42,.15)"/>
+          <circle cx="220" cy="48" r="4" fill="rgba(201,95,42,.2)"/>
+          <!-- Label -->
+        </svg>
       </div>
-    </section>
-
-    <!-- SYSTEM -->
-    <section class="section" id="system">
-      <div class="wrap">
-        <div class="sectionHeader reveal">
-          <div>
-            <h2>The mutual advocacy system</h2>
-            <p class="hint">We create the space. Users create the proof. The brand grows because the people grow.</p>
-          </div>
-        </div>
-
-        <div class="systemGrid">
-          <div class="system reveal">
-            <div class="top">
-              <div class="label">1) Show up publicly</div>
-              <div class="tag">Trust</div>
-            </div>
-            <div class="miniText">
-              Participate where creators already talk. Share lessons, not hype.
-            </div>
-            <ul>
-              <li>Human-first presence on Reddit</li>
-              <li>“What we learned” content on social</li>
-              <li>Transparent recaps that invite discussion</li>
-            </ul>
-          </div>
-
-          <div class="system reveal">
-            <div class="top">
-              <div class="label">2) Build structured belonging</div>
-              <div class="tag">Retention</div>
-            </div>
-            <div class="miniText">
-              Discord Growth Lab: not a chat room—an engine for progress.
-            </div>
-            <ul>
-              <li>Weekly feedback ritual</li>
-              <li>Monthly growth sprint</li>
-              <li>Office hours + visible follow-through</li>
-            </ul>
-          </div>
-
-          <div class="system reveal">
-            <div class="top">
-              <div class="label">3) Elevate the builders</div>
-              <div class="tag">Advocacy</div>
-            </div>
-            <div class="miniText">
-              We advocate for users publicly. They advocate for Buffer naturally.
-            </div>
-            <ul>
-              <li>Recurring spotlight series</li>
-              <li>Workshops + Community Week</li>
-              <li>Partnerships that co-create value</li>
-            </ul>
-          </div>
-        </div>
+      <div class="strip-img tall">
+        <svg viewBox="0 0 260 340" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" aria-label="Build belonging illustration">
+          <rect width="260" height="340" fill="#EDF4F3"/>
+          <ellipse cx="130" cy="170" rx="110" ry="130" fill="rgba(42,122,114,.07)"/>
+          <!-- Discord-style sidebar + channels -->
+          <rect x="22" y="50" width="52" height="240" rx="10" fill="white" opacity=".8"/>
+          <circle cx="48" cy="78" r="14" fill="rgba(42,122,114,.25)"/>
+          <text x="48" y="83" text-anchor="middle" font-size="14">💬</text>
+          <rect x="34" y="102" width="28" height="5" rx="2.5" fill="rgba(42,122,114,.3)"/>
+          <rect x="34" y="114" width="22" height="5" rx="2.5" fill="rgba(42,63,106,.2)"/>
+          <rect x="34" y="126" width="26" height="5" rx="2.5" fill="rgba(201,95,42,.2)"/>
+          <!-- Chat messages -->
+          <rect x="84" y="50" width="158" height="240" rx="10" fill="white" opacity=".88"/>
+          <rect x="84" y="50" width="158" height="32" rx="10" fill="rgba(42,122,114,.1)"/>
+          <text x="163" y="71" text-anchor="middle" fill="#2A7A72" font-size="10" font-family="system-ui" font-weight="600">#wins-and-flexes</text>
+          <!-- Message bubbles -->
+          <rect x="98" y="96" width="96" height="26" rx="10" fill="rgba(42,122,114,.12)"/>
+          <rect x="98" y="108" width="72" height="5" rx="2.5" fill="rgba(42,122,114,.3)"/>
+          <rect x="150" y="132" width="76" height="26" rx="10" fill="rgba(201,95,42,.1)"/>
+          <rect x="158" y="144" width="58" height="5" rx="2.5" fill="rgba(201,95,42,.3)"/>
+          <rect x="98" y="168" width="110" height="26" rx="10" fill="rgba(42,63,106,.08)"/>
+          <rect x="98" y="180" width="84" height="5" rx="2.5" fill="rgba(42,63,106,.25)"/>
+          <!-- Reaction row -->
+          <rect x="98" y="204" width="130" height="20" rx="10" fill="rgba(26,24,20,.04)" stroke="rgba(26,24,20,.08)" stroke-width="1"/>
+          <text x="116" y="218" font-size="10">🎉</text>
+          <text x="132" y="218" font-size="9" fill="rgba(26,24,20,.5)" font-family="system-ui">12</text>
+          <text x="152" y="218" font-size="10">🔥</text>
+          <text x="168" y="218" font-size="9" fill="rgba(26,24,20,.5)" font-family="system-ui">8</text>
+          <text x="188" y="218" font-size="10">✨</text>
+          <text x="204" y="218" font-size="9" fill="rgba(26,24,20,.5)" font-family="system-ui">5</text>
+          <!-- Floating dots -->
+          <circle cx="30" cy="310" r="4" fill="rgba(42,122,114,.3)"/>
+          <circle cx="240" cy="44" r="3.5" fill="rgba(42,122,114,.2)"/>
+          <!-- Label -->
+        </svg>
       </div>
-    </section>
-
-    <!-- PLATFORM PLANS -->
-    <section class="section" id="plans">
-      <div class="wrap">
-        <div class="sectionHeader reveal">
-          <div>
-            <h2>Platform plans</h2>
-            <p class="hint">Skim the summary line. Expand for the exact operating model, cadence, guardrails, and success signals.</p>
-          </div>
-        </div>
-
-        <!-- REDDIT -->
-        <details class="reveal">
-          <summary>
-            <div class="sumLeft">
-              <div class="sumTitle">Reddit</div>
-              <p class="sumSub">Help-first credibility in high-trust communities (humans first, brand second).</p>
-            </div>
-            <div class="chev" aria-hidden="true">⌄</div>
-          </summary>
-          <div class="content">
-            <div class="contentGrid">
-              <div class="panel boxNote">
-                <h4>What we do</h4>
-                <ul>
-                  <li>Participate as humans with consistent presence and tone.</li>
-                  <li>Post weekly “what we learned” threads (data + reflection + question).</li>
-                  <li>Run quarterly AMAs focused on learnings, not product promotion.</li>
-                  <li>Publish recap posts after AMAs with top insights + what changes next.</li>
-                </ul>
-              </div>
-
-              <div class="panel boxWarn">
-                <h4>Guardrails (so Reddit doesn’t roast us)</h4>
-                <ul>
-                  <li>No link dumping. Value must live in the post.</li>
-                  <li>No forced branding. Keep it helpful and humble.</li>
-                  <li>No “growth hacks.” We earn trust with clarity and receipts.</li>
-                  <li>Strong moderation norms: constructive feedback only.</li>
-                </ul>
-              </div>
-
-              <div class="panel boxOk">
-                <h4>Cadence</h4>
-                <ul>
-                  <li>Weekly: 1 learning thread + 3–5 high-quality comments.</li>
-                  <li>Monthly: 1 community “question round-up” post.</li>
-                  <li>Quarterly: AMA + recap.</li>
-                </ul>
-              </div>
-
-              <div class="panel boxPink">
-                <h4>Success signals</h4>
-                <ul>
-                  <li>People replying with their own learnings (community activation).</li>
-                  <li>Organic “Buffer mentioned” moments in other threads.</li>
-                  <li>Repeat commenters returning week to week.</li>
-                  <li>Questions shifting from “what is Buffer?” to “how do I use Buffer for X?”</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <!-- DISCORD -->
-        <details class="reveal">
-          <summary>
-            <div class="sumLeft">
-              <div class="sumTitle">Discord Growth Lab</div>
-              <p class="sumSub">Structured belonging: a working room where people actually improve (no ghost town).</p>
-            </div>
-            <div class="chev" aria-hidden="true">⌄</div>
-          </summary>
-          <div class="content">
-            <div class="contentGrid">
-              <div class="panel boxNote">
-                <h4>Structure that works</h4>
-                <ul>
-                  <li>#wins-and-weird-flexes (celebrate progress)</li>
-                  <li>#feedback-swap (guided prompt)</li>
-                  <li>#experiments (hypothesis → test → results)</li>
-                  <li>#office-hours (Buffer team rotation)</li>
-                  <li>#resources (recaps + curated learnings)</li>
-                  <li>#partners (community collabs)</li>
-                </ul>
-              </div>
-
-              <div class="panel boxOk">
-                <h4>Rituals (this is what keeps it alive)</h4>
-                <ul>
-                  <li>Weekly feedback swap (45 min, prompt-based, kind-by-design)</li>
-                  <li>Monthly growth sprint (small mission, public wins)</li>
-                  <li>Bi-weekly office hours + “what we’re changing next”</li>
-                  <li>Monthly recap post: learnings, wins, what’s next</li>
-                </ul>
-              </div>
-
-              <div class="panel boxWarn">
-                <h4>Guardrails</h4>
-                <ul>
-                  <li>No “general chat as the whole server.” Channels have jobs.</li>
-                  <li>No automated engagement. Humans respond, always.</li>
-                  <li>Positivity standards: specific feedback, no dunking.</li>
-                  <li>Clear onboarding: first post, first win, first connection.</li>
-                </ul>
-              </div>
-
-              <div class="panel boxPink">
-                <h4>Success signals</h4>
-                <ul>
-                  <li>Members post wins without prompting.</li>
-                  <li>Peer-to-peer help grows (community self-sustains).</li>
-                  <li>Creators share external posts about what they learned.</li>
-                  <li>“I’m stuck” turns into “here’s what worked for me.”</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <!-- SOCIAL -->
-        <details class="reveal">
-          <summary>
-            <div class="sumLeft">
-              <div class="sumTitle">Social</div>
-              <p class="sumSub">Community becomes the content: learnings, spotlights, and transparent progress.</p>
-            </div>
-            <div class="chev" aria-hidden="true">⌄</div>
-          </summary>
-          <div class="content">
-            <div class="contentGrid">
-              <div class="panel boxNote">
-                <h4>Content pillars</h4>
-                <ul>
-                  <li>What we learned (weekly)</li>
-                  <li>Builder spotlights (recurring)</li>
-                  <li>Community recaps (monthly)</li>
-                  <li>Behind-the-scenes community building (as it happens)</li>
-                </ul>
-              </div>
-
-              <div class="panel boxOk">
-                <h4>Platform intent</h4>
-                <ul>
-                  <li><strong>LinkedIn:</strong> thoughtful learnings + creator stories</li>
-                  <li><strong>X:</strong> fast insights + experiments + quotes</li>
-                  <li><strong>Instagram:</strong> visual education + spotlight clips</li>
-                </ul>
-              </div>
-
-              <div class="panel boxWarn">
-                <h4>Guardrails</h4>
-                <ul>
-                  <li>No “marketing about community.” Only community outcomes.</li>
-                  <li>Spotlights include the workflow, not just praise.</li>
-                  <li>Minimal jargon. Clear, human writing.</li>
-                </ul>
-              </div>
-
-              <div class="panel boxPink">
-                <h4>Success signals</h4>
-                <ul>
-                  <li>Spotlight shares from users (advocacy in motion).</li>
-                  <li>Comments become conversations, not applause.</li>
-                  <li>Creators tagging Buffer in their own wins.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <!-- EVENTS -->
-        <details class="reveal">
-          <summary>
-            <div class="sumLeft">
-              <div class="sumTitle">Events</div>
-              <p class="sumSub">Depth + relationships: workshops, teardowns, and Community Week.</p>
-            </div>
-            <div class="chev" aria-hidden="true">⌄</div>
-          </summary>
-          <div class="content">
-            <div class="contentGrid">
-              <div class="panel boxNote">
-                <h4>Event types</h4>
-                <ul>
-                  <li>Monthly workshop (10-min talk → breakouts → shareback)</li>
-                  <li>Creator teardown night (structured + kind)</li>
-                  <li>Office hours (Q&A + follow-through)</li>
-                </ul>
-              </div>
-
-              <div class="panel boxOk">
-                <h4>Quarterly: Community Week</h4>
-                <ul>
-                  <li>Workshops + creator panels</li>
-                  <li>Experiment lab sessions</li>
-                  <li>Roadmap preview + feedback</li>
-                  <li>Community recognition (gratitude as strategy)</li>
-                </ul>
-              </div>
-
-              <div class="panel boxWarn">
-                <h4>Guardrails</h4>
-                <ul>
-                  <li>Always publish recaps (learnings + what changes).</li>
-                  <li>“Do the work” design: breakouts > long lectures.</li>
-                  <li>Remote-friendly timing + accessibility.</li>
-                </ul>
-              </div>
-
-              <div class="panel boxPink">
-                <h4>Success signals</h4>
-                <ul>
-                  <li>Attendees post takeaways publicly.</li>
-                  <li>Event-to-community conversion improves.</li>
-                  <li>Repeat attendance and member-led sessions grow.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <!-- PARTNERSHIPS -->
-        <details class="reveal">
-          <summary>
-            <div class="sumLeft">
-              <div class="sumTitle">Partnerships</div>
-              <p class="sumSub">Co-create value with adjacent communities (distribution without being salesy).</p>
-            </div>
-            <div class="chev" aria-hidden="true">⌄</div>
-          </summary>
-          <div class="content">
-            <div class="contentGrid">
-              <div class="panel boxNote">
-                <h4>Partnership formats</h4>
-                <ul>
-                  <li>Co-hosted workshops and panels</li>
-                  <li>Shared research drops</li>
-                  <li>Community exchange weeks</li>
-                  <li>Co-created “resource packs” (hosted as content, not copy tools)</li>
-                </ul>
-              </div>
-
-              <div class="panel boxOk">
-                <h4>Partner targets</h4>
-                <ul>
-                  <li>Creator education communities</li>
-                  <li>Newsletter + content platforms</li>
-                  <li>Indie builder ecosystems</li>
-                  <li>Agency communities and collectives</li>
-                </ul>
-              </div>
-
-              <div class="panel boxWarn">
-                <h4>Guardrails</h4>
-                <ul>
-                  <li>Co-create > co-sell</li>
-                  <li>Clear value for members (not just exposure)</li>
-                  <li>Recaps and assets published after the event</li>
-                </ul>
-              </div>
-
-              <div class="panel boxPink">
-                <h4>Success signals</h4>
-                <ul>
-                  <li>Members from partner communities become active contributors.</li>
-                  <li>Joint content gets saved/shared more than announced.</li>
-                  <li>Partnerships become recurring, not one-off.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
-
+      <div class="strip-img tall">
+        <svg viewBox="0 0 260 340" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" aria-label="Elevate builders illustration">
+          <rect width="260" height="340" fill="#EEF0F6"/>
+          <ellipse cx="130" cy="170" rx="110" ry="130" fill="rgba(42,63,106,.06)"/>
+          <!-- Spotlight cone -->
+          <path d="M130 40 L60 200 L200 200 Z" fill="rgba(201,95,42,.07)"/>
+          <!-- Creator card in spotlight -->
+          <rect x="64" y="150" width="132" height="110" rx="14" fill="white" opacity=".92"/>
+          <!-- Avatar -->
+          <circle cx="100" cy="180" r="16" fill="#E8D5C4"/>
+          <circle cx="100" cy="172" r="8" fill="#C4956A"/>
+          <path d="M84 194 Q100 186 116 194 L118 206 H82 Z" fill="#2A3F6A" opacity=".8"/>
+          <!-- Name + handle -->
+          <rect x="124" y="172" width="56" height="7" rx="3.5" fill="rgba(26,24,20,.2)"/>
+          <rect x="124" y="185" width="40" height="5" rx="2.5" fill="rgba(42,122,114,.4)"/>
+          <!-- Stats row -->
+          <rect x="78" y="218" width="108" height="28" rx="8" fill="rgba(42,63,106,.05)" stroke="rgba(42,63,106,.1)" stroke-width="1"/>
+          <text x="105" y="228" text-anchor="middle" font-size="8" fill="rgba(26,24,20,.4)" font-family="system-ui">Followers</text>
+          <text x="105" y="240" text-anchor="middle" font-size="11" fill="#2A3F6A" font-family="system-ui" font-weight="700">+2.4k</text>
+          <text x="152" y="228" text-anchor="middle" font-size="8" fill="rgba(26,24,20,.4)" font-family="system-ui">Posts</text>
+          <text x="152" y="240" text-anchor="middle" font-size="11" fill="#C95F2A" font-family="system-ui" font-weight="700">48</text>
+          <!-- Star burst above -->
+          <circle cx="130" cy="40" r="8" fill="#C95F2A" opacity=".8"/>
+          <text x="130" y="45" text-anchor="middle" font-size="9">★</text>
+          <!-- Radiating lines from star -->
+          <line x1="130" y1="28" x2="130" y2="18" stroke="rgba(201,95,42,.4)" stroke-width="1.5"/>
+          <line x1="142" y1="32" x2="150" y2="24" stroke="rgba(201,95,42,.3)" stroke-width="1.5"/>
+          <line x1="118" y1="32" x2="110" y2="24" stroke="rgba(201,95,42,.3)" stroke-width="1.5"/>
+          <!-- Floating confetti dots -->
+          <circle cx="50" cy="120" r="4" fill="rgba(201,95,42,.3)"/>
+          <circle cx="210" cy="130" r="3" fill="rgba(42,122,114,.3)"/>
+          <circle cx="220" cy="260" r="4" fill="rgba(42,63,106,.25)"/>
+          <rect x="38" y="240" width="8" height="8" rx="2" fill="rgba(201,95,42,.2)" transform="rotate(20 42 244)"/>
+          <!-- Label -->
+        </svg>
       </div>
-    </section>
+    </div>
 
-    <!-- AI -->
-    <section class="section" id="ai">
-      <div class="wrap">
-        <div class="sectionHeader reveal">
-          <div>
-            <h2>AI, used the right way</h2>
-            <p class="hint">AI supports clarity and consistency. Human connection stays human. Always.</p>
-          </div>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <span class="pillar-tag">Trust</span>
+        <h3>Show up publicly</h3>
+        <p>Be where creators already talk. Share lessons honestly, not hype.</p>
+        <ul>
+          <li>Human-first Reddit presence</li>
+          <li>"What we learned" content on social</li>
+          <li>Transparent recaps that invite real discussion</li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <span class="pillar-tag">Retention</span>
+        <h3>Build structured belonging</h3>
+        <p>Discord Growth Lab isn't a chat room — it's a progress engine.</p>
+        <ul>
+          <li>Weekly feedback ritual, kind by design</li>
+          <li>Monthly growth sprint with public wins</li>
+          <li>Office hours with visible follow-through</li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <span class="pillar-tag">Advocacy</span>
+        <h3>Elevate the builders</h3>
+        <p>Advocate for users loudly. They advocate for Buffer naturally.</p>
+        <ul>
+          <li>Recurring creator spotlight series</li>
+          <li>Workshops + quarterly Community Week</li>
+          <li>Partnerships that co-create value</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ICP -->
+    <div style="margin-top: 48px;">
+      <div class="sec-eyebrow orange reveal">Who It's For</div>
+      <h2 class="reveal" style="font-size: clamp(22px, 3vw, 28px); margin-bottom: 8px;">Three audiences. One backbone.</h2>
+      <p class="sec-sub reveal" style="margin-bottom: 20px;">Different contexts, same community infrastructure.</p>
+
+      <!-- ICP SVG illustration -->
+      <div class="img-strip two reveal" style="margin-bottom: 20px;">
+        <div class="strip-img wide">
+          <svg viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" aria-label="Creator working illustration">
+            <rect width="400" height="225" fill="#F5EFE6"/>
+            <ellipse cx="300" cy="180" rx="130" ry="90" fill="rgba(201,95,42,.08)"/>
+            <!-- Laptop -->
+            <rect x="90" y="90" width="220" height="130" rx="10" fill="#2A1F14" opacity=".85"/>
+            <rect x="100" y="98" width="200" height="110" rx="6" fill="#1A2535"/>
+            <!-- Screen content - dashboard -->
+            <rect x="110" y="106" width="80" height="50" rx="4" fill="rgba(201,95,42,.2)"/>
+            <rect x="110" y="106" width="80" height="8" rx="4" fill="rgba(201,95,42,.4)"/>
+            <rect x="116" y="120" width="50" height="4" rx="2" fill="rgba(255,255,255,.3)"/>
+            <rect x="116" y="128" width="40" height="4" rx="2" fill="rgba(255,255,255,.2)"/>
+            <rect x="116" y="136" width="60" height="4" rx="2" fill="rgba(255,255,255,.15)"/>
+            <!-- Chart bars -->
+            <rect x="200" y="118" width="12" height="38" rx="3" fill="rgba(42,122,114,.5)"/>
+            <rect x="216" y="128" width="12" height="28" rx="3" fill="rgba(42,122,114,.4)"/>
+            <rect x="232" y="112" width="12" height="44" rx="3" fill="rgba(201,95,42,.6)"/>
+            <rect x="248" y="122" width="12" height="34" rx="3" fill="rgba(42,63,106,.5)"/>
+            <rect x="264" y="116" width="12" height="40" rx="3" fill="rgba(201,95,42,.4)"/>
+            <!-- Bottom row -->
+            <rect x="110" y="164" width="180" height="36" rx="4" fill="rgba(255,255,255,.04)"/>
+            <rect x="116" y="170" width="60" height="4" rx="2" fill="rgba(255,255,255,.2)"/>
+            <rect x="116" y="180" width="40" height="4" rx="2" fill="rgba(255,255,255,.12)"/>
+            <rect x="240" y="170" width="44" height="24" rx="6" fill="rgba(201,95,42,.5)"/>
+            <text x="262" y="186" text-anchor="middle" fill="white" font-size="9" font-family="system-ui" font-weight="600">Post ↗</text>
+            <!-- Keyboard base -->
+            <rect x="80" y="218" width="240" height="10" rx="5" fill="#1A1410" opacity=".7"/>
+            <!-- Person silhouette behind laptop -->
+            <circle cx="200" cy="68" r="18" fill="#E8D5C4"/>
+            <circle cx="200" cy="58" r="9" fill="#C4956A"/>
+            <path d="M180 82 Q200 74 220 82 L222 92 H178 Z" fill="#C95F2A" opacity=".8"/>
+            <!-- Floating elements -->
+            <circle cx="58" cy="80" r="5" fill="rgba(201,95,42,.3)"/>
+            <circle cx="46" cy="96" r="3" fill="rgba(201,95,42,.2)"/>
+            <rect x="348" y="60" width="32" height="18" rx="9" fill="rgba(42,122,114,.2)"/>
+            <text x="364" y="73" text-anchor="middle" fill="#2A7A72" font-size="9" font-family="system-ui" font-weight="600">+142</text>
+            <!-- Label -->
+          </svg>
         </div>
-
-        <div class="aiGrid">
-          <div class="callout reveal boxOk">
-            <h3>Where AI helps</h3>
-            <p>Speed + synthesis without losing the human voice.</p>
-            <ul style="margin:10px 0 0; padding-left:18px; color:#374151; line-height:1.7; font-size:13px">
-              <li>Summarize trends from community discussions</li>
-              <li>Extract themes from feedback for monthly recaps</li>
-              <li>Draft outlines for learning posts (human edits final)</li>
-              <li>Turn “raw notes” into clear, helpful artifacts</li>
-            </ul>
-            <span class="stamp">AI as co-pilot</span>
-          </div>
-
-          <div class="callout reveal boxWarn">
-            <h3>Where AI never goes</h3>
-            <p>No fake relationship-building. No canned empathy.</p>
-            <ul style="margin:10px 0 0; padding-left:18px; color:#374151; line-height:1.7; font-size:13px">
-              <li>No automated replies in community spaces</li>
-              <li>No “personalized” DMs written by bots</li>
-              <li>No replacing real moderation and presence</li>
-              <li>No pretending AI wrote something “from the heart”</li>
-            </ul>
-            <span class="stamp">Human-first always</span>
-          </div>
+        <div class="strip-img wide">
+          <svg viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" aria-label="Agency team illustration">
+            <rect width="400" height="225" fill="#EEF0F6"/>
+            <ellipse cx="100" cy="60" rx="120" ry="80" fill="rgba(42,63,106,.07)"/>
+            <!-- Kanban board -->
+            <rect x="30" y="44" width="340" height="160" rx="12" fill="white" opacity=".85"/>
+            <!-- Column headers -->
+            <rect x="42" y="56" width="96" height="22" rx="8" fill="rgba(201,95,42,.12)"/>
+            <text x="90" y="71" text-anchor="middle" fill="#C95F2A" font-size="9.5" font-family="system-ui" font-weight="600">In Progress</text>
+            <rect x="152" y="56" width="96" height="22" rx="8" fill="rgba(42,122,114,.1)"/>
+            <text x="200" y="71" text-anchor="middle" fill="#2A7A72" font-size="9.5" font-family="system-ui" font-weight="600">Review</text>
+            <rect x="262" y="56" width="96" height="22" rx="8" fill="rgba(42,63,106,.1)"/>
+            <text x="310" y="71" text-anchor="middle" fill="#2A3F6A" font-size="9.5" font-family="system-ui" font-weight="600">Done ✓</text>
+            <!-- Cards col 1 -->
+            <rect x="42" y="88" width="96" height="38" rx="6" fill="rgba(201,95,42,.06)" stroke="rgba(201,95,42,.15)" stroke-width="1"/>
+            <rect x="50" y="96" width="60" height="5" rx="2.5" fill="rgba(26,24,20,.2)"/>
+            <rect x="50" y="106" width="48" height="4" rx="2" fill="rgba(26,24,20,.1)"/>
+            <circle cx="122" cy="100" r="6" fill="#E8D5C4"/>
+            <rect x="42" y="136" width="96" height="38" rx="6" fill="rgba(201,95,42,.06)" stroke="rgba(201,95,42,.15)" stroke-width="1"/>
+            <rect x="50" y="144" width="52" height="5" rx="2.5" fill="rgba(26,24,20,.2)"/>
+            <rect x="50" y="154" width="40" height="4" rx="2" fill="rgba(26,24,20,.1)"/>
+            <!-- Cards col 2 -->
+            <rect x="152" y="88" width="96" height="38" rx="6" fill="rgba(42,122,114,.06)" stroke="rgba(42,122,114,.15)" stroke-width="1"/>
+            <rect x="160" y="96" width="68" height="5" rx="2.5" fill="rgba(26,24,20,.2)"/>
+            <rect x="160" y="106" width="52" height="4" rx="2" fill="rgba(26,24,20,.1)"/>
+            <!-- Cards col 3 -->
+            <rect x="262" y="88" width="96" height="38" rx="6" fill="rgba(42,63,106,.06)" stroke="rgba(42,63,106,.15)" stroke-width="1"/>
+            <rect x="270" y="96" width="56" height="5" rx="2.5" fill="rgba(26,24,20,.2)"/>
+            <rect x="270" y="106" width="44" height="4" rx="2" fill="rgba(26,24,20,.1)"/>
+            <text x="310" y="122" text-anchor="middle" fill="rgba(42,63,106,.5)" font-size="14">✓</text>
+            <rect x="262" y="136" width="96" height="38" rx="6" fill="rgba(42,63,106,.06)" stroke="rgba(42,63,106,.15)" stroke-width="1"/>
+            <rect x="270" y="144" width="64" height="5" rx="2.5" fill="rgba(26,24,20,.2)"/>
+            <text x="310" y="170" text-anchor="middle" fill="rgba(42,63,106,.5)" font-size="14">✓</text>
+            <!-- Label -->
+          </svg>
         </div>
       </div>
-    </section>
 
-    <!-- GOALS -->
-    <section class="section" id="goals">
-      <div class="wrap">
-        <div class="sectionHeader reveal">
-          <div>
-            <h2>90-day plan and success signals</h2>
-            <p class="hint">Clear commitments (yours), clear outcomes (community), clear signals (what’s working).</p>
+      <div class="icp-grid reveal">
+        <div class="icp">
+          <div class="icp-n">01</div>
+          <h3>Creators</h3>
+          <div class="icp-row">
+            <div class="icp-lbl">Their need</div>
+            <div class="icp-val">Momentum and visibility without burnout.</div>
           </div>
+          <div class="icp-row">
+            <div class="icp-lbl">What we deliver</div>
+            <div class="icp-val">Feedback loops, small wins celebrated, spotlights, repeatable workflows.</div>
+          </div>
+          <span class="icp-chip">Confidence + proof</span>
         </div>
-
-        <div class="timeline">
-          <div class="phase reveal">
-            <div class="k">Days 0–30</div>
-            <h3>Foundation</h3>
-            <ul>
-              <li>Discord Growth Lab structure + onboarding flow</li>
-              <li>Weekly Reddit rhythm established</li>
-              <li>First spotlight pipeline (opt-in + approvals)</li>
-              <li>Define positivity and moderation norms</li>
-            </ul>
+        <div class="icp">
+          <div class="icp-n">02</div>
+          <h3>Small Businesses</h3>
+          <div class="icp-row">
+            <div class="icp-lbl">Their need</div>
+            <div class="icp-val">Clarity and time savings — they're doing everything.</div>
           </div>
-
-          <div class="phase reveal">
-            <div class="k">Days 31–60</div>
-            <h3>Activation</h3>
-            <ul>
-              <li>Weekly feedback ritual launches</li>
-              <li>First monthly workshop + recap</li>
-              <li>Spotlights become recurring</li>
-              <li>First partnership co-event scoped</li>
-            </ul>
+          <div class="icp-row">
+            <div class="icp-lbl">What we deliver</div>
+            <div class="icp-val">Practical patterns, real Q&A, guardrails that prevent wasted effort.</div>
           </div>
-
-          <div class="phase reveal">
-            <div class="k">Days 61–90</div>
-            <h3>Amplification</h3>
-            <ul>
-              <li>Quarterly AMA (Reddit) + recap</li>
-              <li>Community Week plan drafted (next quarter)</li>
-              <li>Monthly public community recap cadence</li>
-              <li>Member-led contributions begin increasing</li>
-            </ul>
-          </div>
+          <span class="icp-chip">Consistency + simplicity</span>
         </div>
-
-        <div style="margin-top:12px" class="reveal">
-          <details>
-            <summary>
-              <div class="sumLeft">
-                <div class="sumTitle">What “working” looks like (signals)</div>
-                <p class="sumSub">Not vanity metrics. Behavioral proof of trust, belonging, and advocacy.</p>
-              </div>
-              <div class="chev" aria-hidden="true">⌄</div>
-            </summary>
-            <div class="content">
-              <div class="contentGrid">
-                <div class="panel boxOk">
-                  <h4>Trust signals</h4>
-                  <ul>
-                    <li>Repeat commenters and repeat event attendees</li>
-                    <li>People asking better questions over time</li>
-                    <li>Organic mentions of Buffer in peer conversations</li>
-                  </ul>
-                </div>
-                <div class="panel boxNote">
-                  <h4>Belonging signals</h4>
-                  <ul>
-                    <li>Peer-to-peer help increases (not just Buffer-led)</li>
-                    <li>Members share wins without prompting</li>
-                    <li>Feedback threads become a weekly habit</li>
-                  </ul>
-                </div>
-                <div class="panel boxPink">
-                  <h4>Advocacy signals</h4>
-                  <ul>
-                    <li>Spotlight shares and “thank you” posts from users</li>
-                    <li>Creators tagging Buffer in progress updates</li>
-                    <li>New members joining because of a user story</li>
-                  </ul>
-                </div>
-                <div class="panel boxWarn">
-                  <h4>Early warning signs</h4>
-                  <ul>
-                    <li>Discord becomes “general chat” only</li>
-                    <li>Events feel lecture-heavy with no outcomes</li>
-                    <li>Posts announce community instead of showing community</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </details>
+        <div class="icp">
+          <div class="icp-n">03</div>
+          <h3>Agencies</h3>
+          <div class="icp-row">
+            <div class="icp-lbl">Their need</div>
+            <div class="icp-val">Scale, reliability, and client confidence.</div>
+          </div>
+          <div class="icp-row">
+            <div class="icp-lbl">What we deliver</div>
+            <div class="icp-val">Shared systems, peer problem-solving, pressure-testing before scale.</div>
+          </div>
+          <span class="icp-chip">Scale + trust</span>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- BIO -->
-    <section class="section" id="bio">
-      <div class="wrap">
-        <div class="sectionHeader reveal">
-          <div>
-            <h2>About Ben</h2>
-            <p class="hint">Hybrid powerhouse: social + community + customer success instincts + tech fluency.</p>
-          </div>
-        </div>
+  </section>
 
-        <div class="bio reveal">
-          <div>
-            <h3>Ben Campbell</h3>
-            <p>
-              I’m a social media and community operator who’s built systems that scale: content strategy, audience growth, and brand storytelling —
-              with the added advantage of being fluent in the realities of SaaS and customer experience.
-              I’ve led high-visibility social work (including nearly <strong>6M total followers</strong> managed across platforms),
-              driven measurable audience growth (including a <strong>50% increase</strong> at Codeup),
-              and I’m obsessive—in a healthy way—about clarity, consistency, and making communities feel genuinely human.
-            </p>
-            <p style="margin-top:10px">
-              My edge is hybrid: I can think like marketing, operate like support/success, and collaborate like product.
-              That’s exactly what community needs to become a core part of the team—not a side project.
-            </p>
-            <p style="margin-top:10px">
-              Full portfolio: <a href="https://bencampbell.netlify.app/" target="_blank" rel="noopener">bencampbell.netlify.app</a>
-            </p>
-          </div>
+  <hr>
 
-          <div class="bioRight">
-            <h4>What I bring to Buffer</h4>
-            <ul>
-              <li><strong>Social expertise:</strong> platform-native storytelling + growth instincts</li>
-              <li><strong>Community craft:</strong> rituals, norms, and belonging by design</li>
-              <li><strong>Support mindset:</strong> empathy + clarity + action, not canned replies</li>
-              <li><strong>Tech fluency:</strong> SaaS thinking, feedback loops, systems</li>
-              <li><strong>Remote-ready:</strong> async-first operations that still feel personal</li>
-            </ul>
-          </div>
+  <!-- ══ PLATFORMS ══ -->
+  <section class="section" id="platforms">
+
+    <div class="sec-eyebrow teal reveal">Platform Plans</div>
+    <h2 class="reveal">Five platforms.<br>One operating philosophy.</h2>
+    <p class="sec-sub reveal">Select a platform to see the exact operating model — what we do, the guardrails, cadence, and what success looks like.</p>
+
+    <!-- Platform SVG illustration -->
+    <div class="img-strip two reveal" style="margin-bottom: 24px;">
+      <div class="strip-img wide">
+        <svg viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" aria-label="Multi-platform community presence">
+          <rect width="400" height="225" fill="#F2EDE4"/>
+          <ellipse cx="200" cy="112" rx="180" ry="100" fill="rgba(201,95,42,.05)"/>
+          <!-- Platform bubbles connected -->
+          <!-- Reddit circle -->
+          <circle cx="80" cy="100" r="38" fill="white" opacity=".9"/>
+          <circle cx="80" cy="100" r="30" fill="rgba(201,95,42,.15)"/>
+          <text x="80" y="107" text-anchor="middle" font-size="24">🟠</text>
+          <text x="80" y="150" text-anchor="middle" fill="rgba(26,24,20,.5)" font-size="9" font-family="system-ui" font-weight="600">Reddit</text>
+          <!-- Discord circle -->
+          <circle cx="200" cy="80" r="38" fill="white" opacity=".9"/>
+          <circle cx="200" cy="80" r="30" fill="rgba(42,63,106,.12)"/>
+          <text x="200" y="87" text-anchor="middle" font-size="24">💬</text>
+          <text x="200" y="130" text-anchor="middle" fill="rgba(26,24,20,.5)" font-size="9" font-family="system-ui" font-weight="600">Discord</text>
+          <!-- Social circle -->
+          <circle cx="320" cy="100" r="38" fill="white" opacity=".9"/>
+          <circle cx="320" cy="100" r="30" fill="rgba(42,122,114,.12)"/>
+          <text x="320" y="107" text-anchor="middle" font-size="24">📱</text>
+          <text x="320" y="150" text-anchor="middle" fill="rgba(26,24,20,.5)" font-size="9" font-family="system-ui" font-weight="600">Social</text>
+          <!-- Connection arcs -->
+          <path d="M118 100 Q160 68 162 80" stroke="rgba(201,95,42,.3)" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
+          <path d="M238 80 Q278 68 282 100" stroke="rgba(42,122,114,.3)" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
+          <!-- Central node -->
+          <circle cx="200" cy="165" r="22" fill="#C95F2A" opacity=".9"/>
+          <text x="200" y="172" text-anchor="middle" fill="white" font-size="11" font-family="system-ui" font-weight="700">Buffer</text>
+          <line x1="80" y1="136" x2="180" y2="155" stroke="rgba(201,95,42,.25)" stroke-width="1" stroke-dasharray="3 3"/>
+          <line x1="320" y1="136" x2="220" y2="155" stroke="rgba(201,95,42,.25)" stroke-width="1" stroke-dasharray="3 3"/>
+          <line x1="200" y1="117" x2="200" y2="143" stroke="rgba(201,95,42,.25)" stroke-width="1" stroke-dasharray="3 3"/>
+          <!-- Label -->
+        </svg>
+      </div>
+      <div class="strip-img wide">
+        <svg viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" aria-label="Community event illustration">
+          <rect width="400" height="225" fill="#EDF4F3"/>
+          <ellipse cx="200" cy="112" rx="180" ry="100" fill="rgba(42,122,114,.06)"/>
+          <!-- Presentation screen -->
+          <rect x="60" y="40" width="280" height="140" rx="12" fill="white" opacity=".88"/>
+          <rect x="60" y="40" width="280" height="12" rx="12" fill="rgba(42,122,114,.3)"/>
+          <!-- Slide content -->
+          <rect x="80" y="68" width="100" height="8" rx="4" fill="rgba(26,24,20,.2)"/>
+          <rect x="80" y="82" width="160" height="5" rx="2.5" fill="rgba(26,24,20,.1)"/>
+          <rect x="80" y="92" width="140" height="5" rx="2.5" fill="rgba(26,24,20,.08)"/>
+          <!-- Chart in slide -->
+          <rect x="220" y="66" width="100" height="80" rx="8" fill="rgba(42,122,114,.06)"/>
+          <rect x="232" y="118" width="12" height="22" rx="3" fill="rgba(42,122,114,.4)"/>
+          <rect x="248" y="108" width="12" height="32" rx="3" fill="rgba(201,95,42,.5)"/>
+          <rect x="264" y="100" width="12" height="40" rx="3" fill="rgba(42,63,106,.4)"/>
+          <rect x="280" y="112" width="12" height="28" rx="3" fill="rgba(42,122,114,.35)"/>
+          <rect x="296" y="94" width="12" height="46" rx="3" fill="rgba(201,95,42,.4)"/>
+          <!-- Attendee dots at bottom -->
+          <circle cx="110" cy="155" r="10" fill="#E8D5C4"/>
+          <circle cx="106" cy="151" r="5" fill="#C4956A"/>
+          <circle cx="135" cy="158" r="10" fill="#E8D5C4"/>
+          <circle cx="131" cy="154" r="5" fill="#A07850"/>
+          <circle cx="160" cy="153" r="10" fill="#E8D5C4"/>
+          <circle cx="156" cy="149" r="5" fill="#C4956A"/>
+          <circle cx="185" cy="157" r="10" fill="#E8D5C4"/>
+          <circle cx="181" cy="153" r="5" fill="#A07850"/>
+          <!-- Chat bubble from attendee -->
+          <rect x="196" y="138" width="70" height="22" rx="8" fill="rgba(42,63,106,.1)" stroke="rgba(42,63,106,.15)" stroke-width="1"/>
+          <path d="M202 160 L198 170 L210 160Z" fill="rgba(42,63,106,.1)"/>
+          <rect x="204" y="146" width="50" height="4" rx="2" fill="rgba(42,63,106,.3)"/>
+          <rect x="204" y="154" width="36" height="4" rx="2" fill="rgba(42,63,106,.2)"/>
+          <!-- Stand base -->
+          <rect x="185" y="178" width="30" height="6" rx="3" fill="rgba(26,24,20,.2)"/>
+          <rect x="193" y="178" width="14" height="10" rx="2" fill="rgba(26,24,20,.15)"/>
+          <!-- Label -->
+        </svg>
+      </div>
+    </div>
+
+    <div class="tabs-shell reveal">
+      <div class="tab-strip" role="tablist">
+        <button class="tab-btn active" data-tab="reddit">🟠 Reddit</button>
+        <button class="tab-btn" data-tab="discord">💬 Discord</button>
+        <button class="tab-btn" data-tab="social">📱 Social</button>
+        <button class="tab-btn" data-tab="events">🎙 Events</button>
+        <button class="tab-btn" data-tab="partnerships">🤝 Partners</button>
+      </div>
+
+      <div class="tab-pane active" data-pane="reddit">
+        <div class="tab-head"><h3>Reddit</h3><p>Help-first credibility. Humans first, brand a distant second — always.</p></div>
+        <div class="tab-grid">
+          <div class="panel blue"><h4>What we do</h4><ul><li>Weekly "what we learned" threads: data, reflection, a real question</li><li>Quarterly AMAs focused on learnings, not product promotion</li><li>Public recap posts after every AMA: top insights + what changes</li></ul></div>
+          <div class="panel amber"><h4>Guardrails</h4><ul><li>No link dumping — value lives in the post itself</li><li>No forced branding — helpful and humble only</li><li>Trust earned with clarity and receipts, not growth hacks</li></ul></div>
+          <div class="panel green"><h4>Cadence</h4><ul><li>Weekly: 1 learning thread + 3–5 quality comments</li><li>Monthly: 1 community question round-up</li><li>Quarterly: AMA + public recap</li></ul></div>
+          <div class="panel rust"><h4>Success signals</h4><ul><li>People replying with their own learnings</li><li>Organic "Buffer mentioned" moments in other threads</li><li>Questions shifting from "what is Buffer?" to "how do I use it for X?"</li></ul></div>
         </div>
       </div>
-    </section>
 
-    <!-- CLOSE -->
-    <section class="section" id="close">
-      <div class="wrap">
-        <div class="closeBox reveal">
-          <div class="closeGrid">
+      <div class="tab-pane" data-pane="discord">
+        <div class="tab-head"><h3>Discord Growth Lab</h3><p>A working room where people actually improve. Not a ghost town, not a firehose.</p></div>
+        <div class="tab-grid">
+          <div class="panel blue"><h4>Channel structure</h4><ul><li>#wins-and-weird-flexes — celebrate progress, big and small</li><li>#feedback-swap — guided prompt, kind by design</li><li>#experiments — hypothesis → test → results</li><li>#office-hours — Buffer team rotation</li></ul></div>
+          <div class="panel green"><h4>Rituals (what keeps it alive)</h4><ul><li>Weekly feedback swap — 45 min, prompt-based</li><li>Monthly growth sprint — small mission, public wins</li><li>Bi-weekly office hours + "what we're changing next"</li></ul></div>
+          <div class="panel amber"><h4>Guardrails</h4><ul><li>No "general chat as the whole server" — channels have jobs</li><li>No automated engagement — humans respond, always</li><li>Clear onboarding: first post, first win, first connection</li></ul></div>
+          <div class="panel rust"><h4>Success signals</h4><ul><li>Members post wins without prompting</li><li>Peer-to-peer help grows — community self-sustains</li><li>"I'm stuck" turns into "here's what worked for me"</li></ul></div>
+        </div>
+      </div>
+
+      <div class="tab-pane" data-pane="social">
+        <div class="tab-head"><h3>Social</h3><p>Community becomes the content. Not marketing about community — actual outcomes.</p></div>
+        <div class="tab-grid">
+          <div class="panel blue"><h4>Content pillars</h4><ul><li>What we learned — weekly, data-backed, real</li><li>Builder spotlights — recurring, workflow-focused</li><li>Community recaps — monthly, transparent</li><li>Behind-the-scenes building — as it happens</li></ul></div>
+          <div class="panel green"><h4>Platform intent</h4><ul><li>LinkedIn — thoughtful learnings + creator stories</li><li>X — fast insights + experiments + real quotes</li><li>Instagram — visual education + spotlight clips</li></ul></div>
+          <div class="panel amber"><h4>Guardrails</h4><ul><li>Only community outcomes — never "marketing about community"</li><li>Spotlights include the workflow, not just the praise</li><li>Clear, human writing — minimal jargon throughout</li></ul></div>
+          <div class="panel rust"><h4>Success signals</h4><ul><li>Spotlight shares from users — advocacy in motion</li><li>Comments become conversations, not applause</li><li>Creators tagging Buffer in their own wins, unprompted</li></ul></div>
+        </div>
+      </div>
+
+      <div class="tab-pane" data-pane="events">
+        <div class="tab-head"><h3>Events</h3><p>Depth and relationships. Workshops, teardowns, and a Community Week people actually look forward to.</p></div>
+        <div class="tab-grid">
+          <div class="panel blue"><h4>Event formats</h4><ul><li>Monthly workshop — 10-min talk → breakouts → shareback</li><li>Creator teardown night — structured, kind, with receipts</li><li>Office hours — Q&A with visible follow-through published after</li></ul></div>
+          <div class="panel green"><h4>Quarterly: Community Week</h4><ul><li>Workshops + creator panels</li><li>Experiment lab sessions</li><li>Roadmap preview + live feedback</li><li>Community recognition — gratitude as strategy</li></ul></div>
+          <div class="panel amber"><h4>Guardrails</h4><ul><li>Always publish recaps — learnings + what changes next</li><li>Breakouts over long lectures — do the work design</li><li>Remote-friendly timing and full accessibility</li></ul></div>
+          <div class="panel rust"><h4>Success signals</h4><ul><li>Attendees post takeaways publicly after events</li><li>Event-to-community conversion improves over time</li><li>Member-led sessions emerge organically</li></ul></div>
+        </div>
+      </div>
+
+      <div class="tab-pane" data-pane="partnerships">
+        <div class="tab-head"><h3>Partnerships</h3><p>Co-create value with adjacent communities. Distribution without being salesy.</p></div>
+        <div class="tab-grid">
+          <div class="panel blue"><h4>Partnership formats</h4><ul><li>Co-hosted workshops and panels</li><li>Shared research drops — data that helps both communities</li><li>Community exchange weeks</li><li>Co-created resource packs (content, not templates)</li></ul></div>
+          <div class="panel green"><h4>Partner targets</h4><ul><li>Creator education communities</li><li>Newsletter + content platforms</li><li>Indie builder ecosystems</li><li>Agency communities and collectives</li></ul></div>
+          <div class="panel amber"><h4>Guardrails</h4><ul><li>Co-create, never co-sell</li><li>Clear value for members — not just brand exposure</li><li>Recaps and assets published after every event</li></ul></div>
+          <div class="panel rust"><h4>Success signals</h4><ul><li>Partner members become active contributors</li><li>Joint content saved/shared more than it's announced</li><li>Partnerships become recurring, not one-offs</li></ul></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ══ GOALS ══ -->
+  <section class="section" id="goals">
+
+    <div class="sec-eyebrow navy reveal">90-Day Plan</div>
+    <h2 class="reveal">Clear commitments.<br>Clear outcomes.</h2>
+    <p class="sec-sub reveal">Three phases — specific deliverables at each stage and the behavioral signals that tell us what's actually working.</p>
+
+    <div class="timeline reveal">
+      <div class="phase">
+        <div class="phase-dot-row"><span class="phase-dot"></span><span class="phase-lbl">Days 0–30</span></div>
+        <h3>Foundation</h3>
+        <ul>
+          <li>Discord Growth Lab structure + onboarding</li>
+          <li>Weekly Reddit rhythm established</li>
+          <li>First spotlight pipeline built</li>
+          <li>Moderation norms defined</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-dot-row"><span class="phase-dot"></span><span class="phase-lbl">Days 31–60</span></div>
+        <h3>Activation</h3>
+        <ul>
+          <li>Weekly feedback ritual launches</li>
+          <li>First workshop + recap published</li>
+          <li>Spotlights become recurring</li>
+          <li>First partnership event scoped</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-dot-row"><span class="phase-dot"></span><span class="phase-lbl">Days 61–90</span></div>
+        <h3>Amplification</h3>
+        <ul>
+          <li>Quarterly AMA + public recap</li>
+          <li>Community Week plan drafted</li>
+          <li>Monthly recap cadence locked</li>
+          <li>Member-led contributions growing</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Expandable: success signals -->
+    <div class="reveal">
+      <div class="expand-card" id="card-signals">
+        <button class="expand-trigger" aria-expanded="false" data-card="card-signals">
+          <div class="expand-left">
+            <div class="expand-ico">📊</div>
             <div>
-              <h2>Community is not an add-on.</h2>
-              <p>
-                It’s how modern brands earn loyalty.
-                We will build the most trusted space for creators, small businesses, and agencies using Buffer —
-                and we’ll do it by advocating for them loudly and consistently.
-                When our users win publicly, Buffer wins sustainably.
-              </p>
+              <div class="expand-title">What "working" actually looks like</div>
+              <div class="expand-peek">Behavioral proof of trust, belonging, and advocacy — not vanity metrics</div>
             </div>
-            <div class="closeActions">
-              <a class="btn" href="#plans">Review platform plans →</a>
-              <a class="btn secondary" href="https://bencampbell.netlify.app/" target="_blank" rel="noopener">View portfolio</a>
+          </div>
+          <span class="expand-pill">Expand <span class="expand-arrow">▾</span></span>
+        </button>
+        <div class="expand-body">
+          <div class="expand-inner">
+            <div class="signals-grid">
+              <div class="sig-card trust"><h5>🟢 Trust signals</h5><ul><li>Repeat commenters and event attendees</li><li>People asking better questions over time</li><li>Organic Buffer mentions in peer conversations</li></ul></div>
+              <div class="sig-card belong"><h5>🔵 Belonging signals</h5><ul><li>Peer-to-peer help increases — not just Buffer-led</li><li>Members sharing wins without prompting</li><li>Feedback threads become a weekly habit</li></ul></div>
+              <div class="sig-card advocacy"><h5>🟠 Advocacy signals</h5><ul><li>Spotlight shares and unprompted "thank you" posts</li><li>Creators tagging Buffer in progress updates</li><li>New members joining because of a user story</li></ul></div>
+              <div class="sig-card warn"><h5>🟡 Early warning signs</h5><ul><li>Discord becomes "general chat" only</li><li>Events feel lecture-heavy with no outcomes</li><li>Posts announce community instead of showing it</li></ul></div>
             </div>
           </div>
         </div>
-
-        <footer>
-          <div>Premium, skim-first, expand-for-depth. Built for a remote team review.</div>
-          <div>Subtle Ben-coded note: no gurus were harmed in the making of this plan.</div>
-        </footer>
       </div>
-    </section>
-  </main>
+    </div>
 
-  <script>
-    // Smooth anchor scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        const id = a.getAttribute('href');
-        if (!id || id === '#') return;
-        const el = document.querySelector(id);
-        if (!el) return;
-        e.preventDefault();
-        el.scrollIntoView({behavior:'smooth', block:'start'});
-        history.pushState(null, '', id);
-      });
+    <!-- Expandable: AI philosophy -->
+    <div class="reveal" style="margin-top: 10px;">
+      <div class="expand-card teal-theme" id="card-ai">
+        <button class="expand-trigger" aria-expanded="false" data-card="card-ai">
+          <div class="expand-left">
+            <div class="expand-ico">🤖</div>
+            <div>
+              <div class="expand-title">AI — used the right way</div>
+              <div class="expand-peek">Where it helps, and where humans must always show up</div>
+            </div>
+          </div>
+          <span class="expand-pill">Expand <span class="expand-arrow">▾</span></span>
+        </button>
+        <div class="expand-body">
+          <div class="expand-inner">
+            <div class="ai-pair" style="margin-top: 4px;">
+              <div class="ai-card yes">
+                <span class="ai-badge">✓ AI helps here</span>
+                <h3>Where AI accelerates</h3>
+                <p>Speed and synthesis, without losing the human voice.</p>
+                <ul>
+                  <li>Summarize trends from community discussions</li>
+                  <li>Extract themes from feedback for monthly recaps</li>
+                  <li>Draft outlines — human always edits final copy</li>
+                  <li>Turn raw notes into clear, shareable artifacts</li>
+                </ul>
+              </div>
+              <div class="ai-card no">
+                <span class="ai-badge">✗ Never goes here</span>
+                <h3>Humans must show up</h3>
+                <p>No fake relationship-building. No canned empathy.</p>
+                <ul>
+                  <li>No automated replies in community spaces</li>
+                  <li>No bot-written "personalized" DMs</li>
+                  <li>No replacing real moderation and presence</li>
+                  <li>No pretending AI wrote something heartfelt</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <hr>
+
+  <!-- ══ BIO ══ -->
+  <section class="section" id="bio">
+
+    <div class="sec-eyebrow orange reveal">About Ben</div>
+    <h2 class="reveal">The person<br>behind the plan.</h2>
+    <p class="sec-sub reveal">Hybrid operator: social + community + customer success instincts + tech fluency.</p>
+
+    <!-- Bio SVG illustration -->
+    <div class="img-strip two reveal" style="margin-bottom: 24px;">
+      <div class="strip-img wide">
+        <svg viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" aria-label="Ben Campbell - strategist illustration">
+          <rect width="400" height="225" fill="#F5EFE6"/>
+          <ellipse cx="300" cy="160" rx="140" ry="100" fill="rgba(201,95,42,.08)"/>
+          <!-- Profile card -->
+          <rect x="40" y="40" width="150" height="160" rx="16" fill="white" opacity=".92"/>
+          <rect x="40" y="40" width="150" height="50" rx="16" fill="rgba(201,95,42,.15)"/>
+          <rect x="40" y="66" width="150" height="24" fill="rgba(201,95,42,.15)"/>
+          <!-- Avatar -->
+          <circle cx="115" cy="70" r="24" fill="#E8D5C4" stroke="white" stroke-width="3"/>
+          <circle cx="115" cy="60" r="12" fill="#C4956A"/>
+          <path d="M93 86 Q115 76 137 86 L140 96 H90 Z" fill="#C95F2A" opacity=".85"/>
+          <!-- Name / role -->
+          <rect x="58" y="106" width="114" height="8" rx="4" fill="rgba(26,24,20,.22)"/>
+          <rect x="68" y="120" width="94" height="5" rx="2.5" fill="rgba(201,95,42,.5)"/>
+          <!-- Stats -->
+          <rect x="52" y="136" width="60" height="36" rx="8" fill="rgba(201,95,42,.07)"/>
+          <text x="82" y="152" text-anchor="middle" fill="#C95F2A" font-size="13" font-family="system-ui" font-weight="700">6M+</text>
+          <text x="82" y="165" text-anchor="middle" fill="rgba(26,24,20,.4)" font-size="8" font-family="system-ui">followers</text>
+          <rect x="120" y="136" width="58" height="36" rx="8" fill="rgba(42,122,114,.07)"/>
+          <text x="149" y="152" text-anchor="middle" fill="#2A7A72" font-size="13" font-family="system-ui" font-weight="700">50%</text>
+          <text x="149" y="165" text-anchor="middle" fill="rgba(26,24,20,.4)" font-size="8" font-family="system-ui">growth</text>
+          <!-- Strategy map right side -->
+          <rect x="210" y="40" width="160" height="160" rx="16" fill="white" opacity=".85"/>
+          <rect x="224" y="56" width="80" height="6" rx="3" fill="rgba(26,24,20,.18)"/>
+          <rect x="224" y="68" width="120" height="4" rx="2" fill="rgba(26,24,20,.1)"/>
+          <!-- Skill bars -->
+          <rect x="224" y="84" width="132" height="14" rx="7" fill="rgba(26,24,20,.05)"/>
+          <rect x="224" y="84" width="120" height="14" rx="7" fill="rgba(201,95,42,.25)"/>
+          <text x="228" y="95" fill="rgba(26,24,20,.55)" font-size="8" font-family="system-ui" font-weight="600">Social</text>
+          <rect x="224" y="104" width="132" height="14" rx="7" fill="rgba(26,24,20,.05)"/>
+          <rect x="224" y="104" width="108" height="14" rx="7" fill="rgba(42,122,114,.25)"/>
+          <text x="228" y="115" fill="rgba(26,24,20,.55)" font-size="8" font-family="system-ui" font-weight="600">Community</text>
+          <rect x="224" y="124" width="132" height="14" rx="7" fill="rgba(26,24,20,.05)"/>
+          <rect x="224" y="124" width="96" height="14" rx="7" fill="rgba(42,63,106,.25)"/>
+          <text x="228" y="135" fill="rgba(26,24,20,.55)" font-size="8" font-family="system-ui" font-weight="600">Strategy</text>
+          <rect x="224" y="144" width="132" height="14" rx="7" fill="rgba(26,24,20,.05)"/>
+          <rect x="224" y="144" width="114" height="14" rx="7" fill="rgba(201,95,42,.18)"/>
+          <text x="228" y="155" fill="rgba(26,24,20,.55)" font-size="8" font-family="system-ui" font-weight="600">SaaS / CX</text>
+          <!-- Portfolio link chip -->
+          <rect x="224" y="168" width="130" height="22" rx="11" fill="rgba(201,95,42,.12)" stroke="rgba(201,95,42,.25)" stroke-width="1"/>
+          <text x="289" y="183" text-anchor="middle" fill="#C95F2A" font-size="9" font-family="system-ui" font-weight="600">bencampbell.netlify.app ↗</text>
+          <!-- Label -->
+        </svg>
+      </div>
+      <div class="strip-img wide">
+        <svg viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" aria-label="Strategy and planning illustration">
+          <rect width="400" height="225" fill="#EEF0F6"/>
+          <ellipse cx="100" cy="80" rx="130" ry="90" fill="rgba(42,63,106,.06)"/>
+          <!-- Whiteboard / strategy canvas -->
+          <rect x="30" y="30" width="340" height="175" rx="14" fill="white" opacity=".88"/>
+          <!-- Title bar -->
+          <rect x="30" y="30" width="340" height="28" rx="14" fill="rgba(42,63,106,.1)"/>
+          <rect x="30" y="44" width="340" height="14" fill="rgba(42,63,106,.1)"/>
+          <text x="200" y="49" text-anchor="middle" fill="#2A3F6A" font-size="10" font-family="system-ui" font-weight="700">90-Day Community Blueprint</text>
+          <!-- Three phase boxes -->
+          <rect x="46" y="72" width="92" height="110" rx="10" fill="rgba(201,95,42,.06)" stroke="rgba(201,95,42,.2)" stroke-width="1.5"/>
+          <rect x="46" y="72" width="92" height="20" rx="10" fill="rgba(201,95,42,.15)"/>
+          <rect x="46" y="82" width="92" height="10" fill="rgba(201,95,42,.15)"/>
+          <text x="92" y="87" text-anchor="middle" fill="#C95F2A" font-size="9" font-family="system-ui" font-weight="700">Foundation</text>
+          <rect x="56" y="100" width="64" height="5" rx="2.5" fill="rgba(26,24,20,.15)"/>
+          <rect x="56" y="110" width="56" height="5" rx="2.5" fill="rgba(26,24,20,.1)"/>
+          <rect x="56" y="120" width="60" height="5" rx="2.5" fill="rgba(26,24,20,.1)"/>
+          <rect x="56" y="130" width="50" height="5" rx="2.5" fill="rgba(26,24,20,.08)"/>
+          <rect x="154" y="72" width="92" height="110" rx="10" fill="rgba(42,122,114,.06)" stroke="rgba(42,122,114,.2)" stroke-width="1.5"/>
+          <rect x="154" y="72" width="92" height="20" rx="10" fill="rgba(42,122,114,.15)"/>
+          <rect x="154" y="82" width="92" height="10" fill="rgba(42,122,114,.15)"/>
+          <text x="200" y="87" text-anchor="middle" fill="#2A7A72" font-size="9" font-family="system-ui" font-weight="700">Activation</text>
+          <rect x="164" y="100" width="60" height="5" rx="2.5" fill="rgba(26,24,20,.15)"/>
+          <rect x="164" y="110" width="68" height="5" rx="2.5" fill="rgba(26,24,20,.1)"/>
+          <rect x="164" y="120" width="56" height="5" rx="2.5" fill="rgba(26,24,20,.1)"/>
+          <rect x="164" y="130" width="64" height="5" rx="2.5" fill="rgba(26,24,20,.08)"/>
+          <rect x="262" y="72" width="92" height="110" rx="10" fill="rgba(42,63,106,.06)" stroke="rgba(42,63,106,.2)" stroke-width="1.5"/>
+          <rect x="262" y="72" width="92" height="20" rx="10" fill="rgba(42,63,106,.15)"/>
+          <rect x="262" y="82" width="92" height="10" fill="rgba(42,63,106,.15)"/>
+          <text x="308" y="87" text-anchor="middle" fill="#2A3F6A" font-size="9" font-family="system-ui" font-weight="700">Amplification</text>
+          <rect x="272" y="100" width="64" height="5" rx="2.5" fill="rgba(26,24,20,.15)"/>
+          <rect x="272" y="110" width="56" height="5" rx="2.5" fill="rgba(26,24,20,.1)"/>
+          <rect x="272" y="120" width="68" height="5" rx="2.5" fill="rgba(26,24,20,.1)"/>
+          <rect x="272" y="130" width="52" height="5" rx="2.5" fill="rgba(26,24,20,.08)"/>
+          <!-- Arrow connectors -->
+          <path d="M138 127 L154 127" stroke="rgba(26,24,20,.2)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <path d="M246 127 L262 127" stroke="rgba(26,24,20,.2)" stroke-width="1.5"/>
+          <polygon points="258,124 262,127 258,130" fill="rgba(26,24,20,.25)"/>
+          <polygon points="150,124 154,127 150,130" fill="rgba(26,24,20,.25)"/>
+          <!-- Label -->
+        </svg>
+      </div>
+    </div>
+
+    <div class="bio-card reveal">
+      <div>
+        <div class="bio-name">Ben Campbell</div>
+        <div class="bio-role">Social Media & Community Strategist</div>
+        <p class="bio-body">I've built systems that scale — content strategy, audience growth, brand storytelling — with the added advantage of being fluent in the realities of SaaS and customer experience. I've managed <strong>nearly 6M total followers</strong> across platforms and driven a <strong>50% audience increase</strong> at Codeup.</p>
+        <p class="bio-body" style="margin-top: 10px;">My edge is hybrid: I think like marketing, operate like support, and collaborate like product. That's exactly what community needs to become a core part of the team — not a side project.</p>
+        <a class="bio-link" href="https://bencampbell.netlify.app/" target="_blank" rel="noopener">Full portfolio → bencampbell.netlify.app</a>
+      </div>
+      <div class="bio-skills">
+        <h4>What I bring to Buffer</h4>
+        <ul>
+          <li><strong>Social expertise</strong> — platform-native storytelling and growth instincts</li>
+          <li><strong>Community craft</strong> — rituals, norms, and belonging by design</li>
+          <li><strong>Support mindset</strong> — empathy + clarity + action</li>
+          <li><strong>Tech fluency</strong> — SaaS thinking, feedback loops, systems</li>
+          <li><strong>Remote-ready</strong> — async-first that still feels personal</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══ CTA ══ -->
+  <div style="padding: 0 20px 56px; max-width: var(--max); margin: 0 auto;">
+    <div class="cta reveal">
+      <div>
+        <h2>Community is not<br>an <em>add-on.</em></h2>
+        <p>When users win publicly, Buffer wins sustainably. That's the whole bet.</p>
+      </div>
+      <div class="cta-btns">
+        <a class="cta-btn prim" href="#platforms">Review platform plans →</a>
+        <a class="cta-btn sec" href="https://bencampbell.netlify.app/" target="_blank" rel="noopener">View portfolio</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>Built for a remote team who reads carefully.</span>
+    <span><em>No gurus were harmed in the making of this plan.</em></span>
+  </footer>
+
+</main>
+
+<script>
+  // Progress bar
+  const prog = document.getElementById('prog');
+  window.addEventListener('scroll', () => {
+    const d = document.documentElement;
+    prog.style.width = Math.round((d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100) + '%';
+  }, { passive: true });
+
+  // Scroll reveal
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); }), { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Active nav
+  const pills = document.querySelectorAll('.nav-pill[data-s]');
+  const navIO = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (!e.isIntersecting) return;
+      pills.forEach(p => p.classList.remove('active'));
+      const m = [...pills].find(p => p.dataset.s === e.target.id);
+      if (m) m.classList.add('active');
     });
+  }, { rootMargin: '-30% 0px -65% 0px', threshold: 0 });
+  document.querySelectorAll('section[id]').forEach(s => navIO.observe(s));
 
-    // Progress bar
-    const prog = document.getElementById('prog');
-    function updateProgress(){
-      const doc = document.documentElement;
-      const scrollTop = doc.scrollTop || document.body.scrollTop;
-      const height = doc.scrollHeight - doc.clientHeight;
-      const pct = height > 0 ? (scrollTop / height) * 100 : 0;
-      prog.style.width = pct + '%';
-    }
-    window.addEventListener('scroll', updateProgress, {passive:true});
-    updateProgress();
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const shell = btn.closest('.tabs-shell');
+      const tab   = btn.dataset.tab;
+      shell.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      shell.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      shell.querySelector(`[data-pane="${tab}"]`).classList.add('active');
+    });
+  });
 
-    // Reveal on scroll
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const revealEls = Array.from(document.querySelectorAll('.reveal'));
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => io.observe(el));
-
-    // Counter animation in hero
-    function animateCount(el, to){
-      const dur = prefersReduced ? 1 : 900;
-      const t0 = performance.now();
-      function tick(t){
-        const p = Math.min(1, (t - t0) / dur);
-        const val = Math.round(to * (1 - Math.pow(1-p, 3)));
-        el.textContent = val;
-        if (p < 1) requestAnimationFrame(tick);
+  // Expand cards
+  document.querySelectorAll('.expand-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card   = document.getElementById(btn.dataset.card);
+      const body   = card.querySelector('.expand-body');
+      const isOpen = card.classList.contains('open');
+      // close all
+      document.querySelectorAll('.expand-card').forEach(c => {
+        c.classList.remove('open');
+        c.querySelector('.expand-body').style.maxHeight = null;
+        c.querySelector('.expand-trigger').setAttribute('aria-expanded', 'false');
+      });
+      // open clicked
+      if (!isOpen) {
+        card.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
       }
-      requestAnimationFrame(tick);
-    }
-    document.querySelectorAll('[data-count]').forEach(el => {
-      const to = Number(el.getAttribute('data-count') || '0');
-      animateCount(el, to);
     });
+  });
 
-    // Active nav chip based on section in view (desktop chips only)
-    const chips = Array.from(document.querySelectorAll('.navLinks .chip'));
-    const sections = chips
-      .map(c => document.querySelector(c.getAttribute('href')))
-      .filter(Boolean);
-
-    const navIO = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        chips.forEach(c => c.classList.remove('active'));
-        const activeChip = chips.find(c => c.getAttribute('href') === '#' + entry.target.id);
-        if (activeChip) activeChip.classList.add('active');
-      });
-    }, { rootMargin: '-30% 0px -65% 0px', threshold: 0.01 });
-
-    sections.forEach(sec => navIO.observe(sec));
-
-    // Expand/Collapse all details
-    const toggleAllBtn = document.getElementById('toggleAll');
-    let expanded = false;
-
-    function setAllDetails(open){
-      document.querySelectorAll('details').forEach(d => { d.open = open; });
-      expanded = open;
-      toggleAllBtn.innerHTML = open ? 'Collapse all details <span aria-hidden="true">▴</span>'
-                                   : 'Expand all details <span aria-hidden="true">▾</span>';
-    }
-    toggleAllBtn.addEventListener('click', () => setAllDetails(!expanded));
-  </script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (!t) return;
+      e.preventDefault();
+      t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
 </body>
 </html>
